@@ -41,6 +41,7 @@ Route::delete( 'annonce/{id}','App\Http\Controllers\AnnonceController@destroy');
 Route::get('annonce/{id}/edit','App\Http\Controllers\AnnonceController@edit');
 Route::put( 'annonce/{id}','App\Http\Controllers\AnnonceController@update');
 Route::get('/annonce/{id}/pdf','App\Http\Controllers\AnnonceController@createPDF');
+Route::get('annonce/{id}','App\Http\Controllers\AnnonceController@show')->name('detail');
 
 Route::get('actualite/create','App\Http\Controllers\ActualiteController@create')->name('actualite/create');
 Route::post('actualite','App\Http\Controllers\ActualiteController@store');

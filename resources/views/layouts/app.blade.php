@@ -61,8 +61,8 @@
                 <li class="adjustments-line mb-3">
                     <a href="javascript:void(0)" class="switch-trigger background-color">
                     <div class="badge-colors text-center">
-                        <span class="badge filter badge-primary active" data-color="primary"></span>
-                        <span class="badge filter badge-info" data-color="blue"></span>
+                        <span class="badge filter badge-primary " data-color="primary"></span>
+                        <span class="badge filter badge-info active" data-color="blue"></span>
                         <span class="badge filter badge-success" data-color="green"></span>
                     </div>
                     <div class="clearfix"></div>
@@ -187,6 +187,5 @@
         </script>
         @stack('js')
         @notifyJs
-        <x:notify-messages />
     </body>
 </html>

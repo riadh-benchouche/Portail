@@ -59,7 +59,7 @@ class ajouter extends Notification
     public function toArray($notifiable)
     {
         return [
-            'rhId' => $this->rh->getFirstMedia()['id'],
+            'rhId' => $this->rh->id,
             'rhName' => $this->rh->getFirstMedia()['name'],
         ];
     }

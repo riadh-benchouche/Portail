@@ -29,6 +29,8 @@ class HomeController extends Controller
      */
     public function index()
     {
+       //foreach (auth()->user()->unreadNotifications as $notification ){
+       //  dd($notification->type);}
 
         return view('dashboard');
     }

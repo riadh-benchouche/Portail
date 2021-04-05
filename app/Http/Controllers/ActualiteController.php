@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Actualite;
+use App\Models\User;
+use App\Notifications\ActualiteAjouter;
+use App\Notifications\ajouter;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
 
 class ActualiteController extends Controller
 {
@@ -46,6 +50,9 @@ class ActualiteController extends Controller
 
 
         $actualite->save();
+
+        $users =User::all();
+        Notification::send($users, new ActualiteAjouter($actualite));
 
         session()->flash('success', 'Actualité Ajouter');
 

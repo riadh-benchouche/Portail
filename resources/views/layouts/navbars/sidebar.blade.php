@@ -1,13 +1,11 @@
 <div class="sidebar">
     <div class="sidebar-wrapper">
         <div class="logo">
-            <a href="#" class="simple-text logo-normal">
-                <div class=" col-md-10 container-fluid ">
+                <div class=" col-md-10 mr-auto ml-auto mt-2 mb-2">
                     <a href="{{ route('home') }}">
                     <img src="{{ asset('black') }}/img/logo-apn2.png" alt=""  >
                     </a>
                 </div>
-            </a>
         </div>
         <ul class="nav">
             <li @if ($pageSlug ?? '' == 'dashboard') class="active " @endif>

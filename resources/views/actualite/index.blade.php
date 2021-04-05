@@ -7,31 +7,37 @@
         </a>
     </div>
     <div class="content">
-        <div class="row">
+        <div class="row " >
             @foreach($actualites as $actualite)
-                <div class="col-md-6">
-                <div class="card mb-3">
-                    <img class="card-img-top" src="{{ asset('storage').'/'.$actualite ->getFirstMedia()['id'].'/'.$actualite ->getFirstMedia()['file_name']}}"  alt="Card image cap">
-                    <div class="card-body">
-                        <h4 class="card-title">{{substr($actualite ->title,0,40)}}</h4>
-                        <p class="card-text">{{substr($actualite ->contenu,0,100)}}</p>
-                        <form class="text-center" action="{{ url('actualite/'.$actualite->id) }}" method="post">
-                            @csrf
-                            @method('delete')
-                            <button type="button" class="btn btn-fab btn-icon btn-info btn-round" data-toggle="modal" data-target="#exampleModal{{$actualite->id}}">
-                                <i class="tim-icons icon-book-bookmark"></i>
-                            </button>
-                            <a rel="tooltip" class="btn btn-warning btn-fab btn-icon btn-round " href="{{ url ('actualite/'.$actualite->id.'/edit')}}" data-original-title="" title="">
-                                <i class="tim-icons icon-pencil" title="edit"></i>
-                            </a>
-                            <button type="button" class="btn btn-danger btn-fab btn-icon btn-round " onclick="confirm('{{ __("Êtes vous sûr de vouloir supprimer ?") }}') ? this.parentElement.submit() : ''">
-                                <i class="tim-icons icon-trash-simple" title="supprimer"></i>
-                            </button>
-                        </form>
+
+                <div class="card mb-3 ml-2 mr-2" >
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img  src="{{ asset('storage').'/'.$actualite ->getFirstMedia()['id'].'/'.$actualite ->getFirstMedia()['file_name']}}" >
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h2 class="card-title"><b>{{substr($actualite ->title,0,60)}}...</b></h2>
+                                <p class="card-text">{{substr($actualite ->contenu,0,250)}}...</p>
+                                <div class="card-footer">
+                                <form class="text-center align-text-bottombottom mt-2" action="{{ url('actualite/'.$actualite->id) }}" method="post">
+                                    @csrf
+                                    @method('delete')
+                                    <button type="button" class="btn btn-fab btn-icon btn-info btn-round" data-toggle="modal" data-target="#exampleModal{{$actualite->id}}">
+                                        <i class="tim-icons icon-book-bookmark"></i>
+                                    </button>
+                                    <a rel="tooltip" class="btn btn-warning btn-fab btn-icon btn-round " href="{{ url ('actualite/'.$actualite->id.'/edit')}}" data-original-title="" title="">
+                                        <i class="tim-icons icon-pencil" title="edit"></i>
+                                    </a>
+                                    <button type="button" class="btn btn-danger btn-fab btn-icon btn-round " onclick="confirm('{{ __("Êtes vous sûr de vouloir supprimer ?") }}') ? this.parentElement.submit() : ''">
+                                        <i class="tim-icons icon-trash-simple" title="supprimer"></i>
+                                    </button>
+                                </form>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                </div>
-
                 <div class="modal fade" id="exampleModal{{$actualite->id}}"  data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -51,7 +57,11 @@
                         </div>
                     </div>
                 </div>
+
             @endforeach
+                <script>
+                    $('#exampleModal{{$actualite->id}}').modal('show');
+                </script>
         </div>
     </div>
 

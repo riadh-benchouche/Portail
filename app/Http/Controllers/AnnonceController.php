@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Annonce;
+use App\Models\User;
+use App\Notifications\AnnonceAjouter;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
 use PDF;
 
 
@@ -42,8 +45,12 @@ class AnnonceController extends Controller
         $annonce = new Annonce();
         $annonce->title = $request->input('title');
         $annonce->contenu = $request->input('contenu');
+        $annonce->type = $request->input('type');
 
         $annonce->save();
+
+        $users =User::all();
+        Notification::send($users, new AnnonceAjouter($annonce));
 
          session()->flash('success', 'Annonce Ajouter');
 
@@ -58,7 +65,9 @@ class AnnonceController extends Controller
      */
     public function show($id)
     {
-        //
+        $annonce = Annonce::find($id);
+
+        return view('Annonces.detail', ['annonce'=>$annonce]);
     }
 
     /**
