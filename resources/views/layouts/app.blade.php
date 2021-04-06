@@ -19,6 +19,8 @@
         <!-- CSS -->
         <link href="{{ asset('black') }}/css/black-dashboard.css?v=1.0.0" rel="stylesheet" />
         <link href="{{ asset('black') }}/css/theme.css" rel="stylesheet" />
+        <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.css' />
+
         @notifyCss
     </head>
     <body class="{{ $class ?? '' }}">
@@ -65,7 +67,7 @@
                         <span class="badge filter badge-info active" data-color="blue"></span>
                         <span class="badge filter badge-success" data-color="green"></span>
                     </div>
-                    <div class="clearfix"></div>
+
                     </a>
                 </li>
                 </ul>
@@ -85,6 +87,7 @@
 
         <script src="{{ asset('black') }}/js/black-dashboard.min.js?v=1.0.0"></script>
         <script src="{{ asset('black') }}/js/theme.js"></script>
+
 
         @stack('js')
 

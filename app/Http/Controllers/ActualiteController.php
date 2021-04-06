@@ -67,7 +67,8 @@ class ActualiteController extends Controller
      */
     public function show($id)
     {
-        //
+        $actualite = Actualite::find($id);
+        return view ('actualite.detail', ['actualite'=>$actualite]);
     }
 
     /**

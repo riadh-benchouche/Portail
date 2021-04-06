@@ -23,9 +23,9 @@
                                 <form class="text-center align-text-bottombottom mt-2" action="{{ url('actualite/'.$actualite->id) }}" method="post">
                                     @csrf
                                     @method('delete')
-                                    <button type="button" class="btn btn-fab btn-icon btn-info btn-round" data-toggle="modal" data-target="#exampleModal{{$actualite->id}}">
+                                    <a href="{{ url('actualite/'.$actualite->id) }}" class="btn btn-info btn-fab btn-icon btn-round" >
                                         <i class="tim-icons icon-book-bookmark"></i>
-                                    </button>
+                                    </a>
                                     <a rel="tooltip" class="btn btn-warning btn-fab btn-icon btn-round " href="{{ url ('actualite/'.$actualite->id.'/edit')}}" data-original-title="" title="">
                                         <i class="tim-icons icon-pencil" title="edit"></i>
                                     </a>

@@ -48,6 +48,13 @@ class Rhcontroller extends Controller
         return $rh->getFirstMedia();
     }
 
+    public function showdetail($id)
+    {
+        $rh = RH::find($id);
+        return view('Rh.detail', ['rh'=>$rh]);
+    }
+
+
     public function destroy(RhRequest $request,$id)
     {
         $rh = RH::find($id);

@@ -27,6 +27,14 @@ Route::get('rh/create','App\Http\Controllers\Rhcontroller@create')->name('rh/cre
 Route::post('rh','App\Http\Controllers\Rhcontroller@store');
 Route::get('/ile/download/{id}','App\Http\Controllers\Rhcontroller@show')->name('downloadfile');
 Route::delete( 'rh/{id}','App\Http\Controllers\Rhcontroller@destroy');
+Route::get('rh/{id}','App\Http\Controllers\Rhcontroller@showdetail')->name('detailrh');
+
+//Route::get('events', 'App\Http\Controllers\EventController@index');
+//Route::get('fullcalender','App\Http\Controllers\FullCalenderController@index');
+//Route::post('fullcalenderAjax','App\Http\Controllers\FullCalenderController@ajax');
+
+Route::resource('events', 'App\Http\Controllers\EventController');
+
 
 
 Route::get('bibu/create','App\Http\Controllers\BibliothequeuController@create')->name('bibu/create')->middleware('can:adminp');
@@ -48,6 +56,8 @@ Route::post('actualite','App\Http\Controllers\ActualiteController@store');
 Route::delete( 'actualite/{id}','App\Http\Controllers\ActualiteController@destroy');
 Route::get('actualite/{id}/edit','App\Http\Controllers\ActualiteController@edit');
 Route::put( 'actualite/{id}','App\Http\Controllers\ActualiteController@update');
+Route::get('actualite/{id}','App\Http\Controllers\ActualiteController@show')->name('detailact');
+
 
 
 

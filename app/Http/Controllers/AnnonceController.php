@@ -46,6 +46,9 @@ class AnnonceController extends Controller
         $annonce->title = $request->input('title');
         $annonce->contenu = $request->input('contenu');
         $annonce->type = $request->input('type');
+        $annonce
+            ->addMedia($request->file)
+            ->toMediaCollection();
 
         $annonce->save();
 
@@ -93,9 +96,16 @@ class AnnonceController extends Controller
     public function update(Request $request, $id)
     {
         $annonce = Annonce::find($id);
-
-        $annonce->title = $request->input('title');
-        $annonce->contenu= $request->input('contenu');
+        if ($request->file != null) {
+            $annonce->getFirstMedia()->delete();
+            $annonce->addMedia($request->file)->toMediaCollection();
+            $annonce->title = $request->input('title');
+            $annonce->contenu= $request->input('contenu');
+        }
+        else {
+            $annonce->title = $request->input('title');
+            $annonce->contenu= $request->input('contenu');
+        }
 
         $annonce->save();
         return redirect('annonce');
@@ -110,7 +120,7 @@ class AnnonceController extends Controller
     public function destroy($id)
     {
         $annonce = Annonce::find($id);
-
+        $annonce->getFirstMedia()->delete();
         $annonce-> delete();
         return redirect('annonce');
     }

@@ -36,9 +36,9 @@
                                     <form class="text-center  mt-3" action="{{ url('rh/'.$rh->id) }}" method="post">
                                         @csrf
                                         @method('delete')
-                                        <button type="button" class="btn btn-info btn-fab btn-icon btn-round" data-toggle="modal" data-target="#exampleModal{{$rh->id}}">
+                                        <a href="{{ url('rh/'.$rh->id) }}" class="btn btn-info btn-fab btn-icon btn-round" >
                                             <i class="tim-icons icon-book-bookmark"></i>
-                                        </button>
+                                        </a>
                                         <button type="button" class="btn btn-danger btn-fab btn-icon btn-round " onclick="confirm('{{ __("Êtes vous sûr de vouloir supprimer ?") }}') ? this.parentElement.submit() : ''">
                                             <i class="tim-icons icon-trash-simple" title="supprimer"></i>
                                         </button>

@@ -39,7 +39,7 @@
                             @endif
                         @if($notification->type == "App\Notifications\AnnonceAjouter")
                             <li class="nav-link">
-                                <button  href="{{route('annonce.index')}}"   class="nav-item dropdown-item text-dark">Nouvelle Annonce:  {{$notification->data['AnnonceName']}}, Ajouter aux annonces</button>
+                                <a  href="{{ url('annonce/'.$notification->data['AnnonceId']) }}"   class="nav-item dropdown-item text-dark">Nouvelle Annonce:  {{$notification->data['AnnonceName']}}, Ajouter aux annonces</a>
                             </li>
                         @endif
                         @if($notification->type == "App\Notifications\ActualiteAjouter")

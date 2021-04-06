@@ -30,6 +30,19 @@
                                     <label class="form-control-label" for="input-contenu">{{ __('Contenu') }}</label>
                                     <textarea class="form-control" name="contenu" id="input-contenu" rows="3" required autofocus></textarea>
                                 </div>
+
+                                <div class="form-group form-file-upload form-file-multiple d-block">
+                                    <input type="file" name="file"  class="inputFileHidden">
+                                    <div class="input-group">
+                                        <input type="text"  class="form-control inputFileVisible" placeholder="Single File">
+                                        <span class="input-group-btn d-flex">
+                                            <button type="button" class="btn btn-fab btn-round btn-success">
+                                                <i class="tim-icons icon-cloud-upload-94"></i>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+
                                 <div class="form-check form-check-radio">
                                     <label class="form-check-label">
                                         <input class="form-check-input" type="radio" name="type" id="exampleRadios2" value="option1" >
@@ -44,6 +57,7 @@
                                         <span class="form-check-sign"></span>
                                     </label>
                                 </div>
+
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-success mt-4">{{ __('Save') }}</button>
                                 </div>
