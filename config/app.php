@@ -235,10 +235,6 @@ return [
         'PDF' => Barryvdh\DomPDF\Facade::class,
         'Calendar' => LaravelFullCalendar\Facades\Calendar::class,
 
-
-
-
-
     ],
 
 ];
