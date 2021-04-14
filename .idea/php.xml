@@ -131,6 +131,10 @@
       <path value="$PROJECT_DIR$/vendor/laravel/helpers" />
       <path value="$PROJECT_DIR$/vendor/qlick/laravel-full-calendar" />
       <path value="$PROJECT_DIR$/vendor/mckenziearts/laravel-notify" />
+      <path value="$PROJECT_DIR$/vendor/php-ews/php-ews" />
+      <path value="$PROJECT_DIR$/vendor/jamesiarmes/php-ntlm" />
+      <path value="$PROJECT_DIR$/vendor/adeboyed/laravel-ews-driver" />
+      <path value="$PROJECT_DIR$/vendor/acaronlex/laravel-calendar" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.3" />

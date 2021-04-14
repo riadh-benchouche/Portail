@@ -162,8 +162,8 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
-        LaravelFullCalendar\FullCalendarServiceProvider::class,
         Mckenziearts\Notify\LaravelNotifyServiceProvider::class,
+        Adeboyed\LaravelExchangeDriver\ExchangeAddedServiceProvider::class,
 
 
 
@@ -233,7 +233,6 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
-        'Calendar' => LaravelFullCalendar\Facades\Calendar::class,
 
     ],
 

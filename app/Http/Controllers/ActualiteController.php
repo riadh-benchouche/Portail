@@ -81,7 +81,7 @@ class ActualiteController extends Controller
     {
         $actualite = Actualite::find($id);
 
-        return view('actualite.edit', ['actualite'=>$actualite]);
+        return view('actualite.edit', ['actualites'=>$actualite]);
     }
 
     /**

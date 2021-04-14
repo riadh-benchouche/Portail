@@ -20,7 +20,7 @@
                                 <h2 class="card-title"><b>{{substr($actualite ->title,0,60)}}...</b></h2>
                                 <p class="card-text">{{substr($actualite ->contenu,0,250)}}...</p>
                                 <div class="card-footer">
-                                <form class="text-center align-text-bottombottom mt-2" action="{{ url('actualite/'.$actualite->id) }}" method="post">
+                                <form class="text-center mt-2" action="{{ url('actualite/'.$actualite->id) }}" method="post">
                                     @csrf
                                     @method('delete')
                                     <a href="{{ url('actualite/'.$actualite->id) }}" class="btn btn-info btn-fab btn-icon btn-round" >
@@ -38,35 +38,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="modal fade" id="exampleModal{{$actualite->id}}"  data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h3 class="modal-title" id="exampleModalLabel">{{$actualite ->title}}</h3>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body ">
-                                <img src="{{ asset('storage').'/'.$actualite ->getFirstMedia()['id'].'/'.$actualite ->getFirstMedia()['file_name']}}" width="450px">
-                                <p class="text-center">{{$actualite -> contenu}}</p>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Fermer</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
             @endforeach
-                <script>
-                    $('#exampleModal{{$actualite->id}}').modal('show');
-                </script>
         </div>
     </div>
-
-
-
-
-
 @endsection

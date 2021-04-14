@@ -17,59 +17,34 @@
                     @endcan
                 </div>
             </div>
-            <div class="card-body">
+            <div class="row">
+                @foreach($users as $user)
+                    <a href="{{ url('user/'.$user->id) }}" >
 
-                <div >
-                    <table class="table tablesorter  " id="">
-                        <thead class=" text-primary">
-                            <tr class="text-center">
-                            <th scope="col">Name</th>
-                            <th scope="col">Email</th>
-                                @can('adminp')
-                                <th scope="col">Rights</th>
-                                @endcan
-                                <th scope="col">Téléphone</th>
-                            <th scope="col">Fonction</th>
-                            <th scope="col">Wilaya</th>
-                                @can('adminp')
-                            <th scope="col">Action</th>
-                                @endcan
-                        </tr></thead>
-                        <tbody>
-                        @foreach ($users as $user)
-                            <tr class="text-center">
-                                <td>{{ $user->name }}</td>
-                                    <td>
-                                        <a href="mailto:admin@black.com">{{ $user->email }}</a>
-                                    </td>
-                                @can('adminp')
-                                <td>{{ $user->getRoleNames()->first()}}</td>
-                                @endcan
-                                    <td>{{ $user->phone }}</td>
-                                    <td>{{ $user->fonction }}</td>
-                                    <td>{{ $user->Wilaya }}</td>
-                                @can('adminp')
-                                    <td class="text-center">
-                                            <div class="dropdown">
-                                                    <a class="btn btn-sm btn-icon-only text-light"  role="" href="{{ route('user.edit', $user) }}">
-                                                        <i class="tim-icons icon-pencil"></i>
-                                                    </a>
-                                            </div>
-                                    </td>
-                                @endcan
-                                </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
+                    <div class="card-body">
+                <div class="col-lg-4 ml-auto mr-auto" >
+                    <div class="card mb-3 bg-gray-800">
+                        <div class="row g-0">
+                            <div class="col-md-5">
+                                <img src="{{ asset('storage').'/'.$user ->getFirstMedia()['id'].'/'.$user ->getFirstMedia()['file_name']}}" >
+                            </div>
+                            <div class="col-md-7">
+                                <div class="card-body   ">
+                                    <p class="card-title">{{$user ->name}}</p>
+                                    <p class="card-text">{{ $user ->nom_a }}</p>
+                                    <div class="card-footer">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="card-footer py-4">
-                <nav class="d-flex justify-content-end" aria-label="...">
-
-                </nav>
-            </div>
         </div>
-
+            </a>
+            @endforeach
+        </div>
     </div>
 </div>
                 </div>

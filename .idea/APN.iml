@@ -136,6 +136,10 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/laravel/helpers" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/qlick/laravel-full-calendar" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/mckenziearts/laravel-notify" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/php-ews/php-ews" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/jamesiarmes/php-ntlm" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/adeboyed/laravel-ews-driver" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/acaronlex/laravel-calendar" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

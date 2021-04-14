@@ -29,11 +29,9 @@ Route::get('/ile/download/{id}','App\Http\Controllers\Rhcontroller@show')->name(
 Route::delete( 'rh/{id}','App\Http\Controllers\Rhcontroller@destroy');
 Route::get('rh/{id}','App\Http\Controllers\Rhcontroller@showdetail')->name('detailrh');
 
-//Route::get('events', 'App\Http\Controllers\EventController@index');
-//Route::get('fullcalender','App\Http\Controllers\FullCalenderController@index');
-//Route::post('fullcalenderAjax','App\Http\Controllers\FullCalenderController@ajax');
+Route::get('fullcalender', [App\Http\Controllers\FullCalenderController::class, 'index']);
+Route::post('fullcalenderAjax', [App\Http\Controllers\FullCalenderController::class, 'ajax']);
 
-Route::resource('events', 'App\Http\Controllers\EventController');
 
 
 
@@ -85,7 +83,8 @@ Route::group(['middleware' => 'auth'], function () {
 Route::group(['middleware' => 'auth'], function () {
 	Route::resource('user', 'App\Http\Controllers\UserController', ['except' => ['show']]);
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'App\Http\Controllers\ProfileController@edit']);
-	Route::put('profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);
+    Route::get('user/{id}','App\Http\Controllers\UserController@show')->name('detailu');
+    Route::put('profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
 });
 

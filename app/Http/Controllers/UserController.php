@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comission;
+use App\Models\Service;
 use App\Models\User;
 use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Hash;
@@ -40,25 +42,37 @@ class UserController extends Controller
     public function edit(User $user)
     {
         $roles = Role::all();
+        $services = Service::all();
+        $comissions = Comission::all();
 
       // dd( $roles);
         // $user = User::find(id);
 
-        return view('users.edit', compact('user','roles'));
+        return view('users.edit', compact('user','roles','services','comissions'));
     }
 
 
     public function update(UserRequest $request, User  $user)
     {
+        if ($user->getFirstMedia() != null) {
+            $user->getFirstMedia()->delete();
+        }
         $hasPassword = $request->get('password');
-
+        // ini_set('memory_limit','256M');
         $user->update(
             $request->merge(['password' => Hash::make($request->get('password'))])
                 ->except([$hasPassword ? '' : 'password'],
                     $user->phone = $request->input('phone'),
                     $user->fonction = $request->input('fonction'),
                     $user->Wilaya = $request->input('Wilaya'),
+                    $user->nom_a = $request->input('nom_a'),
+                    $user->service_id = $request->input('service'),
+                    $user->comission_id = $request->input('comission'),
+                    $user->category = $request->input('categorie'),
                     $user->syncRoles($request->role),
+                    $user->addMedia($request->file)->toMediaCollection(),
+                    // $user->getFirstMedia()->delete(),
+                    // $user->addMedia($request->file)->toMediaCollection()
                 ));
 
 
@@ -69,4 +83,9 @@ class UserController extends Controller
         return redirect()->route('user.index')->withStatus(__('User successfully updated.'));
     }
 
+    public function show($id)
+    {
+        $user= User::find($id);
+        return view('users.detail', ['user'=>$user]);
+    }
 }

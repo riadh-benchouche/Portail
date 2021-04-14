@@ -10,7 +10,7 @@
             </div>
             <div class="col-md-8 ">
                 <div class="card-body">
-                    <h5 class="card-title display-4">{{$annonce->title}}</h5>
+                    <h5 class="card-title display-4"><b>{{$annonce->title}}</b></h5>
                     <p class="card-text text-justify" style="line-height: 2.3em">{{$annonce->contenu}}</p>
                     <p class="card-text"><small class="text-muted">{{$annonce->created_at}}</small></p>
                 </div>
