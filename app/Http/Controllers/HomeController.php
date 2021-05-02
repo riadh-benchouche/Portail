@@ -3,10 +3,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Event;
 use App\Models\RH;
 use App\Models\User;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use Calendar;
+
 
 
 
@@ -33,5 +36,7 @@ class HomeController extends Controller
        //  dd($notification->type);}
 
         return view('dashboard');
+
+      //  return view('dashboard');
     }
 }

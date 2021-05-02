@@ -164,6 +164,7 @@ return [
         Barryvdh\DomPDF\ServiceProvider::class,
         Mckenziearts\Notify\LaravelNotifyServiceProvider::class,
         Adeboyed\LaravelExchangeDriver\ExchangeAddedServiceProvider::class,
+        LaravelFullCalendar\FullCalendarServiceProvider::class,
 
 
 
@@ -233,6 +234,8 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
+        'Calendar' => LaravelFullCalendar\Facades\Calendar::class,
+
 
     ],
 

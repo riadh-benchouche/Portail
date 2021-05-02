@@ -1,70 +1,118 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Category_e;
 use Illuminate\Http\Request;
+use Calendar;
 use App\Models\Event;
 
 class FullCalenderController extends Controller
 {
-    /**
-     * Write code on Method
-     *
-     * @return response()
-     */
-    public function index(Request $request)
+    public function index()
     {
-
-        if($request->ajax()) {
-
-            $data = Event::whereDate('start', '>=', $request->start)
-                ->whereDate('end',   '<=', $request->end)
-                ->get(['id', 'title', 'start', 'end']);
-
-            return response()->json($data);
+        $events = [];
+        $data = Event::all();
+        if($data->count())
+        {
+            foreach ($data as $key => $value)
+            {
+                $events[] = Calendar::event(
+                    $value->title,
+                    false,
+                    new \DateTime($value->start_date),
+                    new \DateTime($value->end_date),
+                    null,
+                    // Add color
+                    [
+                        'color'=> $value->categories->color,
+                        'textColor' => $value->textColor,
+                        'url' => 'fullcalender/'.$value->id,
+                        'description' => $value->description,
+                        'locale' =>'fr',
+                    ],
+                );
+            }
         }
 
-        return view('fullcalender');
+        $calendar = \Calendar::addEvents($events)->setOptions([
+            //'locale' => 'fr',
+            'lang' => 'fr'
+        ]);
+        return view('fullcalender',compact('events','calendar'));
     }
 
     /**
-     * Write code on Method
+     * Show the form for creating a new resource.
      *
-     * @return response()
+     * @return \Illuminate\Http\Response
      */
-    public function ajax(Request $request)
+
+    public function create()
     {
+        $catergorys = Category_e::all();
+        return view("addevent" , compact('catergorys'));
+    }
 
-        switch ($request->type) {
-            case 'add':
-                $event = Event::create([
-                    'title' => $request->title,
-                    'start' => $request->start,
-                    'end' => $request->end,
-                ]);
+    public function store(Request $request)
+    {
+        $request->validate([
+            'title'=>'required',
+            'start_date'=>'required',
+            'end_date'=>'required',
+        ]);
+        $events=new Event;
+        $events->title=$request->input('title');
+        $events->category_id = $request->input('category');
+        $events->start_date=$request->input('start_date');
+        $events->end_date=$request->input('end_date');
+        $events->description=$request->input('description');
+        $events->save();
+        return redirect('fullcalender');
+    }
 
-                return response()->json($event);
-                break;
+    public function detail($id)
+    {
+        $event = Event::find($id);
 
-            case 'update':
-                $event = Event::find($request->id)->update([
-                    'title' => $request->title,
-                    'start' => $request->start,
-                    'end' => $request->end,
-                ]);
+        return view('calendardetail', ['event'=>$event]);
+    }
 
-                return response()->json($event);
-                break;
+    //public function show()
+    //{
+    //    $events = Event::all();
+    //    return view('display')->with('events',$events);
+    //}
+    public function edit($id)
+    {
+        $events = Event::find($id);
+        $catergorys = Category_e::all();
 
-            case 'delete':
-                $event = Event::find($request->id)->delete();
+        return view('editform', ['events'=>$events , 'catergorys' => $catergorys]);
+    }
 
-                return response()->json($event);
-                break;
 
-            default:
-                # code...
-                break;
-        }
+    public function update(Request $request, $id)
+    {
+        $events = Event::find($id);
+        $events->title=$request->input('title');
+        $events->category_id = $request->input('category');
+        $events->start_date=$request->input('start_date');
+        $events->end_date=$request->input('end_date');
+        $events->description=$request->input('description');
+        $events->save();
+        return redirect('fullcalender');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        $events = Event::find($id);
+        $events->delete();
+        return redirect('/fullcalender');
     }
 }

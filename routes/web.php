@@ -29,8 +29,24 @@ Route::get('/ile/download/{id}','App\Http\Controllers\Rhcontroller@show')->name(
 Route::delete( 'rh/{id}','App\Http\Controllers\Rhcontroller@destroy');
 Route::get('rh/{id}','App\Http\Controllers\Rhcontroller@showdetail')->name('detailrh');
 
-Route::get('fullcalender', [App\Http\Controllers\FullCalenderController::class, 'index']);
-Route::post('fullcalenderAjax', [App\Http\Controllers\FullCalenderController::class, 'ajax']);
+
+
+Route::get('/appointments', 'App\Http\Controllers\AppointmentController@index');
+Route::get('/appointments/filter', 'App\Http\Controllers\AppointmentController@filter');
+Route::post('/appointments/new', 'App\Http\Controllers\AppointmentController@store');
+Route::patch('/appointments/{appointment}/edit', 'App\Http\Controllers\AppointmentController@update');
+Route::delete('/appointments/{appointment}', 'App\Http\Controllers\AppointmentController@destroy');
+
+
+Route::get('/fullcalender', 'App\Http\Controllers\FullCalenderController@index');
+Route::get('fullcalender/create','App\Http\Controllers\FullCalenderController@create');
+Route::post('fullcalender','App\Http\Controllers\FullCalenderController@store');
+Route::delete( 'fullcalender/{id}','App\Http\Controllers\FullCalenderController@destroy');
+Route::get('fullcalender/{id}/edit','App\Http\Controllers\FullCalenderController@edit');
+Route::put( 'fullcalender/{id}','App\Http\Controllers\FullCalenderController@update');
+Route::get('fullcalender/{id}','App\Http\Controllers\FullCalenderController@detail');
+
+
 
 
 

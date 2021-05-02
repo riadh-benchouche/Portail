@@ -27,7 +27,11 @@
 
                             <div class="fileinput fileinput-new text-center col-md-8 ml-auto mr-auto" data-provides="fileinput">
                                 <div class="fileinput-new thumbnail img-raised">
+                                    @if ($user->getFirstMedia() == null)
                                     <img src="http://style.anu.edu.au/_anu/4/images/placeholders/person_8x10.png" alt="...">
+                                        @elseif ( $user->getFirstMedia() )
+                                    <img  class="col-md-4" src="{{ asset('storage').'/'.$user ->getFirstMedia()['id'].'/'.$user ->getFirstMedia()['file_name']}}"  >
+                                        @endif
                                 </div>
                                 <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
                                 <div>
@@ -46,7 +50,7 @@
                             <div class="pl-lg-4">
                                 <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-matricule">{{ __('Matricule') }}</label>
-                                    <input type="text" name="matricule" id="input-matricule" class="form-control form-control-alternative{{ $errors->has('matricule') ? ' is-invalid' : '' }}" placeholder="{{ __('matricule') }}" value="{{ old('matricule', $user->matricule) }}" required autofocus>
+                                        <input type="text" name="matricule" id="input-matricule" class="form-control form-control-alternative{{ $errors->has('matricule') ? ' is-invalid' : '' }}" placeholder="{{ __('matricule') }}" value="{{ old('matricule', $user->matricule) }}" required autofocus>
                                     @include('alerts.feedback', ['field' => 'matricule'])
                                 </div>
                                 <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
@@ -64,31 +68,26 @@
                                 </div>
                                 <fieldset class="form-group">
                                     <label for="exampleSelect1">Catégorie</label>
-                                    <select name="categorie" class="form-control" id="TypeOfConstruction">
-                                        <option value="Député">Député</option>
-                                        <option value="Salarié">Salarié</option>
+                                    <select name="categorie" class="form-control" id="TypeOfConstruction" >
+                                        <option value="Député" @if($user->category == 'Député') selected @endif>Député</option>
+                                        <option value="Salarié"@if($user->category == 'Salarié') selected @endif>Salarié</option>
                                     </select>
                                 </fieldset>
-                                <fieldset class="form-group wfiedls">
-                                    <label class="form-control-label" for="input-password-confirmation">{{ __('Structure') }}</label>
+
+                                <fieldset class="form-group" style="display:none;" id="salarie">
+                                    <label for="PartyWalls">Structure :</label>
                                     @foreach($services as $service)
-
-                                                <input class="form-check-input" type="radio" name="service" id="{{$service -> id}}" value="{{$service->id}}"> {{ $service->name }}
-                                                <span class="form-check-sign"></span>
-
+                                        <input class="form-check-input" type="radio" name="service" id="{{$service -> id}}" value="{{$service->id}}" @if ( $user->service_id == $service->id )  checked @endif>
+                                                    {{ $service ->name }}
+                                        <br><span class="form-check-sign"></span>
                                     @endforeach
                                 </fieldset>
-                                <fieldset class="form-group dfiedls">
-                                    <label class="form-control-label" for="input-password-confirmation">{{ __('Commission') }}</label>
+
+                                <fieldset class="form-group" style="display:none;" id="depute">
+                                    <label for="PartyWalls">Comission :</label>
                                     @foreach($comissions as $comission)
                                         <label for="{{ $comission -> id}}" class="form-check-label ml-2"> {{$comission -> name}}
-                                            <input type="checkbox"  class="form-check-input" name="comission" value="{{$comission->id}}" id="{{$comission -> id}}"
-                                                   @if ($comission->name))checked @endif >
-                                            <span class="form-check-sign">
-                                                     <span
-                                                         class="check">
-                                                     </span>
-                                             </span>
+                                            <input type="checkbox"  class="form-check-input" name="comission" value="{{$comission->id}}" id="{{$comission -> id}}">
                                         </label>
                                     @endforeach
                                 </fieldset>
@@ -136,7 +135,33 @@
 
                                 </div>
 
-                                <script type="text/javascript">
+                                <script>
+                                    $(document).ready(function(){
+                                        $("#TypeOfConstruction").on("change", function(e){
+                                            var v = $(this).val();
+                                            if(v == 'Salarié') {
+                                                $("#salarie").slideDown();
+                                            } else {
+                                                $("#salarie").slideUp();
+                                            }
+                                        });
+                                    });
+                                </script>
+                                <script>
+                                    $(document).ready(function(){
+                                        $("#TypeOfConstruction").on("change", function(e){
+                                            var v = $(this).val();
+                                            if(v == 'Député') {
+                                                $("#depute").slideDown();
+                                            } else {
+                                                $("#depute").slideUp();
+                                            }
+                                        });
+                                    });
+                                </script>
+
+
+                           <!--     <script type="text/javascript">
                                     $(document).ready(function(){
                                         $("#TypeOfConstruction").on('change',function(){
                                             var selectedBalue = $("#TypeOfConstruction").val();
@@ -151,7 +176,9 @@
                                             }
                                         });
                                     });
-                                </script>
+                                </script> -->
+
+
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-success mt-4">{{ __('Save') }}</button>
                                 </div>

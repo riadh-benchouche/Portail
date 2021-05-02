@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateServiceTable extends Migration
+class CreateLoisTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class CreateServiceTable extends Migration
      */
     public function up()
     {
-        Schema::create('service', function (Blueprint $table) {
+        Schema::create('_lois', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->string('contenu');
             $table->dateTime('deleted_at')->nullable();
             $table->timestamps();
         });
@@ -28,7 +29,6 @@ class CreateServiceTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('service');
-
+        Schema::dropIfExists('_lois');
     }
 }

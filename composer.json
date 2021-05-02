@@ -31,7 +31,7 @@
     "name": "laravel/laravel",
     "prefer-stable": true,
     "require": {
-        "php": "^7.3|^8.0",
+        "php": "7.3.11",
         "acaronlex/laravel-calendar": "^1.3",
         "adeboyed/laravel-ews-driver": "^1.1",
         "barryvdh/laravel-dompdf": "^0.9.0",

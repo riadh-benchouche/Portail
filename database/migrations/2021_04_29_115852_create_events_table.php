@@ -16,8 +16,9 @@ class CreateEventsTable extends Migration
         Schema::create('events', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->date('start');
-            $table->date('end');
+            $table->dateTime('start_date');
+            $table->dateTime('end_date');
+            $table->string('description');
             $table->timestamps();
         });
     }
@@ -30,5 +31,6 @@ class CreateEventsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('events');
+
     }
 }

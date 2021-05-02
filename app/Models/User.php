@@ -27,6 +27,14 @@ class User extends Authenticatable implements HasMedia
     {
         return $this ->belongsTo('App\Models\Comission', 'comission_id' ,'id');
     }
+
+    public function appointments() {
+        return $this->hasMany('App\Appointment');
+    }
+
+    public function isAdmin() {
+        return (bool) $this->id === 1;
+    }
     /**
      * The attributes that are mass assignable.
      *

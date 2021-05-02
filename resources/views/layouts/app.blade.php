@@ -64,6 +64,7 @@
                     <a href="javascript:void(0)" class="switch-trigger background-color">
                     <div class="badge-colors text-center">
                         <span class="badge filter badge-primary " data-color="primary"></span>
+                        <span class="badge filter badge-warning " data-color="orange"></span>
                         <span class="badge filter badge-info active" data-color="blue"></span>
                         <span class="badge filter badge-success" data-color="green"></span>
                     </div>

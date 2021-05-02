@@ -8,9 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Event extends Model
 {
     use HasFactory;
+
+    public function categories()
+    {
+        return $this ->belongsTo('App\Models\Category_e', 'category_id' ,'id');
+    }
+
     protected $fillable = [
 
-        'title', 'start', 'end'
+        'title', 'start_date', 'end_date',
 
     ];
 }
