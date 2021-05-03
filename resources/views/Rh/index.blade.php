@@ -29,16 +29,16 @@
                             <iframe  src="{{ asset('storage').'/'.$rh ->getFirstMedia()['id'].'/'.$rh ->getFirstMedia()['file_name']}}" height="200px" width="170px"></iframe>
                         </div>
                         <div class="col-md-8">
-                            <div class="card-body ml-2">
+                            <div class="card-body ml-3">
                                 <h2 class="card-title"><b>{{$rh ->getFirstMedia()['name']}}</b></h2>
                                 <p class="card-text">{{ $rh -> getFirstMedia()['created_at'] }}</p>
                                 <div class="card-footer">
                                     <form class="text-center  mt-3" action="{{ url('rh/'.$rh->id) }}" method="post">
                                         @csrf
                                         @method('delete')
-                                        <a href="{{ url('rh/'.$rh->id) }}" class="btn btn-info btn-fab btn-icon btn-round" >
+                                        <button type="button" class="btn btn-info btn-fab btn-icon btn-round" data-toggle="modal" data-target="#exampleModal{{$rh->id}}">
                                             <i class="tim-icons icon-book-bookmark"></i>
-                                        </a>
+                                        </button>
                                         <button type="button" class="btn btn-danger btn-fab btn-icon btn-round " onclick="confirm('{{ __("Êtes vous sûr de vouloir supprimer ?") }}') ? this.parentElement.submit() : ''">
                                             <i class="tim-icons icon-trash-simple" title="supprimer"></i>
                                         </button>

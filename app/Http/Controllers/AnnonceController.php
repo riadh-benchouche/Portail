@@ -68,6 +68,14 @@ class AnnonceController extends Controller
      */
     public function show($id)
     {
+
+   //  $notif=null;
+   //     foreach (auth()->user()->unreadNotifications as $notification){
+   //         if($notification->data['AnnonceId']==$id) $notif=$notification;
+    //    }
+   //     if($notif!=null){ $notif->markAsRead();
+            //return redirect('annonce/'.$id);
+      //  }
         $annonce = Annonce::find($id);
 
         return view('Annonces.detail', ['annonce'=>$annonce]);

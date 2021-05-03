@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLoisTable extends Migration
+class CreateMinistereTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class CreateLoisTable extends Migration
      */
     public function up()
     {
-        Schema::create('_lois', function (Blueprint $table) {
+        Schema::create('ministere', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('contenu');
             $table->dateTime('deleted_at')->nullable();
             $table->timestamps();
         });
@@ -29,6 +28,6 @@ class CreateLoisTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('_lois');
+        Schema::dropIfExists('ministere');
     }
 }

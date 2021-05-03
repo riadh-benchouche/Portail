@@ -46,6 +46,14 @@
                     <p>{{ __('Annuaire') }}</p>
                 </a>
             </li>
+
+            <li @if ($pageSlug ?? '' == 'lois') class="active " @endif>
+                <a href="{{ route('lois.index')  }}">
+                    <i class="tim-icons icon-badge"></i>
+                    <p>{{ __('Lois') }}</p>
+                </a>
+            </li>
+
             <li @if ($pageSlug ?? '' == 'annonce') class="active " @endif>
                 <a href="{{ route('annonce.index')  }}">
                     <i class="tim-icons icon-badge"></i>

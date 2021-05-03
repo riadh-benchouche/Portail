@@ -93,6 +93,7 @@ Route::group(['middleware' => 'auth'], function () {
 		// Route::get('tables', ['as' => 'pages.tables', 'uses' => 'App\Http\Controllers\PageController@tables']);
 		Route::get('bibu', ['as' => 'bibu.index', 'uses' => 'App\Http\Controllers\BibliothequeuController@index']);
 		Route::get('annonce', ['as' => 'annonce.index', 'uses' => 'App\Http\Controllers\AnnonceController@index']);
+        Route::get('lois', ['as' => 'lois.index', 'uses' => 'App\Http\Controllers\LoisController@index']);
 		Route::get('actualite', ['as' => 'actualite.index', 'uses' => 'App\Http\Controllers\ActualiteController@index']);
 });
 

@@ -12,6 +12,9 @@ class Comission extends Model
     public function users(){
         return $this ->hasMany('App\Models\User');
     }
+    public function lois(){
+        return $this ->hasMany('App\Models\Lois');
+    }
 
     use HasFactory;
     use SoftDeletes;

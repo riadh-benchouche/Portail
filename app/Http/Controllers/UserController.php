@@ -91,7 +91,10 @@ class UserController extends Controller
                          $user->service_id = $request->input('service'),
                          $user->comission_id = $request->input('comission'),
                          $user->category = $request->input('categorie'),
-                         $user->syncRoles($request->role), ));
+                         $user->syncRoles($request->role),
+                         $user->addMedia($request->file)->toMediaCollection(),
+                     ));
+
          }
 
 
