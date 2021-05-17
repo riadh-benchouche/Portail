@@ -1,16 +1,82 @@
 @extends('layouts.app', ['page' => __('User Management'), 'pageSlug' => 'users'])
 
 @section('content')
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <style>
+        body{margin-top:20px;}
+        .single-team .inner {
+            text-align: center;
+            margin-bottom: 35px;
+            border: 1px solid #e5eaf0;
+            padding: 5px 5px 0px;
+        }
+
+        .single-team .inner .team-img {
+            position: relative;
+        }
+
+        .single-team .inner .team-img img {
+            width: 100%;
+        }
+
+        .single-team .inner .team-img::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            opacity: 0;
+        }
+
+        .single-team .inner .team-img:hover::after {
+            opacity: 0.4;
+        }
+
+        .single-team .inner .team-content {
+            padding: 22px 0px 0px;
+        }
+
+        .single-team .inner .team-content h4 {
+            font-size: 18px;
+            font-weight: 400;
+        }
+
+        .single-team .inner .team-content h5 {
+            font-weight: 300;
+            font-size: 16px;
+            letter-spacing: 0.5px;
+            color: #7d91aa;
+        }
+
+        .single-team .inner .team-content a {
+            display: inline-block;
+            padding: 2px;
+            margin: 0 3px;
+            font-size: 16px;
+        }
+
+        .team-social {
+            background: #f3f6fa;
+            width: 50%;
+            padding-top: 4px;
+            margin: auto;
+            border-radius: 15px 15px 0px 0px;
+            margin-top: 17px;
+        }
+
+    </style>
+
     <div class="container">
         <div class="row gutters-sm">
-            <div class="col-md-4 mb-3">
-                <div class="card" style="height: 420px">
+            <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+                <div class="card h-50" >
                     <div class="card-body">
                         <div class="d-flex flex-column align-items-center text-center">
-                            @if ($membre->getFirstMedia() == null)
+                            @if ($president->getFirstMedia() == null)
                                 <img src="http://style.anu.edu.au/_anu/4/images/placeholders/person_8x10.png" width="175px" class="rounded-circle" alt="...">
-                            @elseif ( $membre->getFirstMedia() )
-                                <img  class="rounded-circle "  width="150px " src="{{ asset('storage').'/'.$membre ->getFirstMedia()['id'].'/'.$membre->getFirstMedia()['file_name']}}"  >
+                            @elseif ( $president->getFirstMedia() )
+                                <img  class="rounded-circle "  width="150px " src="{{ asset('storage').'/'.$president ->getFirstMedia()['id'].'/'.$president->getFirstMedia()['file_name']}}"  >
                             @endif
                             <div class="mt-3">
                                 <p class="text-secondary text-center font-weight-bold mb-2" style="font-size: 15px">{{ $president->name }} | {{ $president->nom_a }}</p>
@@ -33,71 +99,142 @@
             <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
                 <div class="card h-100">
                     <div class="card-body">
-                        <div class="row gutters">
-                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                <h6 class="mb-2 text-primary">Personal Details</h6>
-                            </div>
-                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                <div class="form-group">
-                                    <label for="fullName">Full Name</label>
-                                    <input type="text" class="form-control" id="fullName" placeholder="Enter full name">
-                                </div>
-                            </div>
-                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                <div class="form-group">
-                                    <label for="eMail">Email</label>
-                                    <input type="email" class="form-control" id="eMail" placeholder="Enter email ID">
-                                </div>
-                            </div>
-                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                <div class="form-group">
-                                    <label for="phone">Phone</label>
-                                    <input type="text" class="form-control" id="phone" placeholder="Enter phone number">
-                                </div>
-                            </div>
-                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                <div class="form-group">
-                                    <label for="website">Website URL</label>
-                                    <input type="url" class="form-control" id="website" placeholder="Website url">
+                        <div class="team-area sp">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-sm-6 col-md-4 col-lg-3 single-team">
+                                        <div class="inner">
+                                            <div class="team-img">
+                                                <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="Member Photo">
+                                            </div>
+                                            <div class="team-content">
+                                                <h4>Virgie Perry</h4>
+                                                <h5>Athletic Trainer</h5>
+                                                <div class="team-social">
+                                                    <a href="#" class="fa fa-facebook"></a>
+                                                    <a href="#" class="fa fa-twitter"></a>
+                                                    <a href="#" class="fa fa-linkedin"></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-4 col-lg-3 single-team">
+                                        <div class="inner">
+                                            <div class="team-img">
+                                                <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="Member Photo">
+                                            </div>
+                                            <div class="team-content">
+                                                <h4>Virgie Perry</h4>
+                                                <h5>Athletic Trainer</h5>
+                                                <div class="team-social">
+                                                    <a href="#" class="fa fa-facebook"></a>
+                                                    <a href="#" class="fa fa-twitter"></a>
+                                                    <a href="#" class="fa fa-linkedin"></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-4 col-lg-3 single-team">
+                                        <div class="inner">
+                                            <div class="team-img">
+                                                <img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="Member Photo">
+                                            </div>
+                                            <div class="team-content">
+                                                <h4>Virgie Perry</h4>
+                                                <h5>Athletic Trainer</h5>
+                                                <div class="team-social">
+                                                    <a href="#" class="fa fa-facebook"></a>
+                                                    <a href="#" class="fa fa-twitter"></a>
+                                                    <a href="#" class="fa fa-linkedin"></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-4 col-lg-3 single-team">
+                                        <div class="inner">
+                                            <div class="team-img">
+                                                <img src="https://bootdey.com/img/Content/avatar/avatar4.png" alt="Member Photo">
+                                            </div>
+                                            <div class="team-content">
+                                                <h4>Virgie Perry</h4>
+                                                <h5>Athletic Trainer</h5>
+                                                <div class="team-social">
+                                                    <a href="#" class="fa fa-facebook"></a>
+                                                    <a href="#" class="fa fa-twitter"></a>
+                                                    <a href="#" class="fa fa-linkedin"></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-4 col-lg-3 single-team">
+                                        <div class="inner">
+                                            <div class="team-img">
+                                                <img src="https://bootdey.com/img/Content/avatar/avatar5.png" alt="Member Photo">
+                                            </div>
+                                            <div class="team-content">
+                                                <h4>Virgie Perry</h4>
+                                                <h5>Athletic Trainer</h5>
+                                                <div class="team-social">
+                                                    <a href="#" class="fa fa-facebook"></a>
+                                                    <a href="#" class="fa fa-twitter"></a>
+                                                    <a href="#" class="fa fa-linkedin"></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-4 col-lg-3 single-team">
+                                        <div class="inner">
+                                            <div class="team-img">
+                                                <img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="Member Photo">
+                                            </div>
+                                            <div class="team-content">
+                                                <h4>Virgie Perry</h4>
+                                                <h5>Athletic Trainer</h5>
+                                                <div class="team-social">
+                                                    <a href="#" class="fa fa-facebook"></a>
+                                                    <a href="#" class="fa fa-twitter"></a>
+                                                    <a href="#" class="fa fa-linkedin"></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-4 col-lg-3 single-team">
+                                        <div class="inner">
+                                            <div class="team-img">
+                                                <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Member Photo">
+                                            </div>
+                                            <div class="team-content">
+                                                <h4>Virgie Perry</h4>
+                                                <h5>Athletic Trainer</h5>
+                                                <div class="team-social">
+                                                    <a href="#" class="fa fa-facebook"></a>
+                                                    <a href="#" class="fa fa-twitter"></a>
+                                                    <a href="#" class="fa fa-linkedin"></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-4 col-lg-3 single-team">
+                                        <div class="inner">
+                                            <div class="team-img">
+                                                <img src="https://bootdey.com/img/Content/avatar/avatar8.png" alt="Member Photo">
+                                            </div>
+                                            <div class="team-content">
+                                                <h4>Virgie Perry</h4>
+                                                <h5>Athletic Trainer</h5>
+                                                <div class="team-social">
+                                                    <a href="#" class="fa fa-facebook"></a>
+                                                    <a href="#" class="fa fa-twitter"></a>
+                                                    <a href="#" class="fa fa-linkedin"></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="row gutters">
-                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                <h6 class="mt-3 mb-2 text-primary">Address</h6>
-                            </div>
-                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                <div class="form-group">
-                                    <label for="Street">Street</label>
-                                    <input type="name" class="form-control" id="Street" placeholder="Enter Street">
-                                </div>
-                            </div>
-                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                <div class="form-group">
-                                    <label for="ciTy">City</label>
-                                    <input type="name" class="form-control" id="ciTy" placeholder="Enter City">
-                                </div>
-                            </div>
-                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                <div class="form-group">
-                                    <label for="sTate">State</label>
-                                    <input type="text" class="form-control" id="sTate" placeholder="Enter State">
-                                </div>
-                            </div>
-                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                <div class="form-group">
-                                    <label for="zIp">Zip Code</label>
-                                    <input type="text" class="form-control" id="zIp" placeholder="Zip Code">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row gutters">
-                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                <div class="text-right">
-                                    <button type="button" id="submit" name="submit" class="btn btn-secondary">Cancel</button>
-                                    <button type="button" id="submit" name="submit" class="btn btn-primary">Update</button>
-                                </div>
-                            </div>
+
+
                         </div>
                     </div>
                 </div>
