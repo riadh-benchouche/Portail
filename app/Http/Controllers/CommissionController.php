@@ -63,8 +63,12 @@ class CommissionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        //
+    {   $comission =Comission::find($id);
+        $president =User::where('comission_id','=', $comission->id )
+                                      ->where('president', '=', 1);
+        $membre =User::where('comission_id','=', $comission->id )
+                     ->where('president', '=', 0);
+        return view('commission.detail',['president' => $president],['membre' => $membre]);
     }
 
     /**

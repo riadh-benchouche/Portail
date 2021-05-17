@@ -13,7 +13,7 @@
                     @if($commission->getFirstMedia() == null )
                     @else
             <img  class="mr-auto ml-auto " src="{{ asset('storage').'/'.$commission ->getFirstMedia()['id'].'/'.$commission ->getFirstMedia()['file_name']}}" width="150px">
-                        <h3 class="text-center my-3"><b>Commission {{$commission->name}}</b></h3>
+                        <h3  class="text-center my-3"><b><a href="{{'commission/'.$commission->id}}" >Commission {{$commission->name}}</a></b></h3>
                     @endif
                 </div>
                     @endforeach

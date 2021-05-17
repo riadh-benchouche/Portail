@@ -11,10 +11,15 @@
                             <form class="text-center" action="{{ url('comission/'.$comission->id) }}" method="post">
                                 @csrf
                                 @method('delete')
-                                <button type="button" class="btn btn-sm  btn-danger " onclick="confirm('{{ __("Êtes vous sûr de vouloir supprimer ?") }}') ? this.parentElement.submit() : ''">
+                                <button type="button"  class="btn btn-sm  btn-danger " onclick="confirm('{{ __("Êtes vous sûr de vouloir supprimer ?") }}') ? this.parentElement.submit() : ''">
                                     <i class="tim-icons icon-trash-simple" title="supprimer"></i> Supprimer
                                 </button>
                             </form>
+                            <div class="justify-content-center ">
+                                <a href="{{ url('commission/'.$comission->id) }}" class="btn btn-info btn-sm  btn-round" >
+                                    <i class="tim-icons icon-badge font-weight-bold"></i>  Consultat
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
