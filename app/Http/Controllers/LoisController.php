@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comission;
+use App\Models\Lois;
 use Illuminate\Http\Request;
 
 class LoisController extends Controller
@@ -47,7 +48,16 @@ class LoisController extends Controller
      */
     public function show($id)
     {
+        $comission=Comission::find($id);
+        $lois=Lois::all();
+        foreach ($lois as $loi)
+        {
+            $loisd=$lois->first()->comission_id;
+        }
 
+        $loisdd =$lois->where('comission_id','=', $comission->id );
+       // $loisd =Lois::where($comission->id == $lois->comission_id)->first();
+        return view('lois.detail',['comission'=>$comission , 'lois'=>$loisdd]);
     }
 
     /**

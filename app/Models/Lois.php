@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Lois extends Model
 {
+    public $table = 'lois';
     use HasFactory;
 
     public function ministeres()
