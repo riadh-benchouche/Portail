@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Actualite;
 use App\Models\Comission;
+use App\Models\User;
+use App\Notifications\ActualiteAjouter;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
 
-class LoisController extends Controller
+class CommissionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +19,7 @@ class LoisController extends Controller
     public function index()
     {
         $commission = Comission::all();
-        return view('lois.index' , ['commissions' => $commission]);
+        return view('commission.index', ['commissions' => $commission]);
     }
 
     /**
@@ -25,7 +29,7 @@ class LoisController extends Controller
      */
     public function create()
     {
-        //
+        return view('commission.create');
     }
 
     /**
@@ -36,7 +40,20 @@ class LoisController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $commission = new Comission();
+
+        $commission->name = $request->input('name');
+        $commission->matricule = $request->input('matricule');
+        $commission
+            ->addMedia($request->file)
+            ->toMediaCollection();
+
+
+        $commission->save();
+
+        session()->flash('success', 'Actualité Ajouter');
+
+        return redirect('commission');
     }
 
     /**
@@ -47,7 +64,7 @@ class LoisController extends Controller
      */
     public function show($id)
     {
-
+        //
     }
 
     /**

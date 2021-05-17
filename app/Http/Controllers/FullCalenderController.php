@@ -17,7 +17,7 @@ class FullCalenderController extends Controller
             foreach ($data as $key => $value)
             {
                 $events[] = Calendar::event(
-                    $value->title,
+                    $value->categories->name,
                     false,
                     new \DateTime($value->start_date),
                     new \DateTime($value->end_date),

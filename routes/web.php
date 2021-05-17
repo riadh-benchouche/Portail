@@ -73,6 +73,10 @@ Route::put( 'actualite/{id}','App\Http\Controllers\ActualiteController@update');
 Route::get('actualite/{id}','App\Http\Controllers\ActualiteController@show')->name('detailact');
 
 
+Route::resource('commission','App\Http\Controllers\CommissionController');
+
+Route::resource('lois', 'App\Http\Controllers\LoisController');
+
 
 
 Route::get('/url', function (){ return asset('public/black/'); });

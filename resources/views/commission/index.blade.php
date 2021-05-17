@@ -1,4 +1,5 @@
 @extends('layouts.app', ['page' => __('Manage Users'), 'pageSlug' => 'Users'])
+
 @section('content')
     <div class=" text-sm-right mb-2">
         <a href="{{ url('commission/create') }}" class="btn btn-sm btn-primary ">
@@ -11,11 +12,11 @@
                 <div class="col-md-3">
                     @if($commission->getFirstMedia() == null )
                     @else
-                        <img  href="{{'lois/'.$commission->id}}" class="mr-auto ml-auto " src="{{ asset('storage').'/'.$commission ->getFirstMedia()['id'].'/'.$commission ->getFirstMedia()['file_name']}}" width="150px">
-                        <h3  class="text-center my-3"><b><a href="{{'lois/'.$commission->id}}" >Commission {{$commission->name}}</a></b></h3>
+            <img  class="mr-auto ml-auto " src="{{ asset('storage').'/'.$commission ->getFirstMedia()['id'].'/'.$commission ->getFirstMedia()['file_name']}}" width="150px">
+                        <h3 class="text-center my-3"><b>Commission {{$commission->name}}</b></h3>
                     @endif
                 </div>
-            @endforeach
+                    @endforeach
         </div>
     </div>
 @endsection
