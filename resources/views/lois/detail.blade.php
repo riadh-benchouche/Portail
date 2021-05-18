@@ -26,7 +26,12 @@
             </div>
         </div>
         <div class="col-md-8" >
-            <div class="card  p-sm" style="height: 420px">
+            <div class="card p-2" style="height: 420px">
+                <div class=" text-sm-right mr-2  ">
+                    <a href="{{ url('lois/'.$comission->id.'/create') }}" class="btn btn-sm btn-primary ">
+                        <i class="tim-icons icon-simple-add"></i> Ajouter
+                    </a>
+                </div>
                 <table class="table">
                     <thead>
                     <tr>
@@ -40,14 +45,14 @@
                     <tbody>
                     @foreach($lois as $loi)
                     <tr>
-                        <td class="text-center">1</td>
+                        <td class="text-center">{{$loi->id}}</td>
                         <td>{{$loi->name}}</td>
                         <td>{{$loi->NbAraticle}}</td>
                         <td>{{$loi->DtAdoptAPN}}</td>
                         <td class="td-actions text-right">
-                            <button type="button" rel="tooltip" class="btn btn-info btn-sm btn-icon">
+                            <a href="{{url('loisdetails/'.$loi->id)}}" type="button" rel="tooltip" class="btn btn-info btn-sm btn-icon">
                                 <i class="tim-icons icon-single-02"></i>
-                            </button>
+                            </a>
                             <button type="button" rel="tooltip" class="btn btn-success btn-sm btn-icon">
                                 <i class="tim-icons icon-settings"></i>
                             </button>
@@ -59,6 +64,11 @@
                     @endforeach
                     </tbody>
                 </table>
+                <div class="card-footer">
+                    <div class="pagination page-item justify-content-center" >
+                        {{ $lois -> links() }}
+                    </div>
+                </div>
             </div>
         </div>
 @endsection

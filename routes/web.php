@@ -76,7 +76,9 @@ Route::get('actualite/{id}','App\Http\Controllers\ActualiteController@show')->na
 Route::resource('commission','App\Http\Controllers\CommissionController');
 
 Route::resource('lois', 'App\Http\Controllers\LoisController');
-
+Route::get('loisdetails/{id}','App\Http\Controllers\LoisController@detail');
+Route::get('lois/{id}/create','App\Http\Controllers\LoisController@create1');
+Route::post('enonce','App\Http\Controllers\LoisController@updateEnonce')->name('enonce');
 
 
 Route::get('/url', function (){ return asset('public/black/'); });

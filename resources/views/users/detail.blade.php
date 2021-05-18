@@ -9,7 +9,7 @@
                         @if ($user->getFirstMedia() == null)
                             <img src="http://style.anu.edu.au/_anu/4/images/placeholders/person_8x10.png" width="175px" class="rounded-circle" alt="...">
                         @elseif ( $user->getFirstMedia() )
-                            <img  class="rounded-circle "  width="150px " src="{{ asset('storage').'/'.$user ->getFirstMedia()['id'].'/'.$user ->getFirstMedia()['file_name']}}"  >
+                            <img  class="rounded-circle "  width="150px " src="{{ asset('storage').'/'.$user->getFirstMedia()['id'].'/'.$user->getFirstMedia()['file_name']}}"  >
                         @endif
                         <div class="mt-3">
                             <p class="text-secondary text-center font-weight-bold mb-2" style="font-size: 15px">{{ $user->name }} | {{ $user->nom_a }}</p>

@@ -87,7 +87,7 @@
                                     <label for="PartyWalls">Comission :</label>
                                     @foreach($comissions as $comission)
                                         <label for="{{ $comission -> id}}" class="form-check-label ml-2"> {{$comission -> name}}
-                                            <input type="checkbox"  class="form-check-input" name="comission" value="{{$comission->id}}" id="{{$comission -> id}}">
+                                            <input type="checkbox"  class="form-check-input" name="comission" value="{{$comission->id}}" id="{{$comission -> id}}"  @if ($user->comission_id == $comission->id) checked @endif>
                                         </label>
                                     @endforeach
                                 </fieldset>

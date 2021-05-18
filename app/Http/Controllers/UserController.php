@@ -54,48 +54,52 @@ class UserController extends Controller
 
     public function update(UserRequest $request, User  $user)
     {
+        $hasPassword = $request->get('password');
+             if ($request->file == null )
+             {
+                 $user->update(
+                     $request->merge(['password' => Hash::make($request->get('password'))])
+                         ->except([$hasPassword ? '' : 'password'],
+                             $user->matricule = $request->input('matricule'),
+                             $user->phone = $request->input('phone'),
+                             $user->fonction = $request->input('fonction'),
+                             $user->Wilaya = $request->input('Wilaya'),
+                             $user->nom_a = $request->input('nom_a'),
+                             $user->service_id = $request->input('service'),
+                             $user->comission_id = $request->input('comission'),
+                             $user->category = $request->input('categorie'),
+                             $user->syncRoles($request->role)
+                         ));
+             }
 
-        if ($user->getFirstMedia() != null) {
-            $user->getFirstMedia()->delete();
+             else
+                 {
+                     if ($user->getFirstMedia() != null) {
+                     $user->getFirstMedia()->delete();
+                     }
 
-            $hasPassword = $request->get('password');
-            // ini_set('memory_limit','256M');
-            $user->update(
-                $request->merge(['password' => Hash::make($request->get('password'))])
-                    ->except([$hasPassword ? '' : 'password'],
-                        $user->matricule = $request->input('matricule'),
-                        $user->phone = $request->input('phone'),
-                        $user->fonction = $request->input('fonction'),
-                        $user->Wilaya = $request->input('Wilaya'),
-                        $user->nom_a = $request->input('nom_a'),
-                        $user->service_id = $request->input('service'),
-                        $user->comission_id = $request->input('comission'),
-                        $user->category = $request->input('categorie'),
-                        $user->syncRoles($request->role),
-                        $user->addMedia($request->file)->toMediaCollection(),
-                    // $user->getFirstMedia()->delete(),
-                    // $user->addMedia($request->file)->toMediaCollection()
-                    ));
-        }
-         else {
-             $hasPassword = $request->get('password');
-             // ini_set('memory_limit','256M');
-             $user->update(
-                 $request->merge(['password' => Hash::make($request->get('password'))])
-                     ->except([$hasPassword ? '' : 'password'],
-                         $user->matricule = $request->input('matricule'),
-                         $user->phone = $request->input('phone'),
-                         $user->fonction = $request->input('fonction'),
-                         $user->Wilaya = $request->input('Wilaya'),
-                         $user->nom_a = $request->input('nom_a'),
-                         $user->service_id = $request->input('service'),
-                         $user->comission_id = $request->input('comission'),
-                         $user->category = $request->input('categorie'),
-                         $user->syncRoles($request->role),
-                         $user->addMedia($request->file)->toMediaCollection(),
-                     ));
+                     $hasPassword = $request->get('password');
+                     // ini_set('memory_limit','256M');
+                     $user->update(
+                         $request->merge(['password' => Hash::make($request->get('password'))])
+                             ->except([$hasPassword ? '' : 'password'],
+                                 $user->matricule = $request->input('matricule'),
+                                 $user->phone = $request->input('phone'),
+                                 $user->fonction = $request->input('fonction'),
+                                 $user->Wilaya = $request->input('Wilaya'),
+                                 $user->nom_a = $request->input('nom_a'),
+                                 $user->service_id = $request->input('service'),
+                                 $user->comission_id = $request->input('comission'),
+                                 $user->category = $request->input('categorie'),
+                                 $user->syncRoles($request->role),
+                                 $user->addMedia($request->file)->toMediaCollection(),
+                             // $user->getFirstMedia()->delete(),
+                             // $user->addMedia($request->file)->toMediaCollection()
+                             ));
+             }
 
-         }
+
+
 
 
 

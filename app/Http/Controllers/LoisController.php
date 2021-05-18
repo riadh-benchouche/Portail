@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\Comission;
+use App\Models\Enonce;
 use App\Models\Lois;
+use App\Models\Ministere;
+use App\Models\Session;
 use Illuminate\Http\Request;
 
 class LoisController extends Controller
@@ -24,9 +28,12 @@ class LoisController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create1()
     {
-        //
+        $comission = Comission::all();
+        $ministere = Ministere::all();
+        $sessions = Session::all();
+        return view ('lois.create',['sessions'=>$sessions , 'ministeres'=>$ministere , 'comissions'=>$comission]);
     }
 
     /**
@@ -37,7 +44,19 @@ class LoisController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $lois = new Lois();
+        $lois->name= $request->input('name');
+        $lois->contenu= $request->input('contenu');
+        $lois->NbAraticle= $request->input('nbarticle');
+        $lois->DtDepot= $request->input('DtDepot');
+        $lois->ministere_id = $request->input('ministere');
+        $lois->session_id = $request->input('session');
+        $lois->comission_id = $request->input('comission');
+    //    $lois->comission_id = $id;
+        $lois->save();
+        $id=$request->input('comission');
+        return redirect('lois/'.$id) ;
     }
 
     /**
@@ -46,18 +65,18 @@ class LoisController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id, Lois $model)
     {
         $comission=Comission::find($id);
         $lois=Lois::all();
-        foreach ($lois as $loi)
-        {
-            $loisd=$lois->first()->comission_id;
-        }
-
         $loisdd =$lois->where('comission_id','=', $comission->id );
-       // $loisd =Lois::where($comission->id == $lois->comission_id)->first();
-        return view('lois.detail',['comission'=>$comission , 'lois'=>$loisdd]);
+        return view('lois.detail',['comission'=>$comission , 'lois'=>$loisdd , 'lois' => $model->SimplePaginate(5)]);
+    }
+
+    public function detail($id)
+    {
+        $lois=Lois::find($id);
+        return view('lois.description',['lois'=>$lois]);
     }
 
     /**
@@ -82,6 +101,22 @@ class LoisController extends Controller
     {
         //
     }
+
+    public function updateEnonce(Request $request)
+    {
+
+        $enonce = new Enonce();
+        $enonce->lois_id = $request->input('id');
+        $enonce
+            ->addMedia($request->file)
+            ->toMediaCollection();
+
+        $enonce->save();
+            return redirect('loisdetails/'.$request->input('id'));
+    }
+
+
+
 
     /**
      * Remove the specified resource from storage.

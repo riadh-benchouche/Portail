@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Actualite;
 use App\Models\Comission;
 use App\Models\User;
-use App\Notifications\ActualiteAjouter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Notification;
 
@@ -63,12 +61,14 @@ class CommissionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {   $comission =Comission::find($id);
-        $president =User::where('comission_id','=', $comission->id )
-                                      ->where('president', '=', 1);
-        $membre =User::where('comission_id','=', $comission->id )
+    {
+        $comission =Comission::find($id);
+        $user = User::all();
+        $users = $user->where('comission_id','=', $comission->id )
+            ->where('president', '=', 1);
+        $membre =$user->where('comission_id','=', $comission->id )
                      ->where('president', '=', 0);
-        return view('commission.detail',['president' => $president],['membre' => $membre]);
+        return view('commission.detail',['users'=>$users , 'membre'=>$membre ,'comission'=>$comission]);
     }
 
     /**
@@ -79,7 +79,7 @@ class CommissionController extends Controller
      */
     public function edit($id)
     {
-        //
+
     }
 
     /**
@@ -102,6 +102,10 @@ class CommissionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $comission = Comission::find($id);
+
+        $comission-> delete();
+        $comission->getFirstMedia()->delete();
+        return redirect('commission');
     }
 }

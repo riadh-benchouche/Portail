@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="MySQL - apn@localhost" uuid="740eeb94-0da4-4969-b357-0f773692f1f1">
+    <data-source source="LOCAL" name="apn@localhost" uuid="740eeb94-0da4-4969-b357-0f773692f1f1">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://localhost:3306/apn?useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC</jdbc-url>
+      <jdbc-url>jdbc:mysql://localhost:8889/apn?useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC</jdbc-url>
     </data-source>
     <data-source source="LOCAL" name="@localhost" uuid="cea8af3f-d67d-4fe6-aee1-3a69946fec6f">
       <driver-ref>mysql.8</driver-ref>

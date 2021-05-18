@@ -1,108 +1,81 @@
-@extends('layouts.app', ['page' => __('User Management'), 'pageSlug' => 'users'])
+@extends('layouts.app', ['page' => __('Manage Users'), 'pageSlug' => 'Users'])
 
 @section('content')
+
     <div class="container">
-        <div class="row gutters-sm">
-            <div class="col-md-4 mb-3">
-                <div class="card" style="height: 420px">
-                    <div class="card-body">
-                        <div class="d-flex flex-column align-items-center text-center">
-                            @if ($membre->getFirstMedia() == null)
-                                <img src="http://style.anu.edu.au/_anu/4/images/placeholders/person_8x10.png" width="175px" class="rounded-circle" alt="...">
-                            @elseif ( $membre->getFirstMedia() )
-                                <img  class="rounded-circle "  width="150px " src="{{ asset('storage').'/'.$membre ->getFirstMedia()['id'].'/'.$membre->getFirstMedia()['file_name']}}"  >
-                            @endif
-                            <div class="mt-3">
-                                <p class="text-secondary text-center font-weight-bold mb-2" style="font-size: 15px">{{ $president->name }} | {{ $president->nom_a }}</p>
-                                <p class="text-secondary mb-3 " style="font-size: 22px">{{ $president->fonction }}</p>
-                                <form class="text-center" action="{{ url('user/'.$president->id) }}" method="post">
-                                    @csrf
-                                    @method('delete')
-                                    <a rel="tooltip" class="btn btn-sm btn-warning  " href="{{ url ('user/'.$president->id.'/edit')}}" data-original-title="" title="">
-                                        <i class="tim-icons icon-pencil" title="edit"></i> Editer
-                                    </a>
-                                    <button type="button" class="btn btn-sm  btn-danger " onclick="confirm('{{ __("Êtes vous sûr de vouloir supprimer ?") }}') ? this.parentElement.submit() : ''">
-                                        <i class="tim-icons icon-trash-simple" title="supprimer"></i> Supprimer
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
+        <div class="card" >
+            <div class="card-header bg-dark">
+                <div class="form-inline">
+                <img  class=" d-flex mr-3 mb-3"  width="90px " src="{{ asset('storage').'/'.$comission ->getFirstMedia()['id'].'/'.$comission ->getFirstMedia()['file_name']}}">
+                <h1 class=" d-flex card-title display-4">Membre de la comission {{$comission->name}}</h1>
                 </div>
             </div>
-            <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <div class="row gutters">
-                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                <h6 class="mb-2 text-primary">Personal Details</h6>
-                            </div>
-                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                <div class="form-group">
-                                    <label for="fullName">Full Name</label>
-                                    <input type="text" class="form-control" id="fullName" placeholder="Enter full name">
-                                </div>
-                            </div>
-                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                <div class="form-group">
-                                    <label for="eMail">Email</label>
-                                    <input type="email" class="form-control" id="eMail" placeholder="Enter email ID">
-                                </div>
-                            </div>
-                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                <div class="form-group">
-                                    <label for="phone">Phone</label>
-                                    <input type="text" class="form-control" id="phone" placeholder="Enter phone number">
-                                </div>
-                            </div>
-                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                <div class="form-group">
-                                    <label for="website">Website URL</label>
-                                    <input type="url" class="form-control" id="website" placeholder="Website url">
+            <div class="card-body">
+                <div class="row">
+                    @foreach($users as $user)
+                        <div class="col-lg-4">
+                            <div class="card m-b-30 bg-gray-800" >
+                                <div class="card-body">
+                                    <div class="media">
+                                        @if($user->getFirstMedia() == null)
+                                            <img class="d-flex mr-3 rounded-circle img-thumbnail thumb-lg" src="http://style.anu.edu.au/_anu/4/images/placeholders/person_8x10.png" alt="Generic placeholder image" width="106px">
+                                        @else
+                                            <img  class="d-flex mr-3 rounded-circle img-thumbnail thumb-lg"  width="90px " src="{{ asset('storage').'/'.$user ->getFirstMedia()['id'].'/'.$user ->getFirstMedia()['file_name']}}"  >
+                                        @endif
+                                        <div class="media-body">
+                                            <h5 class="mt-0 font-weight-bold mb-1" style="font-size: 16px">{{$user->name}}</h5>
+                                            <p class="text-muted font-weight-900" style="font-size: 16px">{{$user->nom_a }}</p>
+                                            @if($user->nom_a ==null) <br>
+                                            @endif
+                                            <div class="card-footer mt-2">
+                                                <div class="justify-content-center ">
+                                                    <a href="{{ url('user/'.$user->id) }}" class="btn btn-info btn-sm  btn-round" >
+                                                        <i class="tim-icons icon-badge font-weight-bold"></i>  Consultat
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="row gutters">
-                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                <h6 class="mt-3 mb-2 text-primary">Address</h6>
-                            </div>
-                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                <div class="form-group">
-                                    <label for="Street">Street</label>
-                                    <input type="name" class="form-control" id="Street" placeholder="Enter Street">
+                    @endforeach
+                </div>
+                <div class="row">
+                        @foreach($membre as $membres)
+                            <div class="col-lg-4">
+                                <div class="card m-b-30 bg-gray-800" >
+                                    <div class="card-body">
+                                        <div class="media">
+                                            @if($membres->getFirstMedia() == null)
+                                                <img class="d-flex mr-3 rounded-circle img-thumbnail thumb-lg" src="http://style.anu.edu.au/_anu/4/images/placeholders/person_8x10.png" alt="Generic placeholder image" width="106px">
+                                            @else
+                                                <img  class="d-flex mr-3 rounded-circle img-thumbnail thumb-lg"  width="90px " src="{{ asset('storage').'/'.$membres ->getFirstMedia()['id'].'/'.$membres ->getFirstMedia()['file_name']}}"  >
+                                            @endif
+                                            <div class="media-body">
+                                                <h5 class="mt-0 font-weight-bold mb-1" style="font-size: 16px">{{$membres->name}}</h5>
+                                                <p class="text-muted font-weight-900" style="font-size: 16px">{{$membres->nom_a }}</p>
+                                                @if($membres->nom_a ==null) <br>@endif
+                                                <div class="card-footer mt-2">
+                                                    <div class="justify-content-center ">
+                                                        <a href="{{ url('user/'.$membres->id) }}" class="btn btn-info btn-sm  btn-round" >
+                                                            <i class="tim-icons icon-badge font-weight-bold"></i>  Consultat
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                <div class="form-group">
-                                    <label for="ciTy">City</label>
-                                    <input type="name" class="form-control" id="ciTy" placeholder="Enter City">
-                                </div>
-                            </div>
-                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                <div class="form-group">
-                                    <label for="sTate">State</label>
-                                    <input type="text" class="form-control" id="sTate" placeholder="Enter State">
-                                </div>
-                            </div>
-                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                <div class="form-group">
-                                    <label for="zIp">Zip Code</label>
-                                    <input type="text" class="form-control" id="zIp" placeholder="Zip Code">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row gutters">
-                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                <div class="text-right">
-                                    <button type="button" id="submit" name="submit" class="btn btn-secondary">Cancel</button>
-                                    <button type="button" id="submit" name="submit" class="btn btn-primary">Update</button>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
+                </div>
+                <div class="card-footer">
+                    <div class="pagination page-item justify-content-center" >
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
 @endsection
