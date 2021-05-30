@@ -571,7 +571,7 @@
                         <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalCenterTitle">Ajouter rapport des interventions</h5>
+                                    <h5 class="modal-title" id="exampleModalCenterTitle">Ajouter rapport des interventions En Français</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -625,6 +625,69 @@
                         </div>
                     </div>
                 @endif
+                    @if ( $lois->interventionar == null )
+                        <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#exampleModalCenterA">
+                            Ajouter Rapport des interventions
+                        </button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModalCenterA" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalCenterTitle">Ajouter rapport des interventions En Arabe</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <form method="post" action="{{action('App\Http\Controllers\LoisController@updateInterAR')}}" enctype="multipart/form-data">
+                                        {{csrf_field()}}
+                                        {{ method_field('POST') }}
+                                        <div class="modal-body">
+                                            <input type="hidden" value="{{$lois->id}}" name="id">
+
+                                            <div class="form-group form-file-upload form-file-multiple d-block">
+                                                <label class="form-control-label" for="input-file">{{ __('Fichier') }}</label>
+                                                <input type="file" name="file"  class="inputFileHidden" id="input-file" >
+                                                <div class="input-group">
+                                                    <input type="text"  class="form-control inputFileVisible" placeholder="Single File" id="input-file">
+                                                    <span class="input-group-btn d-flex">
+                                            <button type="button" class="btn btn-fab btn-round btn-success">
+                                                <i class="tim-icons icon-cloud-upload-94"></i>
+                                            </button>
+                                        </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary">Save </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    @elseif($lois->interventionar != null)
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <form class="text-center" action="{{ route('deleteIA',$lois->interventionar->id) }}" method="post">
+                                    @csrf
+                                    @method('delete')
+                                    <div class="file-man-box"><button class="file-close"><i class="fa fa-times-circle"></i></button></div>
+                                </form>
+                                <div class="file-img-box" >
+                                    <img class="mr-auto ml-auto" width="150px"
+                                         @if($lois->interventionar->getFirstMedia()['mime_type'] == 'application/pdf')src="https://coderthemes.com/highdmin/layouts/assets/images/file_icons/pdf.svg" alt="icon">
+                                    @elseif($lois->interventionar->getFirstMedia()['mime_type'] == 'image/png' || 'image/jpg') <img src="https://coderthemes.com/highdmin/layouts/assets/images/file_icons/png.svg" alt="icon"  @endif>
+
+                                    <a href="{{ route('downloadfileIA',$lois->interventionar->id) }}" class="file-download"><i class="fa fa-download"></i></a>
+                                </div>
+                                <div class="file-man-title">
+                                    <h5 class="mb-0 text-overflow">{{$lois->interventionar ->getFirstMedia()['file_name']}}</h5>
+                                    <p class="mb-0"><small>{{$lois->interventionar ->getFirstMedia()['human_readable_size']}}</small></p>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
                 </div>
 
 
@@ -669,7 +732,7 @@
                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalCenterTitle">Ajouter rapport complémentaire</h5>
+                                                <h5 class="modal-title" id="exampleModalCenterTitle">Ajouter rapport complémentaire En Français</h5>
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
@@ -726,6 +789,78 @@
                                     </div>
                                 </div>
                             @endif
+                            @if($lois->complementairear == null)
+                                <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                                    Ajouter Rapport complementaire En Arabe
+                                </button>
+                                <!-- Modal -->
+                                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitleA" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalCenterTitleA">Ajouter rapport complémentaire En Arabe</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <form method="post" action="{{action('App\Http\Controllers\LoisController@updateCompAR')}}" enctype="multipart/form-data">
+                                                {{csrf_field()}}
+                                                {{ method_field('POST') }}
+                                                <div class="modal-body">
+                                                    <input type="hidden" value="{{$lois->id}}" name="id">
+
+
+                                                    <div class="form-group{{ $errors->has('DtAdoption') ? ' has-danger' : '' }}">
+                                                        <label class="form-control-label" for="input-title">{{ __('Date Adoption APN') }}</label>
+                                                        <input type="date" name="date" id="input-name" class="form-control form-control-alternative{{ $errors->has('DtAdoption') ? ' is-invalid' : '' }}" placeholder="{{today()}}" value="{{ Carbon\Carbon::now()->format('Y-m-d') }}" required autofocus>
+                                                        @include('alerts.feedback', ['field' => 'DtAdoption'])
+                                                    </div>
+
+                                                    <div class="form-group form-file-upload form-file-multiple d-block">
+                                                        <label class="form-control-label" for="input-file">{{ __('Fichier') }}</label>
+                                                        <input type="file" name="file"  class="inputFileHidden" id="input-file" >
+                                                        <div class="input-group">
+                                                            <input type="text"  class="form-control inputFileVisible" placeholder="Single File" id="input-file">
+                                                            <span class="input-group-btn d-flex">
+                                            <button type="button" class="btn btn-fab btn-round btn-success">
+                                                <i class="tim-icons icon-cloud-upload-94"></i>
+                                            </button>
+                                        </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    <button type="submit" class="btn btn-primary">Save </button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            @else
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <form class="text-center" action="{{ route('deleteCA',$lois->complementairear->id) }}" method="post">
+                                            @csrf
+                                            @method('delete')
+                                            <div class="file-man-box"><button class="file-close"><i class="fa fa-times-circle"></i></button></div>
+                                        </form>
+                                        <div class="file-img-box" >
+                                            <img class="mr-auto ml-auto" width="150px"
+                                                 @if($lois->complementairear->getFirstMedia()['mime_type'] == 'application/pdf')src="https://coderthemes.com/highdmin/layouts/assets/images/file_icons/pdf.svg" alt="icon">
+                                            @elseif($lois->complementairear->getFirstMedia()['mime_type'] == 'image/png' || 'image/jpg') <img src="https://coderthemes.com/highdmin/layouts/assets/images/file_icons/png.svg" alt="icon"  @endif>
+
+                                            <a href="{{ route('downloadfileCA',$lois->complementairear->id) }}" class="file-download"><i class="fa fa-download"></i></a></div>
+                                        <div class="file-man-title">
+                                            <h5 class="mb-0 text-overflow">{{$lois->complementairear ->getFirstMedia()['file_name']}}</h5>
+                                            <p class="mb-0"><small>{{$lois->complementairear ->getFirstMedia()['human_readable_size']}}</small></p>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-7 text-secondary mt-3 ">
+                                        <b>{{ $lois->contenu }}</b>
+                                    </div>
+                                </div>
+                            @endif
                         @endif
                     </div>
 
@@ -735,7 +870,7 @@
 
                 <div class="tab-pane" id="pill5">
                     @if($lois->etat < 3)
-                        <h1>Phase de vote non terminer</h1>
+                        <h1>Etude Complémentaire non Achevé</h1>
                     @elseif($lois->etat >= 3 )
                         <div class="row">
                             <div class="col-sm-6">
@@ -860,9 +995,6 @@
                             </div>
                         </div>
 
-
-
-
                         <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
                         {{ $chart->script() }}
@@ -873,123 +1005,190 @@
                 </div>
 
 
-
-
-
-
-                <div class="tab-pane" id="pill6">
-                    @if($lois->etat < 4 )
-                        <h1>Vote non terminer</h1>
-                    @elseif($lois->etat >= 4 )
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <h6 class="mt-2">Nom</h6>
-                            </div>
-                            <div class="col-sm-8 text-secondary mt-2">
-                                <b>{{ $lois->name }}</b>
-                            </div>
-                        </div>
-                        <hr class="my-2">
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <h6 >Nom de la comission</h6>
-                            </div>
-                            <div class="col-sm-8 text-secondary ">
-                                <b>{{ $lois->comissions->name}}</b>
-                            </div>
-                        </div>
-                        <hr class="my-2">
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <h6 >Date de début de phase préliminaire</h6>
-                            </div>
-                            <div class="col-sm-8 text-secondary ">
-                                <b>{{ $lois->DtPresCom }}</b>
-                            </div>
-                        </div>
-                        <hr class="my-2">
-                        @if($lois->getFirstMedia() == null)
-                            <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-                                Ajouter la nouvelle lois
-                            </button>
-                            <!-- Modal -->
-                            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalCenterTitle">Nouvelle lois</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <form method="post" action="{{action('App\Http\Controllers\LoisController@updateN')}}" enctype="multipart/form-data">
-                                            {{csrf_field()}}
-                                            {{ method_field('POST') }}
-                                            <div class="modal-body">
-                                                <input type="hidden" value="{{$lois->id}}" name="id">
-
-                                                <div class="form-group{{ $errors->has('DtAdoptAPN') ? ' has-danger' : '' }}">
-                                                    <label class="form-control-label" for="input-title">{{ __('Date Présentation devant la comission') }}</label>
-                                                    <input type="date" name="date" id="input-name" class="form-control form-control-alternative{{ $errors->has('DtAdoptAPN') ? ' is-invalid' : '' }}" placeholder="{{today()}}" value="{{ Carbon\Carbon::now()->format('Y-m-d') }}" required autofocus>
-                                                    @include('alerts.feedback', ['field' => 'DtAdoptAPN'])
+                        <div class="tab-pane" id="pill6">
+                            @if($lois->etat < 4)
+                                <h1>Phase de vote non achevé</h1>
+                            @elseif($lois->etat >= 4)
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <h6 class="mt-2">Nom</h6>
+                                    </div>
+                                    <div class="col-sm-8 text-secondary mt-2">
+                                        <b>{{ $lois->name }}</b>
+                                    </div>
+                                </div>
+                                <hr class="my-2">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <h6 >Nom d'article</h6>
+                                    </div>
+                                    <div class="col-sm-8 text-secondary ">
+                                        <b>{{ $lois->NbAraticle}}</b>
+                                    </div>
+                                </div>
+                                <hr class="my-2">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <h6 >Date de Séance plénière</h6>
+                                    </div>
+                                    <div class="col-sm-8 text-secondary ">
+                                        <b>{{ $lois->DtDiscusGen }}</b>
+                                    </div>
+                                </div>
+                                <hr class="my-2">
+                                @if($lois->getFirstMedia() == null)
+                                    <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                                        Ajouter Nouvelle lois En Français
+                                    </button>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalCenterTitle">Ajouter Nouvelle lois En Français</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
                                                 </div>
+                                                <form method="post" action="{{action('App\Http\Controllers\LoisController@updateN')}}" enctype="multipart/form-data">
+                                                    {{csrf_field()}}
+                                                    {{ method_field('POST') }}
+                                                    <div class="modal-body">
+                                                        <input type="hidden" value="{{$lois->id}}" name="id">
 
-                                                <div class="form-group{{ $errors->has('Adoption') ? ' has-danger' : '' }}">
-                                                    <label class="form-control-label" for="input-title">{{ __('Votant NON ') }}</label>
-                                                    <input type="number" name="Adoption" id="input-name" class="form-control form-control-alternative{{ $errors->has('Adoption') ? ' is-invalid' : '' }}" placeholder="" value="" required autofocus>
-                                                    @include('alerts.feedback', ['field' => 'Adoption'])
-                                                </div>
+                                                        <div class="form-group{{ $errors->has('Date Adoption Lois') ? ' has-danger' : '' }}">
+                                                            <label class="form-control-label" for="input-title">{{ __('DtAdoption') }}</label>
+                                                            <input type="date" name="date" id="input-name" class="form-control form-control-alternative{{ $errors->has('DtAdoption') ? ' is-invalid' : '' }}" placeholder="{{today()}}" value="{{ Carbon\Carbon::now()->format('Y-m-d') }}" required autofocus>
+                                                            @include('alerts.feedback', ['field' => 'DtAdoption'])
+                                                        </div>
 
-
-                                                <div class="form-group form-file-upload form-file-multiple d-block">
-                                                    <label class="form-control-label" for="input-file">{{ __('Fichier') }}</label>
-                                                    <input type="file" name="file"  class="inputFileHidden" id="input-file" >
-                                                    <div class="input-group">
-                                                        <input type="text"  class="form-control inputFileVisible" placeholder="Single File" id="input-file">
-                                                        <span class="input-group-btn d-flex">
+                                                        <div class="form-group{{ $errors->has('Adoption') ? ' has-danger' : '' }}">
+                                                            <label class="form-control-label" for="input-title">{{ __('Adoption') }}</label>
+                                                            <input type="number" name="Adoption" id="input-name" class="form-control form-control-alternative{{ $errors->has('Adoption') ? ' is-invalid' : '' }}" placeholder="" value="" required autofocus>
+                                                            @include('alerts.feedback', ['field' => 'Adoption'])
+                                                        </div>
+                                                        <div class="form-group form-file-upload form-file-multiple d-block">
+                                                            <label class="form-control-label" for="input-file">{{ __('Fichier') }}</label>
+                                                            <input type="file" name="file"  class="inputFileHidden" id="input-file" >
+                                                            <div class="input-group">
+                                                                <input type="text"  class="form-control inputFileVisible" placeholder="Single File" id="input-file">
+                                                                <span class="input-group-btn d-flex">
                                             <button type="button" class="btn btn-fab btn-round btn-success">
                                                 <i class="tim-icons icon-cloud-upload-94"></i>
                                             </button>
                                         </span>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                        <button type="submit" class="btn btn-primary">Save </button>
+                                                    </div>
+                                                </form>
                                             </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                <button type="submit" class="btn btn-primary">Save </button>
-                                            </div>
-                                        </form>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                        @else
-                            <div class="row">
-                                <div class="col-sm-4">
-                                    <form class="text-center" action="{{ route('deleteN',$lois->id) }}" method="post">
-                                        @csrf
-                                        @method('delete')
-                                        <div class="file-man-box"><button class="file-close"><i class="fa fa-times-circle"></i></button></div>
-                                    </form>
-                                    <div class="file-img-box" >
-                                        <img class="mr-auto ml-auto" width="150px"
-                                             @if($lois->getFirstMedia()['mime_type'] == 'application/pdf')src="https://coderthemes.com/highdmin/layouts/assets/images/file_icons/pdf.svg" alt="icon">
-                                        @elseif($lois->getFirstMedia()['mime_type'] == 'image/png' || 'image/jpg') <img src="https://coderthemes.com/highdmin/layouts/assets/images/file_icons/png.svg" alt="icon"  @endif>
+                                @else
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <form class="text-center" action="{{ route('deleteN',$lois->id) }}" method="post">
+                                                @csrf
+                                                @method('delete')
+                                                <div class="file-man-box"><button class="file-close"><i class="fa fa-times-circle"></i></button></div>
+                                            </form>
+                                            <div class="file-img-box" >
+                                                <img class="mr-auto ml-auto" width="150px"
+                                                     @if($lois->getFirstMedia()['mime_type'] == 'application/pdf')src="https://coderthemes.com/highdmin/layouts/assets/images/file_icons/pdf.svg" alt="icon">
+                                                @elseif($lois->getFirstMedia()['mime_type'] == 'image/png' || 'image/jpg') <img src="https://coderthemes.com/highdmin/layouts/assets/images/file_icons/png.svg" alt="icon"  @endif>
 
-                                        <a href="{{ route('downloadfileN',$lois->id) }}" class="file-download"><i class="fa fa-download"></i></a></div>
-                                    <div class="file-man-title">
-                                        <h5 class="mb-0 text-overflow">{{$lois->getFirstMedia()['file_name']}}</h5>
-                                        <p class="mb-0"><small>{{$lois->getFirstMedia()['human_readable_size']}}</small></p>
+                                                <a href="{{ route('downloadfileN',$lois->id) }}" class="file-download"><i class="fa fa-download"></i></a></div>
+                                            <div class="file-man-title">
+                                                <h5 class="mb-0 text-overflow">{{$lois ->getFirstMedia()['file_name']}}</h5>
+                                                <p class="mb-0"><small>{{$lois ->getFirstMedia()['human_readable_size']}}</small></p>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-7 text-secondary mt-3 ">
+                                            <b>{{ $lois->contenu }}</b>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-sm-7 text-secondary mt-3 ">
-                                    <b>{{ $lois->contenu }}</b>
-                                </div>
-                            </div>
-                        @endif
-                    @endif
-                </div>
-        </div>
-        </div>
+                                @endif
+                                @if($lois->loisar == null)
+                                    <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                                        Ajouter Rapport complementaire En Arabe
+                                    </button>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitleA" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalCenterTitleA">Ajouter Nouvelle Lois En Arabe</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <form method="post" action="{{action('App\Http\Controllers\LoisController@updateNAR')}}" enctype="multipart/form-data">
+                                                    {{csrf_field()}}
+                                                    {{ method_field('POST') }}
+                                                    <div class="modal-body">
+                                                        <input type="hidden" value="{{$lois->id}}" name="id">
+
+
+                                                        <div class="form-group form-file-upload form-file-multiple d-block">
+                                                            <label class="form-control-label" for="input-file">{{ __('Fichier') }}</label>
+                                                            <input type="file" name="file"  class="inputFileHidden" id="input-file" >
+                                                            <div class="input-group">
+                                                                <input type="text"  class="form-control inputFileVisible" placeholder="Single File" id="input-file">
+                                                                <span class="input-group-btn d-flex">
+                                            <button type="button" class="btn btn-fab btn-round btn-success">
+                                                <i class="tim-icons icon-cloud-upload-94"></i>
+                                            </button>
+                                        </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                        <button type="submit" class="btn btn-primary">Save </button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @else
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <form class="text-center" action="{{ route('deleteNA',$lois->loisar->id) }}" method="post">
+                                                @csrf
+                                                @method('delete')
+                                                <div class="file-man-box"><button class="file-close"><i class="fa fa-times-circle"></i></button></div>
+                                            </form>
+                                            <div class="file-img-box" >
+                                                <img class="mr-auto ml-auto" width="150px"
+                                                     @if($lois->loisar->getFirstMedia()['mime_type'] == 'application/pdf')src="https://coderthemes.com/highdmin/layouts/assets/images/file_icons/pdf.svg" alt="icon">
+                                                @elseif($lois->loisar->getFirstMedia()['mime_type'] == 'image/png' || 'image/jpg') <img src="https://coderthemes.com/highdmin/layouts/assets/images/file_icons/png.svg" alt="icon"  @endif>
+
+                                                <a href="{{ route('downloadfileNA',$lois->loisar->id) }}" class="file-download"><i class="fa fa-download"></i></a></div>
+                                            <div class="file-man-title">
+                                                <h5 class="mb-0 text-overflow">{{$lois->loisar->getFirstMedia()['file_name']}}</h5>
+                                                <p class="mb-0"><small>{{$lois->loisar->getFirstMedia()['human_readable_size']}}</small></p>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-7 text-secondary mt-3 ">
+                                            <b>{{ $lois->contenu }}</b>
+                                        </div>
+                                    </div>
+                                @endif
+                            @endif
+                        </div>
+
+
+
+
+
+
+
+
+
 
 
 
