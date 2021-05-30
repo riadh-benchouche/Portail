@@ -15,14 +15,14 @@ class CreateLoisTable extends Migration
     {
         Schema::create('lois', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->longText('contenu');
-            $table->integer('NbAraticle');
-            $table->date('DtDepot');
-            $table->date('DtPresCom');
-            $table->date('DtDiscusGen');
-            $table->date('DtVote');
-            $table->date('DtAdoptAPN');
+            $table->string('name')->nullable();
+            $table->longText('contenu')->nullable();
+            $table->integer('NbAraticle')->nullable();
+            $table->date('DtDepot')->nullable();
+            $table->date('DtPresCom')->nullable();
+            $table->date('DtDiscusGen')->nullable();
+            $table->date('DtVote')->nullable();
+            $table->date('DtAdoptAPN')->nullable();
             $table->boolean('Adoption')->nullable();
             $table->dateTime('deleted_at')->nullable();
             $table->timestamps();
