@@ -379,8 +379,6 @@
                                 </div>
                             </div>
                         @endif
-
-
                     @endif
                 </div>
 
@@ -477,10 +475,81 @@
                                              @if($lois->seance->getFirstMedia()['mime_type'] == 'application/pdf')src="https://coderthemes.com/highdmin/layouts/assets/images/file_icons/pdf.svg" alt="icon">
                                         @elseif($lois->seance->getFirstMedia()['mime_type'] == 'image/png' || 'image/jpg') <img src="https://coderthemes.com/highdmin/layouts/assets/images/file_icons/png.svg" alt="icon"  @endif>
 
-                                        <a href="{{ route('downloadfileP',$lois->seance->id) }}" class="file-download"><i class="fa fa-download"></i></a></div>
+                                        <a href="{{ route('downloadfileS',$lois->seance->id) }}" class="file-download"><i class="fa fa-download"></i></a></div>
                                     <div class="file-man-title">
                                         <h5 class="mb-0 text-overflow">{{$lois->seance ->getFirstMedia()['file_name']}}</h5>
                                         <p class="mb-0"><small>{{$lois->seance ->getFirstMedia()['human_readable_size']}}</small></p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-8 text-secondary mt-3 ">
+                                    <b>{{ $lois->contenu }}</b>
+                                </div>
+                            </div>
+                        @endif
+                        @if($lois->seancear == null)
+                            <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                                Ajouter Rapport de la séance pléniere
+                            </button>
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalCenterTitle">Ajouter rapport de la séance plénière</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                <form method="post" action="{{action('App\Http\Controllers\LoisController@updateSeanAR')}}" enctype="multipart/form-data">
+                                            {{csrf_field()}}
+                                            {{ method_field('POST') }}
+                                            <div class="modal-body">
+                                                <input type="hidden" value="{{$lois->id}}" name="id">
+
+                                                <div class="form-group{{ $errors->has('DtDepot') ? ' has-danger' : '' }}">
+                                                    <label class="form-control-label" for="input-title">{{ __('Date de la séance plénière') }}</label>
+                                                    <input type="date" name="date" id="input-name" class="form-control form-control-alternative{{ $errors->has('DtDiscusGen') ? ' is-invalid' : '' }}" placeholder="{{today()}}" value="{{ Carbon\Carbon::now()->format('Y-m-d') }}" required autofocus>
+                                                    @include('alerts.feedback', ['field' => 'DtDiscusGen'])
+                                                </div>
+
+                                                <div class="form-group form-file-upload form-file-multiple d-block">
+                                                    <label class="form-control-label" for="input-file">{{ __('Fichier') }}</label>
+                                                    <input type="file" name="file"  class="inputFileHidden" id="input-file" >
+                                                    <div class="input-group">
+                                                        <input type="text"  class="form-control inputFileVisible" placeholder="Single File" id="input-file">
+                                                        <span class="input-group-btn d-flex">
+                                            <button type="button" class="btn btn-fab btn-round btn-success">
+                                                <i class="tim-icons icon-cloud-upload-94"></i>
+                                            </button>
+                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-primary">Save </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        @else
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <form class="text-center" action="{{ route('deleteSA',$lois->seance->id) }}" method="post">
+                                        @csrf
+                                        @method('delete')
+                                        <div class="file-man-box"><button class="file-close"><i class="fa fa-times-circle"></i></button></div>
+                                    </form>
+                                    <div class="file-img-box" >
+                                        <img class="mr-auto ml-auto" width="150px"
+                                             @if($lois->seancear->getFirstMedia()['mime_type'] == 'application/pdf')src="https://coderthemes.com/highdmin/layouts/assets/images/file_icons/pdf.svg" alt="icon">
+                                        @elseif($lois->seancear->getFirstMedia()['mime_type'] == 'image/png' || 'image/jpg') <img src="https://coderthemes.com/highdmin/layouts/assets/images/file_icons/png.svg" alt="icon"  @endif>
+
+                                        <a href="{{ route('downloadfileSA',$lois->seancear->id) }}" class="file-download"><i class="fa fa-download"></i></a></div>
+                                    <div class="file-man-title">
+                                        <h5 class="mb-0 text-overflow">{{$lois->seancear ->getFirstMedia()['file_name']}}</h5>
+                                        <p class="mb-0"><small>{{$lois->seancear ->getFirstMedia()['human_readable_size']}}</small></p>
                                     </div>
                                 </div>
                                 <div class="col-sm-8 text-secondary mt-3 ">
