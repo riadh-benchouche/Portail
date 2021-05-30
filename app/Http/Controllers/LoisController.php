@@ -5,14 +5,18 @@ namespace App\Http\Controllers;
 
 use App\Models\Comission;
 use App\Models\complementaire;
+use App\Models\ComplementaireAR;
 use App\Models\Enonce;
 use App\Models\EnonceAR;
 use App\Models\Intervention;
+use App\Models\InterventionAR;
 use App\Models\Lois;
+use App\Models\LoisAR;
 use App\Models\Ministere;
 use App\Models\Preliminaire;
 use App\Models\PreliminaireAR;
 use App\Models\Seance;
+use App\Models\SeanceAR;
 use App\Models\Session;
 use Illuminate\Http\Request;
 use ArielMejiaDev\LarapexCharts\LarapexChart;
@@ -231,8 +235,7 @@ class LoisController extends Controller
         $pre->lois_id = $request->input('id');
         $file = $request->file;
         $pre
-            ->addMedia($file)   ->storingConversionsOnDisk('s3')
-
+            ->addMedia($file)
             ->toMediaCollection();
 
         $pre->save();
@@ -264,6 +267,19 @@ class LoisController extends Controller
         return redirect('loisdetails/'.$request->input('id'));
     }
 
+    public function updateSeanAR(Request $request)
+    {
+        $sean = new SeanceAR();
+        $sean->lois_id = $request->input('id');
+        $sean
+            ->addMedia($request->file)
+            ->toMediaCollection();
+
+        $sean->save();
+
+        return redirect('loisdetails/'.$request->input('id'));
+    }
+
     public function updateComp(Request $request)
     {
         $comp = new complementaire();
@@ -276,6 +292,19 @@ class LoisController extends Controller
 
         $comp->save();
         $lois->save();
+
+        return redirect('loisdetails/'.$request->input('id'));
+    }
+    public function updateCompAR(Request $request)
+    {
+        $comp = new ComplementaireAR();
+        $comp->lois_id = $request->input('id');
+        $comp
+            ->addMedia($request->file)
+            ->toMediaCollection();
+
+
+        $comp->save();
 
         return redirect('loisdetails/'.$request->input('id'));
     }
@@ -298,19 +327,46 @@ class LoisController extends Controller
         return redirect('loisdetails/'.$request->input('id'));
     }
 
+    public function updateNAR(Request $request)
+    {
+        $lois = new LoisAR();
+        $lois->lois_id = $request->input('id');
+        $lois
+            ->addMedia($request->file)
+            ->toMediaCollection();
+
+
+        $lois->save();
+
+        return redirect('loisdetails/'.$request->input('id'));
+    }
+
     public function updateInter(Request $request)
     {
         $inter = new Intervention();
         $inter->lois_id = $request->input('id');
         $inter
             ->addMedia($request->file)
-            ->preservingOriginal()
             ->toMediaCollection();
 
         $lois = Lois::find($request->input('id'));
 
         $inter->save();
         $lois->save();
+
+        return redirect('loisdetails/'.$request->input('id'));
+    }
+
+    public function updateInterAR(Request $request)
+    {
+        $inter = new InterventionAR();
+        $inter->lois_id = $request->input('id');
+        $inter
+            ->addMedia($request->file)
+            ->toMediaCollection();
+
+
+        $inter->save();
 
         return redirect('loisdetails/'.$request->input('id'));
     }
@@ -344,16 +400,32 @@ class LoisController extends Controller
         $sean = Seance::find($id);
         return $sean ->getFirstMedia();
     }
+    public function downloadSA($id)
+    {
+        $sean = SeanceAR::find($id);
+        return $sean ->getFirstMedia();
+    }
 
     public function downloadI($id)
     {
         $inter = Intervention::find($id);
         return $inter ->getFirstMedia();
     }
+    public function downloadIA($id)
+    {
+        $inter = InterventionAR::find($id);
+        return $inter ->getFirstMedia();
+    }
 
     public function downloadN($id)
     {
         $lois = Lois::find($id);
+        return $lois ->getFirstMedia();
+    }
+
+    public function downloadNA($id)
+    {
+        $lois = LoisAR::find($id);
         return $lois ->getFirstMedia();
     }
 
@@ -372,6 +444,12 @@ class LoisController extends Controller
     public function downloadC($id)
     {
         $comp = complementaire::find($id);
+        return $comp ->getFirstMedia();
+    }
+
+    public function downloadCA($id)
+    {
+        $comp = ComplementaireAR::find($id);
         return $comp ->getFirstMedia();
     }
 
@@ -418,6 +496,14 @@ class LoisController extends Controller
         return redirect('loisdetails/'.$lois->id);
     }
 
+    public function deleteNA($id)
+    {
+        $lois = LoisAR::find($id);
+        $lois->getFirstMedia()->delete();
+
+        return redirect('loisdetails/'.$lois->id);
+    }
+
     public function deleteI($id)
     {
         $inter = Intervention::find($id);
@@ -429,9 +515,31 @@ class LoisController extends Controller
         return redirect('loisdetails/'.$idL);
     }
 
+    public function deleteIA($id)
+    {
+        $inter = InterventionAR::find($id);
+
+        $idL = $inter->lois_id;
+        $inter->getFirstMedia()->delete();
+        $inter-> delete();
+
+        return redirect('loisdetails/'.$idL);
+    }
+
     public function deleteS($id)
     {
         $enonce = Seance::find($id);
+
+        $idL = $enonce->lois_id;
+        $enonce->getFirstMedia()->delete();
+        $enonce-> delete();
+
+        return redirect('loisdetails/'.$idL);
+    }
+
+    public function deleteSA($id)
+    {
+        $enonce = SeanceAR::find($id);
 
         $idL = $enonce->lois_id;
         $enonce->getFirstMedia()->delete();
@@ -473,7 +581,16 @@ class LoisController extends Controller
         return redirect('loisdetails/'.$idL);
     }
 
+    public function deleteCA($id)
+    {
+        $comp = ComplementaireAR::find($id);
 
+        $idL = $comp->lois_id;
+        $comp->getFirstMedia()->delete();
+        $comp-> delete();
+
+        return redirect('loisdetails/'.$idL);
+    }
 
     /**
      * Remove the specified resource from storage.

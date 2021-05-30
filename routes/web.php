@@ -92,6 +92,10 @@ Route::post('enonceAR','App\Http\Controllers\LoisController@updateEnonceAR')->na
 Route::get('/fileS/download/{id}','App\Http\Controllers\LoisController@downloadS')->name('downloadfileS');
 Route::delete('seance/{id}','App\Http\Controllers\LoisController@deleteS')->name('deleteS');
 Route::post('seance','App\Http\Controllers\LoisController@updateSean')->name('sean');
+Route::get('/fileSAR/download/{id}','App\Http\Controllers\LoisController@downloadSA')->name('downloadfileSA');
+Route::delete('seanceAR/{id}','App\Http\Controllers\LoisController@deleteSA')->name('deleteSA');
+Route::post('seanceAR','App\Http\Controllers\LoisController@updateSeanAR')->name('seanAR');
+
 
 Route::get('/fileP/download/{id}','App\Http\Controllers\LoisController@downloadP')->name('downloadfileP');
 Route::delete('planning/{id}','App\Http\Controllers\LoisController@deleteP')->name('deletePl');
@@ -102,14 +106,23 @@ Route::post('planning','App\Http\Controllers\LoisController@updatePla')->name('p
 Route::get('/fileC/download/{id}','App\Http\Controllers\LoisController@downloadC')->name('downloadfileC');
 Route::delete('comp/{id}','App\Http\Controllers\LoisController@deleteC')->name('deleteC');
 Route::post('comp','App\Http\Controllers\LoisController@updateComp')->name('comp');
+Route::get('/fileCAR/download/{id}','App\Http\Controllers\LoisController@downloadCA')->name('downloadfileCA');
+Route::delete('compAR/{id}','App\Http\Controllers\LoisController@deleteCA')->name('deleteCA');
+Route::post('compAR','App\Http\Controllers\LoisController@updateCompAR')->name('compAR');
 
 Route::get('/fileI/download/{id}','App\Http\Controllers\LoisController@downloadI')->name('downloadfileI');
 Route::delete('inter/{id}','App\Http\Controllers\LoisController@deleteI')->name('deleteI');
 Route::post('inter','App\Http\Controllers\LoisController@updateInter')->name('inter');
+Route::get('/fileIAR/download/{id}','App\Http\Controllers\LoisController@downloadIA')->name('downloadfileIA');
+Route::delete('interAR/{id}','App\Http\Controllers\LoisController@deleteIA')->name('deleteIA');
+Route::post('interAR','App\Http\Controllers\LoisController@updateInterAR')->name('interAR');
 
 Route::get('/fileN/download/{id}','App\Http\Controllers\LoisController@downloadN')->name('downloadfileN');
 Route::delete('nouv/{id}','App\Http\Controllers\LoisController@deleteN')->name('deleteN');
 Route::post('nouv','App\Http\Controllers\LoisController@updateN')->name('nouv');
+Route::get('/fileNAR/download/{id}','App\Http\Controllers\LoisController@downloadNA')->name('downloadfileNA');
+Route::delete('nouvAR/{id}','App\Http\Controllers\LoisController@deleteNA')->name('deleteNA');
+Route::post('nouvAR','App\Http\Controllers\LoisController@updateNAR')->name('nouvAR');
 
 Route::post('loisv','App\Http\Controllers\LoisController@updateLois')->name('loisv');
 

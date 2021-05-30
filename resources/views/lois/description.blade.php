@@ -81,10 +81,10 @@
                             </div>
                         </div>
                 @elseif($lois->enonce == null)
-                    <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                    <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#exampleModalCenterF">
                         Ajouter l'énoncé version français
                     </button>
-                    <div class="modal fade " id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal fade " id="exampleModalCenterF" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content bg-dark">
                                 <div class="modal-header">
@@ -488,14 +488,14 @@
                         @endif
                         @if($lois->seancear == null)
                             <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-                                Ajouter Rapport de la séance pléniere
+                                Ajouter Rapport de la séance pléniere version arabe
                             </button>
                             <!-- Modal -->
                             <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalCenterTitle">Ajouter rapport de la séance plénière</h5>
+                                            <h5 class="modal-title" id="exampleModalCenterTitle">Ajouter rapport de la séance plénière version française</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
@@ -1179,6 +1179,8 @@
                                     </div>
                                 @endif
                             @endif
+                        </div>
+                        </div>
                         </div>
 
 
