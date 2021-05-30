@@ -49,5 +49,30 @@ class Lois extends Model implements HasMedia
         return $this->hasOne(Intervention::class);
     }
 
+    public function enoncear()
+    {
+        return $this->hasOne(EnonceAR::class );
+    }
+    public function preliminairear()
+    {
+        return $this->hasOne(PreliminaireAR::class);
+    }
+    public function seancear()
+    {
+        return $this->hasOne(SeanceAR::class);
+    }
+    public function complementairear()
+    {
+        return $this->hasOne(ComplementaireAR::class);
+    }
+    public function interventionar()
+    {
+        return $this->hasOne(InterventionAR::class);
+    }
+    public function plannings()
+    {
+        return $this->hasOne(Planning::class);
+    }
+
 
 }

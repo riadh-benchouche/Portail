@@ -31,13 +31,6 @@ Route::get('rh/{id}','App\Http\Controllers\Rhcontroller@showdetail')->name('deta
 
 
 
-Route::get('/appointments', 'App\Http\Controllers\AppointmentController@index');
-Route::get('/appointments/filter', 'App\Http\Controllers\AppointmentController@filter');
-Route::post('/appointments/new', 'App\Http\Controllers\AppointmentController@store');
-Route::patch('/appointments/{appointment}/edit', 'App\Http\Controllers\AppointmentController@update');
-Route::delete('/appointments/{appointment}', 'App\Http\Controllers\AppointmentController@destroy');
-
-
 Route::get('/fullcalender', 'App\Http\Controllers\FullCalenderController@index');
 Route::get('fullcalender/create','App\Http\Controllers\FullCalenderController@create');
 Route::post('fullcalender','App\Http\Controllers\FullCalenderController@store');
@@ -75,10 +68,56 @@ Route::get('actualite/{id}','App\Http\Controllers\ActualiteController@show')->na
 
 Route::resource('commission','App\Http\Controllers\CommissionController');
 
+Route::get('loisT', ['as' => 'loist.index', 'uses' => 'App\Http\Controllers\LoisController@index1']);
 Route::resource('lois', 'App\Http\Controllers\LoisController');
 Route::get('loisdetails/{id}','App\Http\Controllers\LoisController@detail');
-Route::get('lois/{id}/create','App\Http\Controllers\LoisController@create1');
+Route::get('lois/create','App\Http\Controllers\LoisController@create1');
 Route::post('enonce','App\Http\Controllers\LoisController@updateEnonce')->name('enonce');
+Route::get('/file/download/{id}','App\Http\Controllers\LoisController@download')->name('downloadfileE');
+Route::delete('enonce/{id}','App\Http\Controllers\LoisController@deleteE')->name('deleteE');
+
+
+Route::get('/fileP/download/{id}','App\Http\Controllers\LoisController@downloadP')->name('downloadfileP');
+Route::delete('pre/{id}','App\Http\Controllers\LoisController@deleteP')->name('deleteP');
+Route::post('pre','App\Http\Controllers\LoisController@updatePre')->name('pre');
+Route::get('/filePA/download/{id}','App\Http\Controllers\LoisController@downloadP')->name('downloadfilePA');
+Route::delete('prea/{id}','App\Http\Controllers\LoisController@deleteP')->name('deletePA');
+Route::post('prea','App\Http\Controllers\LoisController@updatePreAR')->name('prea');
+
+Route::get('/fileEA/download/{id}','App\Http\Controllers\LoisController@downloadE')->name('downloadfileEA');
+Route::delete('enonceA/{id}','App\Http\Controllers\LoisController@deleteEA')->name('deleteEA');
+Route::post('enonceAR','App\Http\Controllers\LoisController@updateEnonceAR')->name('enonceAR');
+
+
+Route::get('/fileS/download/{id}','App\Http\Controllers\LoisController@downloadS')->name('downloadfileS');
+Route::delete('seance/{id}','App\Http\Controllers\LoisController@deleteS')->name('deleteS');
+Route::post('seance','App\Http\Controllers\LoisController@updateSean')->name('sean');
+
+Route::get('/fileP/download/{id}','App\Http\Controllers\LoisController@downloadP')->name('downloadfileP');
+Route::delete('planning/{id}','App\Http\Controllers\LoisController@deleteP')->name('deletePl');
+Route::post('planning','App\Http\Controllers\LoisController@updatePla')->name('planning');
+
+
+
+Route::get('/fileC/download/{id}','App\Http\Controllers\LoisController@downloadC')->name('downloadfileC');
+Route::delete('comp/{id}','App\Http\Controllers\LoisController@deleteC')->name('deleteC');
+Route::post('comp','App\Http\Controllers\LoisController@updateComp')->name('comp');
+
+Route::get('/fileI/download/{id}','App\Http\Controllers\LoisController@downloadI')->name('downloadfileI');
+Route::delete('inter/{id}','App\Http\Controllers\LoisController@deleteI')->name('deleteI');
+Route::post('inter','App\Http\Controllers\LoisController@updateInter')->name('inter');
+
+Route::get('/fileN/download/{id}','App\Http\Controllers\LoisController@downloadN')->name('downloadfileN');
+Route::delete('nouv/{id}','App\Http\Controllers\LoisController@deleteN')->name('deleteN');
+Route::post('nouv','App\Http\Controllers\LoisController@updateN')->name('nouv');
+
+Route::post('loisv','App\Http\Controllers\LoisController@updateLois')->name('loisv');
+
+Route::get('echarts', 'App\Http\Controllers\LoisController@echart');
+
+
+
+
 
 
 Route::get('/url', function (){ return asset('public/black/'); });

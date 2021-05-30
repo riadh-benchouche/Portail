@@ -29,7 +29,7 @@ class CreateInterventionsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('interventions');
-        Schema::table('events', function (Blueprint $table) {
+        Schema::table('interventions', function (Blueprint $table) {
             $table->dropForeign('[lois_id]');
             $table->dropColumn('lois_id');
         });

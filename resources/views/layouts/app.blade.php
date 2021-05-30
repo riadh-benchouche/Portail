@@ -20,6 +20,23 @@
         <link href="{{ asset('black') }}/css/black-dashboard.css?v=1.0.0" rel="stylesheet" />
         <link href="{{ asset('black') }}/css/theme.css" rel="stylesheet" />
         <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.css' />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.js"></script>
+        <style>
+            .fc-today {
+                background: #6c757d !important;
+                color : white;
+
+            }
+            .fc-agendaWeek-view   {
+                Height: 40%  !important;
+
+            }
+            .fc-agendaDay-view   {
+                Height: 39%  !important;
+
+            }
+        </style>
+        <script type="text/javascript" href="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.1.1/echarts.min.js" ></script>
 
         @notifyCss
     </head>
@@ -81,8 +98,8 @@
         <!--  Google Maps Plugin    -->
         <!-- Place this tag in your head or just before your close body tag. -->
         {{-- <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script> --}}
-        <!-- Chart JS -->
-        {{-- <script src="{{ asset('black') }}/js/plugins/chartjs.min.js"></script> --}}
+
+         <script src="{{ asset('black') }}/js/plugins/chartjs.min.js"></script>
         <!--  Notifications Plugin    -->
         <script src="{{ asset('black') }}/js/plugins/bootstrap-notify.js"></script>
 
@@ -189,7 +206,13 @@
                 });
             });
         </script>
+
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
+        <script src="http://tonkin.etab.ac-lyon.fr/spip/plugins-dist/organiseur/lib/fullcalendar/locale/fr.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.js"></script>
         @stack('js')
         @notifyJs
+
     </body>
 </html>

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Enonce;
+use App\Models\SeanceAR;
 use Illuminate\Http\Request;
 
-class EnonceController extends Controller
+class SeanceARController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,21 +41,21 @@ class EnonceController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Enonce  $enonce
+     * @param  \App\Models\SeanceAR  $seanceAR
      * @return \Illuminate\Http\Response
      */
-    public function show(Enonce $enonce)
+    public function show(SeanceAR $seanceAR)
     {
-
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Enonce  $enonce
+     * @param  \App\Models\SeanceAR  $seanceAR
      * @return \Illuminate\Http\Response
      */
-    public function edit(Enonce $enonce)
+    public function edit(SeanceAR $seanceAR)
     {
         //
     }
@@ -64,10 +64,10 @@ class EnonceController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Enonce  $enonce
+     * @param  \App\Models\SeanceAR  $seanceAR
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Enonce $enonce)
+    public function update(Request $request, SeanceAR $seanceAR)
     {
         //
     }
@@ -75,10 +75,10 @@ class EnonceController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Enonce  $enonce
+     * @param  \App\Models\SeanceAR  $seanceAR
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Enonce $enonce)
+    public function destroy(SeanceAR $seanceAR)
     {
         //
     }

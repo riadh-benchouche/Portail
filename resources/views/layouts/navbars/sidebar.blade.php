@@ -10,7 +10,7 @@
         <ul class="nav">
             <li @if ($pageSlug ?? '' == 'dashboard') class="active " @endif>
                 <a href="{{ route('home') }}">
-                    <i class="tim-icons icon-bank"></i>
+                    <i class="tim-icons icon-components"></i>
                     <p>{{ __('Accueil') }}</p>
                 </a>
             </li>
@@ -47,14 +47,39 @@
                 </a>
             </li>
 
-            <li @if ($pageSlug ?? '' == 'lois') class="active " @endif>
-                <a href="{{ route('lois.index')  }}">
-                    <i class="tim-icons icon-badge"></i>
-                    <p>{{ __('Lois') }}</p>
+            <li>
+                <a data-toggle="collapse" href="#laravel-examples" aria-expanded="true">
+                    <i class="fab fa-laravel" ></i>
+                    <span class="nav-link-text" >{{ __('Gestion des lois') }}</span>
+                    <b class="caret mt-1"></b>
+                </a>
+
+                <div class="collapse" id="laravel-examples">
+                    <ul class="nav pl-4">
+                        <li >
+                            <a href="{{ route('lois.index')  }}">
+                                <i class="tim-icons icon-badge"></i>
+                                <p>{{ __('En cours') }}</p>
+                            </a>
+                        </li>
+                        <li  >
+                            <a href="{{ route('loist.index')  }}">
+                                <i class="tim-icons icon-bullet-list-67"></i>
+                                <p>{{ __('Abordé') }}</p>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
+            <li >
+                <a href="{{ url('commission')  }}">
+                    <i class="tim-icons icon-bank "></i>
+                    <p>{{ __('Commision') }}</p>
                 </a>
             </li>
 
-            <li @if ($pageSlug ?? '' == 'annonce') class="active " @endif>
+            <li >
                 <a href="{{ route('annonce.index')  }}">
                     <i class="tim-icons icon-badge"></i>
                     <p>{{ __('Annonces et circulaire') }}</p>

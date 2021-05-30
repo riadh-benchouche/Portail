@@ -30,7 +30,7 @@ class CreateEnoncesTable extends Migration
     {
         Schema::dropIfExists('enonces');
 
-        Schema::table('events', function (Blueprint $table) {
+        Schema::table('enonces', function (Blueprint $table) {
             $table->dropForeign('[lois_id]');
             $table->dropColumn('lois_id');
         });

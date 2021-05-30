@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Actualite;
 use App\Models\Comission;
 use App\Models\User;
+use App\Models\Lois;
 use App\Notifications\ActualiteAjouter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Notification;
@@ -63,12 +64,18 @@ class CommissionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {   $comission =Comission::find($id);
+    {
+
+
+        $comission =Comission::find($id);
+
+        $loisp = Lois::where('comission_id','=',$comission->id)->paginate(6);
         $president =User::where('comission_id','=', $comission->id )
                                       ->where('president', '=', 1)->first();
         $membre =User::where('comission_id','=', $comission->id )
-                     ->where('president', '=', 0);
-        return view('commission.detail',['president' => $president],['membre' => $membre]);
+                     ->where('president', '=', 0)->paginate(2);
+        //dd($membre);
+        return view('commission.detail',['president' => $president, 'membres' => $membre , 'loisp'=>$loisp ]);
     }
 
     /**

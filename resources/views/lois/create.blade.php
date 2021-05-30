@@ -42,6 +42,15 @@
                                     @include('alerts.feedback', ['field' => 'DtDepot'])
                                 </div>
 
+                                <div class="form-group">
+                                    <label for="exampleSelect1">Type de lois</label>
+                                    <select name="type" class="form-control" id="typelois" >
+                                            <option value="1" >Projet de lois</option>
+                                            <option value="2" >Ordonnance</option>
+                                            <option value="3" >Règlement du budget</option>
+                                    </select>
+                                </div>
+
                                 <fieldset class="form-group">
                                     <label for="exampleSelect1">Comission</label>
                                     <select name="comission" class="form-control" id="TypeOfConstruction" >

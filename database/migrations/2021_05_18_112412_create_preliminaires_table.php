@@ -29,7 +29,7 @@ class CreatePreliminairesTable extends Migration
     public function down()
     {
         Schema::dropIfExists('preliminaires');
-        Schema::table('events', function (Blueprint $table) {
+        Schema::table('preliminaires', function (Blueprint $table) {
             $table->dropForeign('[lois_id]');
             $table->dropColumn('lois_id');
         });

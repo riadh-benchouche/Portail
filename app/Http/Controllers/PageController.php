@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Event;
 use App\Models\RH;
+use Calendar;
+use App\Models\Category_e;
+
+
 
 class PageController extends Controller
 {
@@ -13,7 +18,35 @@ class PageController extends Controller
      */
     public function icons()
     {
-        return view('pages.icons');
+        $events = [];
+        $data = Event::all();
+        if($data->count())
+        {
+            foreach ($data as $key => $value)
+            {
+                $events[] = Calendar::event(
+                    $value->categories->name,
+                    false,
+                    new \DateTime($value->start_date),
+                    new \DateTime($value->end_date),
+                    null,
+                    // Add color
+                    [
+                        'color'=> $value->categories->color,
+                        'textColor' => $value->textColor,
+                        'url' => 'fullcalender/'.$value->id,
+                        'description' => $value->description,
+                        'locale' =>'fr',
+                    ],
+                );
+            }
+        }
+
+        $calendar = \Calendar::addEvents($events)->setOptions([
+            //'locale' => 'fr',
+            'lang' => 'fr'
+        ]);
+        return view('pages.icons',compact('events','calendar'));
     }
 
     /**
