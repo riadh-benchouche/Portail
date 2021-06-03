@@ -58,7 +58,8 @@ class FullCalenderController extends Controller
         $request->validate([
             'title'=>'required',
             'start_date'=>'required',
-            'end_date'=>'required',
+            'end_date'=>'required & date ',
+            'description'=>'required ',
         ]);
         $events=new Event;
         $events->title=$request->input('title');
@@ -67,7 +68,7 @@ class FullCalenderController extends Controller
         $events->end_date=$request->input('end_date');
         $events->description=$request->input('description');
         $events->save();
-        return redirect('fullcalender');
+        return redirect('icons');
     }
 
     public function detail($id)

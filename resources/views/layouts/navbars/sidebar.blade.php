@@ -40,13 +40,31 @@
                 </div>
             </li>
              //-->
-            <li @if ($pageSlug ?? '' == 'users') class="active " @endif>
-                <a href="{{ route('user.index')  }}">
-                    <i class="tim-icons icon-badge"></i>
-                    <p>{{ __('Annuaire') }}</p>
+           
+            <li>
+                <a data-toggle="collapse" href="#annuaire" aria-expanded="true">
+                    <i class="tim-icons icon-badge" ></i>
+                    <span class="nav-link-text" >{{ __('Annuaire') }}</span>
+                    <b class="caret mt-1"></b>
                 </a>
-            </li>
 
+                <div class="collapse" id="annuaire">
+                    <ul class="nav pl-4">
+                        <li >
+                            <a href="{{ route('user.index')  }}">
+                                <i class="tim-icons icon-badge"></i>
+                                <p>{{ __('Annuaire Député') }}</p>
+                            </a>
+                        </li>
+                        <li  >
+                            <a href="">
+                                <i class="tim-icons icon-bullet-list-67"></i>
+                                <p>{{ __('Annuaire fonctionnair') }}</p>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
             <li>
                 <a data-toggle="collapse" href="#laravel-examples" aria-expanded="true">
                     <i class="fab fa-laravel" ></i>
@@ -95,12 +113,6 @@
                 <a href="{{ route('pages.maps') }}">
                     <i class="tim-icons icon-email-85"></i>
                     <p>{{ __('Messagerie') }}</p>
-                </a>
-            </li>
-            <li @if ($pageSlug ?? '' == 'notifications') class="active " @endif>
-                <a href="{{ route('pages.notifications') }}">
-                    <i class="tim-icons icon-single-copy-04"></i>
-                    <p>{{ __('Gestion des lois') }}</p>
                 </a>
             </li>
             <li @if ($pageSlug ?? '' == 'tables') class="active " @endif>

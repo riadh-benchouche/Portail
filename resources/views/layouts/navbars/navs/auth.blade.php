@@ -32,19 +32,19 @@
                     @unless(auth()->user()->unreadNotifications->isEmpty())
                     <ul class="dropdown-menu dropdown-menu-right dropdown-navbar">
                         @foreach(auth()->user()->unreadNotifications as $notification)
--                            @if($notification->type == "App\Notifications\ajouter")
+                           @if($notification->type == "App\Notifications\ajouter")
                         <li class="nav-link">
-                            <a  href="{{url('rh')}}" class="nav-item dropdown-item text-dark">Nouveau document: <u>{{$notification->data['rhName']}}</u>, Ajouter aux Ressource humaines</a>
+                            <a  href="{{url('rh')}}" class="nav-item dropdown-item text-dark">Nouveau document:<u>{{$notification->data['rhName']}}</u>, Ajouter aux Ressource humaines</a>
                         </li>
                             @endif
                         @if($notification->type == "App\Notifications\AnnonceAjouter")
                             <li class="nav-link">
-                                <button  href="{{route('annonce.index')}}"   class="nav-item dropdown-item text-dark">Nouvelle Annonce:  {{$notification->data['AnnonceName']}}, Ajouter aux annonces</button>
+                                <button  href="{{route('annonce.index')}}"   class="nav-item dropdown-item text-dark">Nouvelle Annonce: <u> {{$notification->data['AnnonceName']}}</u>, Ajouter aux annonces</button>
                             </li>
                         @endif
                         @if($notification->type == "App\Notifications\ActualiteAjouter")
                             <li class="nav-link">
-                                 <a  href="{{route('actualite.index')}}"   class="nav-item dropdown-item text-dark">Nouvelle Actualite:  {{$notification->data['ActualiteName']}}, Ajouter aux Actualites</a>
+                                 <a  href="{{route('actualite.index')}}"   class="nav-item dropdown-item text-dark">Nouvelle Actualite:  <u>{{$notification->data['ActualiteName']}}</u>, Ajouter aux Actualites</a>
                             </li>
                         @endif
                         @endforeach

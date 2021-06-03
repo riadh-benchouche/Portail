@@ -21,7 +21,8 @@ class UserController extends Controller
      */
     public function index(User $model)
     {
-        return view('users.index', ['users' => $model->Paginate(3)]);
+        //$depute = User::where('categorie','=','Député');
+        return view('users.index', ['users' => $model->Paginate(6)]);
     }
 
 
@@ -54,9 +55,29 @@ class UserController extends Controller
 
     public function update(UserRequest $request, User  $user)
     {
+                
+        if ( $request->service == null )
+        {
+          $comission = $request->input('comission');
+          $service = null;
+        } 
+        elseif ($request->comission == null){
+            $service = $request->input('service');
+            $comission = null;
+        } 
+        if($request->input('president') == null){
+            $president = 0;
+            
+         }
+         else{
+            $president = 1;
+
+         } 
+        
         $hasPassword = $request->get('password');
              if ($request->file == null )
              {
+                
                  $user->update(
                      $request->merge(['password' => Hash::make($request->get('password'))])
                          ->except([$hasPassword ? '' : 'password'],
@@ -65,9 +86,12 @@ class UserController extends Controller
                              $user->fonction = $request->input('fonction'),
                              $user->Wilaya = $request->input('Wilaya'),
                              $user->nom_a = $request->input('nom_a'),
-                             $user->service_id = $request->input('service'),
-                             $user->comission_id = $request->input('comission'),
                              $user->category = $request->input('categorie'),
+                               $user->comission_id = $comission,
+                               $user->service_id = $service,
+                               $user->president = $president,
+
+
                              $user->syncRoles($request->role)
                          ));
              }
@@ -88,9 +112,12 @@ class UserController extends Controller
                                  $user->fonction = $request->input('fonction'),
                                  $user->Wilaya = $request->input('Wilaya'),
                                  $user->nom_a = $request->input('nom_a'),
-                                 $user->service_id = $request->input('service'),
-                                 $user->comission_id = $request->input('comission'),
                                  $user->category = $request->input('categorie'),
+
+                                 $user->comission_id = $comission,
+                                 $user->service_id = $service,
+                                 $user->president = $president,
+
                                  $user->syncRoles($request->role),
                                  $user->addMedia($request->file)->toMediaCollection(),
                              // $user->getFirstMedia()->delete(),
