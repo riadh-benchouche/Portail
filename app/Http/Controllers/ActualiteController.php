@@ -68,7 +68,10 @@ class ActualiteController extends Controller
     public function show($id)
     {
         $actualite = Actualite::find($id);
-        return view ('actualite.detail', ['actualite'=>$actualite]);
+        $actualites = Actualite::latest()->take(3)->get();
+
+      //  dd($actualites);
+        return view ('actualite.detail', ['actualite'=>$actualite , 'actualites'=>$actualites]);
     }
 
     /**
@@ -98,6 +101,8 @@ if ($request->file != null) {
         $actualite->getFirstMedia()->delete();
 
         $actualite->addMedia($request->file)->toMediaCollection();
+    $actualite->title = $request->input('title');
+    $actualite->contenu= $request->input('contenu');
 }
 else {
     $actualite->title = $request->input('title');

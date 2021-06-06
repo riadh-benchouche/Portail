@@ -154,7 +154,32 @@
                         </div>
                 </div>
                 <div class="tab-pane" id="pill3">
-
+                    <div class=" text-sm-right mb-2">
+                        <a href="{{ url('travaux/create') }}" class="btn btn-sm btn-primary ">
+                            <i class="tim-icons icon-simple-add"></i> Ajouter
+                        </a>
+                    </div>
+                    <div class="row mx-3">
+                        @foreach( $travaux as $travau )
+                            <div class="col-4">
+                        <div class="card" style="background-color: #4f5167" >
+                            <img class="card-img-top" src="{{ asset('storage').'/'.$travau ->getFirstMedia()['id'].'/'.$travau ->getFirstMedia()['file_name']}}" alt="Card image cap">
+                            <div class="card-body">
+                                <h4 class="card-title">{{substr($travau->name,0,150)}}</h4>
+                                <p class="card-text">{{substr($travau->contenu,0,200)}}</p>
+                                <a href="{{ url('travaux/'.$travau->id) }}" class="btn btn-sm btn-info">
+                                    <i class="tim-icons icon-book-bookmark"></i> Détail
+                                </a>
+                            </div>
+                        </div>
+                            </div>
+                            @endforeach
+                            <div class="card-footer">
+                                <div class="pagination page-item justify-content-center" >
+                                    {{ $travaux -> links() }}
+                                </div>
+                            </div>
+                    </div>
                 </div>
             </div>
         </div>

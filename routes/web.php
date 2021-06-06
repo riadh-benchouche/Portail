@@ -65,6 +65,14 @@ Route::get('actualite/{id}/edit','App\Http\Controllers\ActualiteController@edit'
 Route::put( 'actualite/{id}','App\Http\Controllers\ActualiteController@update');
 Route::get('actualite/{id}','App\Http\Controllers\ActualiteController@show')->name('detailact');
 
+Route::get('travaux/create','App\Http\Controllers\TraveauController@create')->name('travaux/create');
+Route::post('travaux','App\Http\Controllers\TraveauController@store');
+Route::delete( 'travaux/{id}','App\Http\Controllers\TraveauController@destroy');
+Route::get('travaux/{id}/edit','App\Http\Controllers\TraveauController@edit');
+Route::put( 'travaux/{id}','App\Http\Controllers\TraveauController@update');
+Route::get('travaux/{id}','App\Http\Controllers\TraveauController@show')->name('detailtra');
+
+
 
 Route::resource('commission','App\Http\Controllers\CommissionController');
 
