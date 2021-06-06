@@ -74,7 +74,11 @@
                                 <h6 >Commission</h6>
                             </div>
                             <div class="col-sm-8 text-secondary">
+                           @if($user->comissions == null)
+                           <b>Non atribué</b>
+                                   @else 
                                 <b>{{ $user->comissions->name}}</b>
+                               @endif 
                             </div>
                         </div>
                     @elseif($user->category == 'Salarié')
@@ -83,7 +87,12 @@
                                 <h6 >Structure</h6>
                             </div>
                             <div class="col-sm-8 text-secondary">
-                                <b>{{ $user->services->name}}</b>
+                            @if($user->comissions == null)
+                           <b>Non atribué</b>
+                                   @else 
+                                   <b>{{ $user->services->name}}</b>
+                            @endif 
+                                
                             </div>
                         </div>
                     @endif

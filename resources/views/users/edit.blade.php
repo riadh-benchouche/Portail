@@ -68,7 +68,7 @@
                                 </div>
                                 <fieldset class="form-group">
                                     <label for="exampleSelect1">Catégorie</label>
-                                    <select name="categorie" class="form-control" id="TypeOfConstruction" >
+                                    <select name="categorie" class="form-control bg-dark " id="TypeOfConstruction" >
                                         <option value="Député" @if($user->category == 'Député') selected @endif>Député</option>
                                         <option value="Salarié"@if($user->category == 'Salarié') selected @endif>Salarié</option>
                                     </select>
@@ -76,20 +76,25 @@
 
                                 <fieldset class="form-group" style="display:none;" id="salarie">
                                     <label for="PartyWalls">Structure :</label>
+                                    <select name="service" class="form-control bg-dark" id="TypeOfConstruction" >
                                     @foreach($services as $service)
-                                        <input class="form-check-input" type="radio" name="service" id="{{$service -> id}}" value="{{$service->id}}" @if ( $user->service_id == $service->id )  checked @endif>
-                                                    {{ $service ->name }}
-                                        <br><span class="form-check-sign"></span>
+                                    <option value="{{$service->id}}" @if( $user->service_id == $service->id ) selected @endif>{{ $service ->name }}</option>
                                     @endforeach
+                                </select>
                                 </fieldset>
 
                                 <fieldset class="form-group" style="display:none;" id="depute">
-                                    <label for="PartyWalls">Comission :</label>
+                                    <label for="PartyWalls1">Comission :</label>
+                                    <select name="comission" class="form-control bg-dark" id="TypeOfConstruction" >
                                     @foreach($comissions as $comission)
-                                        <label for="{{ $comission -> id}}" class="form-check-label ml-2"> {{$comission -> name}}
-                                            <input type="checkbox"  class="form-check-input" name="comission" value="{{$comission->id}}" id="{{$comission -> id}}"  @if ($user->comission_id == $comission->id) checked @endif>
-                                        </label>
+                                    <option value="{{$comission->id}}" @if( $user->comission_id == $comission->id ) selected @endif>{{ $comission ->name }}</option>
                                     @endforeach
+                                    </select>
+                                        <br>
+                                    <label for="president">Président de commission :</label>
+                                                <input type="checkbox" name="president" id="president" class="form-control form-control-alternative{{ $errors->has('president') ? ' is-invalid' : '' }}"  value="{{ old('president', $user->president) }}" required>
+                                    @include('alerts.feedback', ['field' => 'president'])
+                            
                                 </fieldset>
 
                             <!--    <div class="form-group{{ $errors->has('password') ? ' has-danger' : '' }}">
