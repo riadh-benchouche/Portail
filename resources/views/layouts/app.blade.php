@@ -46,11 +46,9 @@
                     @include('layouts.navbars.sidebar')
                 <div class="main-panel">
                     @include('layouts.navbars.navbar')
-
                     <div class="content">
                         @yield('content')
                     </div>
-
                     @include('layouts.footer')
                 </div>
             </div>
@@ -206,6 +204,8 @@
                 });
             });
         </script>
+
+
 
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>

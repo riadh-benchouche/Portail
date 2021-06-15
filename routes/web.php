@@ -71,10 +71,13 @@ Route::delete( 'travaux/{id}','App\Http\Controllers\TraveauController@destroy');
 Route::get('travaux/{id}/edit','App\Http\Controllers\TraveauController@edit');
 Route::put( 'travaux/{id}','App\Http\Controllers\TraveauController@update');
 Route::get('travaux/{id}','App\Http\Controllers\TraveauController@show')->name('detailtra');
+Route::get('minical','App\Http\Controllers\HomeController@cal')->name('minical');
+Route::get('minical2','App\Http\Controllers\HomeController@cal2')->name('minical2');
 
 
 
 Route::resource('commission','App\Http\Controllers\CommissionController');
+Route::resource('department','App\Http\Controllers\DepartmentController');
 
 Route::get('loisT', ['as' => 'loist.index', 'uses' => 'App\Http\Controllers\LoisController@index1']);
 Route::resource('lois', 'App\Http\Controllers\LoisController');

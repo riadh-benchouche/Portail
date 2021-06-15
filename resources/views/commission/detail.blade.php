@@ -16,7 +16,7 @@
         <div class="card-body ">
             <div class="tab-content text-center">
                 <div class="tab-pane active" id="pill1">
-                    @if($president == null )
+                    @if($president || $membres == null )
                         <h6 class="mr-2 text-primary" style="font-size: 20px">Liste des membres non a jour</h6>
                     @else
                     <div class="row flex-lg-nowrap">

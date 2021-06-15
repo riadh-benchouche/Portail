@@ -4,6 +4,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Actualite;
+use App\Models\Annonce;
 use App\Models\Event;
 use App\Models\Lois;
 use App\Models\RH;
@@ -43,21 +44,41 @@ class HomeController extends Controller
             'lang' => 'fr'
         ]);
 
+        $chart2 = (new LarapexChart)->radialChart()
+            ->setTitle('Passing effectiveness.')
+            ->setSubtitle('Barcelona city vs Madrid sports.')
+            ->addData([75, 60])
+            ->setLabels(['Barcelona city', 'Madrid sports'])
+            ->setColors(['#D32F2F', '#03A9F4']);
+
         $chart = (new LarapexChart)->barChart()
-           // ->setTitle('Nombre de lois')
+            ->setTitle('Nombre de lois')
             //->setSubtitle('Wins during season 2021.')
             ->addData('Lois Abordé', \App\Models\Lois::query()->inRandomOrder()->limit(12)->pluck('id')->toArray())
             ->addData('Lois en Cours', \App\Models\Lois::query()->inRandomOrder()->limit(12)->pluck('id')->toArray())
-            ->setColors(['#E8E8ED', '#A1B0CE'])
-            ->setGrid(false, '#3F51B5', 0.1)
-            ->setXAxis(['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin','Juillet','Septembre','Octobre','Novembre','Decembre']);
+            ->setColors(['#54a396', '#3e5c99'])
+            ->setToolbar(true)
+
+          //  ->setMarkers(['#FF5722', '#E040FB'], 7, 10)
+        ->setXAxis(['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin','Juillet','Septembre','Octobre','Novembre','Decembre']);
+
        //foreach (auth()->user()->unreadNotifications as $notification ){
        //  dd($notification->type);}
-        $actualites = Actualite::latest()->take(3)->get();
-        $travaux = Traveau::latest()->take(2)->get();
+        $rhs = RH::latest()->take(8)->get();
+        $actualites = Actualite::latest()->take(6)->get();
+        $annonces = Annonce::latest()->take(6)->get();
+        $events = Event::latest()->take(3)->get();
+        $lois = Lois::where('DtAdoptAPN','!=',null)->latest()->take(5)->get();
+        $travaux = Traveau::latest()->take(6)->get();
 
-        return view('dashboard', compact('actualites','travaux','chart','calendar'));
+        return view('dashboard', compact('actualites','lois','events','travaux','chart','calendar','annonces','rhs', 'chart2'));
 
       //  return view('dashboard');
+    }
+    public function cal() {
+        return view('layouts.minical');
+    }
+    public function cal2() {
+        return view('layouts.minical2');
     }
 }

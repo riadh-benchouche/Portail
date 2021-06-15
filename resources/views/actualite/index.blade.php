@@ -12,15 +12,15 @@
 
                 <div class="card mb-3 ml-2 mr-2" >
                     <div class="row g-0">
-                        <div class="col-md-4">
+                        <div class="col-md-4 mt-3 ml-3">
                             <img  src="{{ asset('storage').'/'.$actualite ->getFirstMedia()['id'].'/'.$actualite ->getFirstMedia()['file_name']}}" >
                         </div>
-                        <div class="col-md-8">
+                        <div class="col-md-7    ">
                             <div class="card-body">
                                 <h2 class="card-title"><b>{{substr($actualite ->title,0,60)}}...</b></h2>
                                 <p class="card-text">{{substr($actualite ->contenu,0,250)}}...</p>
                                 <div class="card-footer">
-                                <form class="text-center mt-2" action="{{ url('actualite/'.$actualite->id) }}" method="post">
+                                <form class="text-center " action="{{ url('actualite/'.$actualite->id) }}" method="post">
                                     @csrf
                                     @method('delete')
                                     <a href="{{ url('actualite/'.$actualite->id) }}" class="btn btn-info btn-fab btn-icon btn-round" >

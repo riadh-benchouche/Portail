@@ -2,12 +2,7 @@
 
 @section('content')
     <div class="row">
-        <div class="col-6">
-            <div class="card " style="background-color: #4F5167">
-                <div class=" card-header ">
-                    <h1 class="title-up">Dernière Actualités</h1>
-                </div>
-                <div class=" card-body ">
+        <div class="col-12 ">
             <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
                     @foreach( $actualites as $actualite )
@@ -17,15 +12,15 @@
                 <div class="carousel-inner" role="listbox">
                     @foreach( $actualites as $actualite )
                         <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
-                            <img class="d-block img-fluid" src="{{ asset('storage').'/'.$actualite ->getFirstMedia()['id'].'/'.$actualite ->getFirstMedia()['file_name']}}" alt="{{ $actualite ->getFirstMedia()['name'] }}">
-                            <div class="carousel-caption d-none d-md-block">
-                                <h3>{{ $actualite->title }}</h3>
+                            <img class="d-block img-fluid ml-auto mr-auto"   src="{{ asset('storage').'/'.$actualite ->getFirstMedia()['id'].'/'.$actualite ->getFirstMedia()['file_name']}}" alt="{{ $actualite ->getFirstMedia()['name'] }}">
+                            <div class="carousel-caption d-none d-md-block " >
+                                <h3 class="h3 text-white" style="background-color: black; opacity: 0.7 ; border-radius: 6px ; padding: 2px" ><b>{{ $actualite->title }}</b></h3>
                             </div>
                         </div>
                     @endforeach
                 </div>
-                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <a class="carousel-control-prev " href="#carouselExampleControls" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon " aria-hidden="true"></span>
                     <span class="sr-only">Previous</span>
                 </a>
                 <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
@@ -33,362 +28,454 @@
                     <span class="sr-only">Next</span>
                 </a>
             </div>
-                </div>
-
         </div>
-        </div>
+    </div>
 
-        <div class="col-6">
-            <div class="card" style="background-color: #1D314F">
-                <div class=" card-header ">
-                    <h1>Travaux des commissions</h1>
-                </div>
-                <div class=" card-body ">
-                    <div id="carouselExampleControlsT" class="carousel slide" data-ride="carousel">
-                        <ol class="carousel-indicators">
-                            @foreach( $travaux as $travau )
-                                <li data-target="#carouselExampleIndicators" data-slide-to="{{ $loop->index }}" class="{{ $loop->first ? 'active' : '' }}"></li>
-                            @endforeach
-                        </ol>
-                        <div class="carousel-inner" role="listbox">
-                            @foreach( $travaux as $travau )
+    <div class="row">
+            <div class="col-12 " >
+                <div class="row-fluid">
+                    <div class="">
+                        <h1 class="h3 text-info text-center animate-bounce mt-2" ><b>Actualités des Travaux des Commissions</b></h1>
+                    </div>
+                    <div id="productSlider" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                            @foreach($actualites->chunk(4) as $productCollections)
                                 <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
-                                    <img class="d-block img-fluid" src="{{ asset('storage').'/'.$travau ->getFirstMedia()['id'].'/'.$travau ->getFirstMedia()['file_name']}}" alt="{{ $travau ->getFirstMedia()['name'] }}">
-                                    <div class="carousel-caption d-none d-md-block">
-                                        <h3>{{ $travau->title }}</h3>
+                                    <div class="row ">
+                                        @foreach($productCollections as $product)
+                                            <div class="col-md-3">
+                                                <div class="card" style="height: 28em" >
+                                                    <img class="img-fluid"  src="{{ asset('storage').'/'.$product ->getFirstMedia()['id'].'/'.$product ->getFirstMedia()['file_name']}}" alt="{{ $product->name }}">
+                                                        <div class="card-body text-center ">
+                                                            <h4 class="card-title text-white " ><b>{{substr($product ->title,0,25)}}...</b></h4>
+                                                            <p class="card-text">{{substr($product ->contenu,0,200)}}</p>
+                                                        </div>
+                                                        <div class="card-footer text-center">
+                                                            <a href="{{url('actualite/'.$product->id)}}" class="btn btn-sm btn-info mt-auto mb-auto animation-on-hover">Lire la suite</a>
+                                                        </div>
+                                                </div>
+                                            </div>
+                                        @endforeach
                                     </div>
                                 </div>
                             @endforeach
                         </div>
-                        <a class="carousel-control-prev" href="#carouselExampleControlsT" role="button" data-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="carousel-control-next" href="#carouselExampleControlsT" role="button" data-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Next</span>
-                        </a>
+                        <div>
+                            <a class="carousel-control-prev pr-xl-5"  href="#productSlider" role="button" data-slide="prev" >
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next pl-xl-5" href="#productSlider" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </div>
+
                     </div>
                 </div>
             </div>
+        <div class="row text-center ml-auto mr-auto">
+            <a class="btn btn-lg btn-info text-white ">Consulter les travaux des commission</a>
         </div>
     </div>
     <div class="row">
-        <div class="col-8">
-            <div class="card card-chart" style=" height: 500px" >
-                    <div class="chart-area">
-                        {!! $chart->container() !!}
-                    </div>
+        <div class="col-md-6 ">
+            <div class="my-3">
+                <h1 class="h4 text-white" ><b>Diffusion en Direct </b></h1>
             </div>
-            <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-            {{ $chart->script() }}
-        </div>
-        <div class="col-4">
-            <br>
-            <br>
-            <br>
-
-            <div class="card mt-3" style="background-color: #4f5167;">
-                <div class="card-body">
-                    {!! $calendar->calendar() !!}
-                </div>
-                @push('js')
-                    {!! $calendar->script() !!}
-                @endpush
+            <div class="card    ">
+                <embed width="100%" height="350" type="application/x-vlc-plugin" pluginspage="https://add0n.com/open-in-vlc.html" autoplay="yes" loop="no" width="300" height="200" target="mms://live.apn.gov.dz:8044" />
+            <!--    <iframe width="100%" height="350" src="http://live.apn.gov.dz:8044?rel=0&amp;controls=0&amp;showinfo=0&amp;autoplay=1" frameborder="0" ></iframe> -->
             </div>
         </div>
+        <div class="col-md-6">
+            <div class="my-3">
+                <h1 class="h4 text-white" ><b>Activité Legislative 8ème Législation</b></h1>
+            </div>
+            <style>
+                .recent-activities .item {
+                    padding: 0 15px;
+                    border-bottom: 1px solid #ffffff
+                }
 
-    </div>
-    <div class="row">
-        <div class="col-lg-6 col-md-12">
-            <div class="card card-tasks">
-                <div class="card-header ">
-                    <h6 class="title d-inline">Tasks(5)</h6>
-                    <p class="card-category d-inline">today</p>
-                    <div class="dropdown">
-                        <button type="button" class="btn btn-link dropdown-toggle btn-icon" data-toggle="dropdown">
-                            <i class="tim-icons icon-settings-gear-63"></i>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="#pablo">Action</a>
-                            <a class="dropdown-item" href="#pablo">Another action</a>
-                            <a class="dropdown-item" href="#pablo">Something else</a>
+                .recent-activities .item div[class*='col-'] {
+                    padding: 15px
+                }
+
+                .recent-activities h5 {
+                    font-weight: 400;
+                    color: #1E8CF8
+                }
+
+                .recent-activities p {
+                    font-size: 0.75em;
+                    color: #ffffff
+                }
+
+                .recent-activities .icon {
+                    width: 35px;
+                    height: 35px;
+                    line-height: 35px;
+                    color: #666666;
+                    background: #ffffff;
+                    text-align: center;
+                    display: inline-block
+                }
+
+                .recent-activities .date {
+                    font-size: 15px;
+                    color: #999999;
+                    padding: 10px
+                }
+
+                .recent-activities .date-holder {
+                    padding: 0 !important;
+                    border-right: 1px solid #eee
+                }
+
+
+                .card-close {
+                    position: absolute;
+                    top: 15px;
+                    right: 15px
+                }
+
+                .card-close .dropdown-toggle {
+                    color: #999;
+                    background: none;
+                    border: none
+                }
+
+                .card-close .dropdown-toggle:after {
+                    display: none
+                }
+                .card-close .dropdown-menu {
+                    border: none;
+                    min-width: auto;
+                    font-size: 0.9em;
+                    border-radius: 0;
+                    -webkit-box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.1), -2px -2px 3px rgba(0, 0, 0, 0.1);
+                    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.1), -2px -2px 3px rgba(0, 0, 0, 0.1)
+                }
+                .card-close .dropdown-menu a {
+                    color: #999 !important
+                }
+
+                .card-close .dropdown-menu a:hover {
+                    background: #796AEE;
+                    color: #fff !important
+                }
+
+                .card-close .dropdown-menu a i {
+                    margin-right: 10px;
+                    -webkit-transition: none;
+                    transition: none
+                }
+            </style>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="recent-activities card" style="height: 25em">
+                        <div class="card-body no-padding">
+                            @foreach($events as $event)
+                            <div class="item">
+
+                                <div class="row">
+                                    <div class="col-4 date-holder text-right">
+                                        <div class="icon"><b><i class="tim-icons icon-time-alarm"></i></b></div>
+                                        <div class="date"> <span class="text-info">{{$event->start_date}}</span><br><span class="text-warning">{{$event->end_date}}</span></div>
+                                    </div>
+                                    <div class="col-8 content">
+                                        <h5>{{$event->title}}</h5>
+                                        <p>{{substr($event->description,0,80)}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            @endforeach
+
                         </div>
                     </div>
                 </div>
-                <div class="card-body ">
-                    <div class="table-full-width table-responsive">
-                        <table class="table">
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <div class="form-check">
-                                            <label class="form-check-label">
-                                                <input class="form-check-input" type="checkbox" value="">
-                                                <span class="form-check-sign">
-                                                    <span class="check"></span>
-                                                </span>
-                                            </label>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <p class="title">Update the Documentation</p>
-                                        <p class="text-muted">Dwuamish Head, Seattle, WA 8:47 AM</p>
-                                    </td>
-                                    <td class="td-actions text-right">
-                                        <button type="button" rel="tooltip" title="" class="btn btn-link" data-original-title="Edit Task">
-                                            <i class="tim-icons icon-pencil"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="form-check">
-                                            <label class="form-check-label">
-                                                <input class="form-check-input" type="checkbox" value="" checked="">
-                                                <span class="form-check-sign">
-                                                    <span class="check"></span>
-                                                </span>
-                                            </label>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <p class="title">GDPR Compliance</p>
-                                        <p class="text-muted">The GDPR is a regulation that requires businesses to protect the personal data and privacy of Europe citizens for transactions that occur within EU member states.</p>
-                                    </td>
-                                    <td class="td-actions text-right">
-                                        <button type="button" rel="tooltip" title="" class="btn btn-link" data-original-title="Edit Task">
-                                            <i class="tim-icons icon-pencil"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="form-check">
-                                            <label class="form-check-label">
-                                                <input class="form-check-input" type="checkbox" value="">
-                                                    <span class="form-check-sign">
-                                                        <span class="check"></span>
-                                                    </span>
-                                            </label>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <p class="title">Solve the issues</p>
-                                        <p class="text-muted">Fifty percent of all respondents said they would be more likely to shop at a company </p>
-                                    </td>
-                                    <td class="td-actions text-right">
-                                        <button type="button" rel="tooltip" title="" class="btn btn-link" data-original-title="Edit Task">
-                                            <i class="tim-icons icon-pencil"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="form-check">
-                                            <label class="form-check-label">
-                                                <input class="form-check-input" type="checkbox" value="">
-                                                <span class="form-check-sign">
-                                                    <span class="check"></span>
-                                                </span>
-                                            </label>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <p class="title">Release v2.0.0</p>
-                                        <p class="text-muted">Ra Ave SW, Seattle, WA 98116, SUA 11:19 AM</p>
-                                    </td>
-                                    <td class="td-actions text-right">
-                                        <button type="button" rel="tooltip" title="" class="btn btn-link" data-original-title="Edit Task">
-                                            <i class="tim-icons icon-pencil"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="form-check">
-                                            <label class="form-check-label">
-                                                <input class="form-check-input" type="checkbox" value="">
-                                                <span class="form-check-sign">
-                                                    <span class="check"></span>
-                                                </span>
-                                            </label>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <p class="title">Export the processed files</p>
-                                        <p class="text-muted">The report also shows that consumers will not easily forgive a company once a breach exposing their personal data occurs. </p>
-                                    </td>
-                                    <td class="td-actions text-right">
-                                        <button type="button" rel="tooltip" title="" class="btn btn-link" data-original-title="Edit Task">
-                                            <i class="tim-icons icon-pencil"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="form-check">
-                                            <label class="form-check-label">
-                                                <input class="form-check-input" type="checkbox" value="">
-                                                <span class="form-check-sign">
-                                                    <span class="check"></span>
-                                                </span>
-                                            </label>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <p class="title">Arival at export process</p>
-                                        <p class="text-muted">Capitol Hill, Seattle, WA 12:34 AM</p>
-                                    </td>
-                                    <td class="td-actions text-right">
-                                        <button type="button" rel="tooltip" title="" class="btn btn-link" data-original-title="Edit Task">
-                                            <i class="tim-icons icon-pencil"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+            </div>
+
+        </div>
+
+
+    </div>
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <div class="row">
+                <a class="btn btn-warning btn-lg ml-4 animation-on-hover " style="width: 92% ;">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <i class="tim-icons icon-attach-87 text-white " style="font-size: 20px;"></i>
+                        </div>
+                        <div class="col-md-8">
+                            <h1 class="text-white mt-1" >Diffusion en Direct</h1>
+                        </div>
+                        <div class="col-md-2">
+                            <i class="tim-icons icon-minimal-right text-white" style="font-size: 20px"></i>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="row">
+                <button class="btn btn-info btn-lg ml-4 animation-on-hover" style="width: 92%;">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <i class="tim-icons icon-calendar-60 " style="font-size: 20px;" ></i>
+                        </div>
+                        <div class="col-md-8 mt-1">
+                            <h1>Consulter Le Planning des évenements</h1>
+                        </div>
+                        <div class="col-md-2">
+                            <i class=" tim-icons icon-minimal-right" style="font-size: 20px;"></i>
+                        </div>
+                    </div>
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <div class="row">
+                <h1 class="h4 ml-3 mt-3 text-white"><b>Lois Abordés : </b></h1>
+            </div>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th class="text-center">#</th>
+                    <th>Nom</th>
+                    <th>Date D'adoption</th>
+                    <th>Comission</th>
+                    <th class="text-right">Détail</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach($lois as $loi)
+                <tr>
+                    <td class="text-center">{{$loi->id}}</td>
+                    <td>{{substr($loi->name,0,20)}}...</td>
+                    <td>{{$loi->DtAdoptAPN}}</td>
+                    <td>{{$loi->comissions->name}}</td>
+                    <td class="td-actions text-right">
+
+                        <button type="button" rel="tooltip" class="btn btn-success btn-sm btn-round btn-icon">
+                            <i class="tim-icons icon-settings"></i>
+                        </button>
+
+                    </td>
+                </tr>
+                @endforeach
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-6">
+            <div class="row">
+                <h1 class="h4 ml-3 mt-3 text-white"><b>Statistiques Pertinantes : </b></h1>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-6" >
+                    <div class="card card-stats mb-4 mb-xl-0 " style="  background: linear-gradient(to bottom right,#59C9B7, #3795C4);" >
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col ml-3">
+                                    <h5 class="card-title text-white text-uppercase mb-0 mt-2" >députés </h5>
+                                </div>
+                                <div class="col-auto ">
+                                    <div class="icon icon-shape  text-white rounded-circle shadow display-3 p-2">
+                                        <span id="value" class="h2 text-white font-weight-bold mb-0"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card card-stats mb-4 mb-xl-0" style="background: linear-gradient(to bottom right,#F07556, #EC599C); ">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col ml-3">
+                                    <h5 class="card-title text-white text-uppercase mb-0 mt-2">Personnel</h5>
+                                </div>
+                                <div class="col-auto ">
+                                    <div class="icon icon-shape  text-white rounded-circle shadow display-3 p-2">
+                                        <span id="value2" class="h2 text-white font-weight-bold mb-0"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-lg-6 col-md-12">
-            <div class="card ">
-                <div class="card-header">
-                    <h4 class="card-title">Simple Table</h4>
+            <div class="row mt-3">
+                <div class="col-md-6">
+                    <div class="card card-stats mb-4 mb-xl-0" style="background: linear-gradient(to bottom right,#c347d6, #ef61d2) ">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col ml-3">
+                                    <h5 class="card-title text-white text-uppercase  mb-0">Groupes parlementaires</h5>
+                                </div>
+                                <div class="col-auto ">
+                                    <div class="icon icon-shape  text-white rounded-circle shadow display-3 p-2">
+                                        <span id="value3" class="h2  text-white font-weight-bold mb-0 "></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table tablesorter" id="">
-                            <thead class=" text-primary">
-                                <tr>
-                                    <th>
-                                        Name
-                                    </th>
-                                    <th>
-                                        Country
-                                    </th>
-                                    <th>
-                                        City
-                                    </th>
-                                    <th class="text-center">
-                                        Salary
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                      Dakota Rice
-                                    </td>
-                                    <td>
-                                      Niger
-                                    </td>
-                                    <td>
-                                      Oud-Turnhout
-                                    </td>
-                                    <td class="text-center">
-                                      $36,738
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Minerva Hooper
-                                    </td>
-                                    <td>
-                                        Curaçao
-                                    </td>
-                                    <td>
-                                        Sinaai-Waas
-                                    </td>
-                                    <td class="text-center">
-                                        $23,789
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Sage Rodriguez
-                                    </td>
-                                    <td>
-                                        Netherlands
-                                    </td>
-                                    <td>
-                                        Baileux
-                                    </td>
-                                    <td class="text-center">
-                                        $56,142
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Philip Chaney
-                                    </td>
-                                    <td>
-                                        Korea, South
-                                    </td>
-                                    <td>
-                                        Overland Park
-                                    </td>
-                                    <td class="text-center">
-                                        $38,735
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Doris Greene
-                                    </td>
-                                    <td>
-                                        Malawi
-                                    </td>
-                                    <td>
-                                        Feldkirchen in Kärnten
-                                    </td>
-                                    <td class="text-center">
-                                        $63,542
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Mason Porter
-                                    </td>
-                                    <td>
-                                        Chile
-                                    </td>
-                                    <td>
-                                        Gloucester
-                                    </td>
-                                    <td class="text-center">
-                                        $78,615
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Jon Porter
-                                    </td>
-                                    <td>
-                                        Portugal
-                                    </td>
-                                    <td>
-                                        Gloucester
-                                    </td>
-                                    <td class="text-center">
-                                        $98,615
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                <div class="col-md-6">
+                    <div class="card card-stats mb-4 mb-xl-0" style="background: linear-gradient(to bottom right,#2D75C1, #7E65E7)">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col ml-3">
+                                    <h5 class="card-title text-white text-uppercase text-white mb-0">Lois Adoptées 8ème Législation</h5>
+                                </div>
+                                <div class="col-auto ">
+                                    <div class="icon icon-shape  text-white rounded-circle shadow display-3 p-2">
+                                        <span id="value4" class="h2 text-white font-weight-bold mb-0"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-6">
+                    <div class="card card-stats mb-4 mb-xl-0" style="background: linear-gradient(to bottom right,#ffcd6a, #dd8c00)">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col ml-3">
+                                    <h5 class="card-title text-white text-uppercase text-white mb-0">Session plénières 8ème législation</h5>
+                                    <span id="value4" class="h2 text-white font-weight-bold mb-0"></span>
+                                </div>
+                                <div class="col-auto ">
+                                    <div class="icon icon-shape  text-white rounded-circle shadow display-3 p-2">
+                                        <span id="value5" class="h2 text-white font-weight-bold mb-0">75</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 ">
+                    <div class="card card-stats mb-4 mb-xl-0" style="background: linear-gradient(to bottom right,#007bff, #6ea0ff)">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col ml-3">
+                                    <h5 class="card-title text-white text-uppercase text-white mb-0">Journée Parlementaires 8ème Législation</h5>
+                                </div>
+                                <div class="col-auto ">
+                                    <div class="icon icon-shape  text-white rounded-circle shadow display-3 p-2">
+                                        <span id="value6" class="h2 text-white font-weight-bold mb-0">68</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <div class="row mt-3">
+        <div class="col-6  mr-auto " >
+            <div class="row">
+                <h1 class="h4 ml-3 mt-3 text-white"><b>Actualité – Ressources Humaines et Affaires Sociales</b></h1>
+            </div>
+            <div class="row-fluid">
+                <div id="productSlider1" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner  mr-auto ml-auto w-100">
+                        @foreach($annonces->chunk(2) as $productCollections)
+                            <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
+                                <div class="row ">
+                                    @foreach($productCollections as $product)
+                                        <div class="col-md-6">
+                                            <div class="card "  >
+                                                <iframe style="height:29em " class="img-fluid"  src="{{ asset('storage').'/'.$product ->getFirstMedia()['id'].'/'.$product ->getFirstMedia()['file_name']}}" alt="{{ $product->name }}"></iframe>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                    <div>
+                        <a class="carousel-control-prev pr-md-5 " href="#productSlider1" role="button" data-slide="prev" >
+                            <span class="carousel-control-prev-icon text-dark hover:bg-pink-500" aria-hidden="true"></span>
+                            <span class="sr-only text-dark ">Previous</span>
+                        </a>
+                        <a class="carousel-control-next pl-md-5 text-dark" href="#productSlider1" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon hover:bg-pink-500" aria-hidden="true"></span>
+                            <span class="sr-only text-dark">Next</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-6  ml-auto mr-auto mt-3  " >
+
+                <div class="row ml-auto mr-auto">
+                    <div class="col-12">
+                            <div class="row ml-auto mr-auto">
+                                <h1 class="ml-auto mr-auto mt-1 text-white h4 "><b>Formulaire à Télécharger</b></h1>
+                            </div>
+                            <div class="row  mb-3 ml-auto mr-auto">
+                                @foreach($rhs as $rh)
+                                    <div class="col-md-3 text-center ">
+                                        <div class="file-img-box">
+                                            <iframe style="height:10em " class="img-fluid"  src="{{ asset('storage').'/'.$rh ->getFirstMedia()['id'].'/'.$rh ->getFirstMedia()['file_name']}}" alt="{{ $rh->name }}"></iframe>
+                                        </div>
+                                        <a href="#" class="file-download text-center"><i class="fa fa-download text-center"></i></a>
+                                        <div class="file-man-title">
+                                            <h5 class="mb-0 text-overflow text-center">{{substr($rh->getFirstMedia()['file_name'],0,10)}}</h5>
+                                            <p class="mb-0 text-center"><small>{{$rh->getFirstMedia()['human_readable_size']}}</small></p>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                    </div>
+                    <!-- end col -->
+                </div>
+                <!-- end row -->
+            </div>
+
+    </div>
+
 @endsection
 
 @push('js')
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.1/moment.min.js"></script>
     <script src="{{ asset('black') }}/js/plugins/chartjs.min.js"></script>
-    <script>
-        $(document).ready(function() {
-          demo.initDashboardPageCharts();
-        });
+    <script>function animateValue(obj, start, end, duration) {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                obj.innerHTML = Math.floor(progress * (end - start) + start);
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        const obj = document.getElementById("value");
+        const obj1 = document.getElementById("value2");
+        const obj2 = document.getElementById("value3");
+        const obj3 = document.getElementById("value4");
+        animateValue(obj, 0,100, 3000);
+        animateValue(obj1, 0,{{$actualites->count()}}, 1000);
+        animateValue(obj2, 0, {{$rh->count()}}, 1000);
+        animateValue(obj3, 0, {{$rh->count()}}, 1000);
     </script>
-@endpush
+
+
+
+
+    @endpush

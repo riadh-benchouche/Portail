@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateServiceTable extends Migration
+class CreatePartagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateServiceTable extends Migration
      */
     public function up()
     {
-        Schema::create('service', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('matricule')->unique();
+        Schema::create('partages', function (Blueprint $table) {
+            $table->id();
             $table->string('name');
-            $table->dateTime('deleted_at')->nullable();
+            $table->datetime('deleted_at')->nullable();
             $table->timestamps();
         });
     }
@@ -29,7 +28,6 @@ class CreateServiceTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('service');
-
+        Schema::dropIfExists('partages');
     }
 }

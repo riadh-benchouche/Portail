@@ -22,15 +22,15 @@ class User extends Authenticatable implements HasMedia
     {
         return $this ->belongsTo('App\Models\Service', 'service_id' ,'id');
     }
-
+    public function departments()
+    {
+        return $this ->belongsTo('App\Models\Department', 'department_id' ,'id');
+    }
     public function comissions()
     {
         return $this ->belongsTo('App\Models\Comission', 'comission_id' ,'id');
     }
 
-    public function appointments() {
-        return $this->hasMany('App\Appointment');
-    }
 
     public function isAdmin() {
         return (bool) $this->id === 1;

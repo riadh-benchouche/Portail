@@ -1,22 +1,25 @@
 <?php
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Service extends Model
+class Department extends Model
 {
+    public function services(){
+        return $this ->hasMany('App\Models\Service');
+    }
     public function users(){
         return $this ->hasMany('App\Models\User');
     }
-
-    public function departements()
-    {
-        return $this ->belongsTo('App\Models\Department', 'department_id' ,'id');
+    public function partages(){
+        return $this ->hasMany('App\Models\Partage');
     }
+
     use HasFactory;
     use SoftDeletes;
     protected $dates=['deleted_at'];
-    public $table = 'service';
+    public $table = 'departments';
 }
