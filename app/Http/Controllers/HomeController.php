@@ -59,11 +59,11 @@ class HomeController extends Controller
             ->setColors(['#54a396', '#3e5c99'])
             ->setToolbar(true)
 
-          //  ->setMarkers(['#FF5722', '#E040FB'], 7, 10)
-        ->setXAxis(['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin','Juillet','Septembre','Octobre','Novembre','Decembre']);
+            //  ->setMarkers(['#FF5722', '#E040FB'], 7, 10)
+            ->setXAxis(['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin','Juillet','Septembre','Octobre','Novembre','Decembre']);
 
-       //foreach (auth()->user()->unreadNotifications as $notification ){
-       //  dd($notification->type);}
+        //foreach (auth()->user()->unreadNotifications as $notification ){
+        //  dd($notification->type);}
         $rhs = RH::latest()->take(8)->get();
         $actualites = Actualite::latest()->take(6)->get();
         $annonces = Annonce::latest()->take(6)->get();
@@ -73,7 +73,7 @@ class HomeController extends Controller
 
         return view('dashboard', compact('actualites','lois','events','travaux','chart','calendar','annonces','rhs', 'chart2'));
 
-      //  return view('dashboard');
+        //  return view('dashboard');
     }
     public function cal() {
         return view('layouts.minical');
@@ -82,3 +82,4 @@ class HomeController extends Controller
         return view('layouts.minical2');
     }
 }
+

@@ -40,7 +40,7 @@
                 </div>
             </li>
              //-->
-           
+
             <li>
                 <a data-toggle="collapse" href="#annuaire" aria-expanded="true">
                     <i class="tim-icons icon-badge" ></i>
@@ -60,6 +60,28 @@
                             <a href="">
                                 <i class="tim-icons icon-bullet-list-67"></i>
                                 <p>{{ __('Annuaire fonctionnair') }}</p>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            <li>
+                <a data-toggle="collapse" href="#Mediathéque" aria-expanded="true">
+                    <i class="tim-icons icon-camera-18" ></i>
+                    <span class="nav-link-text" >{{ __('Mediatéque') }}</span>
+                    <b class="caret mt-1"></b>
+                </a>
+                <div class="collapse" id="Mediathéque">
+                    <ul class="nav pl-4">
+                        <li >
+                            <a href="{{ url('Image') }}">
+                                <i class="tim-icons icon-image-02"></i>
+                                <p>{{ __('Galerie Images')}}</p>
+                            </a>
+                        </li>
+                        <li  >
+                            <a href="{{ url('Video') }}">
+                                <i class="tim-icons icon-video-66"></i>
+                                <p>{{ __('Galerie de Videos') }}</p>
                             </a>
                         </li>
                     </ul>

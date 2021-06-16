@@ -58,7 +58,7 @@ class FullCalenderController extends Controller
         $request->validate([
             'title'=>'required',
             'start_date'=>'required',
-            'end_date'=>'required & date ',
+            'end_date'=>'required ',
             'description'=>'required ',
         ]);
         $events=new Event;
