@@ -60,28 +60,38 @@
                                 </div>
                             @endforeach
                         </div>
-                        <div>
-                            <a class="carousel-control-prev pr-xl-5"  href="#productSlider" role="button" data-slide="prev" >
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Previous</span>
-                            </a>
-                            <a class="carousel-control-next pl-xl-5" href="#productSlider" role="button" data-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Next</span>
-                            </a>
-                        </div>
-
                     </div>
                 </div>
             </div>
-        <div class="row text-center ml-auto mr-auto">
-            <a class="btn btn-lg btn-info text-white ">Consulter les travaux des commission</a>
-        </div>
     </div>
+
+        <div class="row mb-2">
+                    <div class="col-6 ml-auto mr-auto mt-2 ml-3">
+                        <div class="card p-3 mt-auto mb-auto mt-3 " style="background-color: #1D283F ">
+                            <div class="row ">
+                                <div class="col-6 text-center ">
+                                    <img class="ml-auto mr-auto icon" src="{{asset('black/img/calendar.svg')}}" alt="event" width="40%"  >
+                                    <p class="text-center my-2  ">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s </p>
+                                    <a class="btn btn-sm btn-warning text-center mt-2 text-white">Planning</a>
+                                </div>
+                                <div class="col-6 text-center">
+                                    <img class="ml-auto mr-auto icon " src="{{asset('black/img/news.svg')}}" alt="event" width="40%"  >
+                                    <p class="text-center my-2 ">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s </p>
+                                    <a class="btn btn-sm btn-danger text-center mt-2 text-white">Actualités</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            <div class="col-5 ml-auto mr-auto">
+                <img  src="{{asset('black/img/event.svg')}}" alt="event" width="80%" class="mt-2 ml-auto mr-auto" >
+            </div>
+
+        </div>
+
     <div class="row">
         <div class="col-md-6 ">
             <div class="my-3">
-                <h1 class="h4 text-white" ><b>Diffusion en Direct </b></h1>
+                <h1 class="h4 text-info" ><b>Diffusion en Direct </b></h1>
             </div>
             <div class="card    ">
                 <embed width="100%" height="350" type="application/x-vlc-plugin" pluginspage="https://add0n.com/open-in-vlc.html" autoplay="yes" loop="no" width="300" height="200" target="mms://live.apn.gov.dz:8044" />
@@ -90,115 +100,29 @@
         </div>
         <div class="col-md-6">
             <div class="my-3">
-                <h1 class="h4 text-white" ><b>Activité Legislative 8ème Législation</b></h1>
+                <h1 class="h4 text-info" ><b>Activité Legislative 9ème Législation</b></h1>
             </div>
-            <style>
-                .recent-activities .item {
-                    padding: 0 15px;
-                    border-bottom: 1px solid #ffffff
-                }
-
-                .recent-activities .item div[class*='col-'] {
-                    padding: 15px
-                }
-
-                .recent-activities h5 {
-                    font-weight: 400;
-                    color: #1E8CF8
-                }
-
-                .recent-activities p {
-                    font-size: 0.75em;
-                    color: #ffffff
-                }
-
-                .recent-activities .icon {
-                    width: 35px;
-                    height: 35px;
-                    line-height: 35px;
-                    color: #666666;
-                    background: #ffffff;
-                    text-align: center;
-                    display: inline-block
-                }
-
-                .recent-activities .date {
-                    font-size: 15px;
-                    color: #999999;
-                    padding: 10px
-                }
-
-                .recent-activities .date-holder {
-                    padding: 0 !important;
-                    border-right: 1px solid #eee
-                }
-
-
-                .card-close {
-                    position: absolute;
-                    top: 15px;
-                    right: 15px
-                }
-
-                .card-close .dropdown-toggle {
-                    color: #999;
-                    background: none;
-                    border: none
-                }
-
-                .card-close .dropdown-toggle:after {
-                    display: none
-                }
-                .card-close .dropdown-menu {
-                    border: none;
-                    min-width: auto;
-                    font-size: 0.9em;
-                    border-radius: 0;
-                    -webkit-box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.1), -2px -2px 3px rgba(0, 0, 0, 0.1);
-                    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.1), -2px -2px 3px rgba(0, 0, 0, 0.1)
-                }
-                .card-close .dropdown-menu a {
-                    color: #999 !important
-                }
-
-                .card-close .dropdown-menu a:hover {
-                    background: #796AEE;
-                    color: #fff !important
-                }
-
-                .card-close .dropdown-menu a i {
-                    margin-right: 10px;
-                    -webkit-transition: none;
-                    transition: none
-                }
-            </style>
+            @foreach($events as $event)
             <div class="row">
-                <div class="col-md-12">
-                    <div class="recent-activities card" style="height: 25em">
-                        <div class="card-body no-padding">
-                            @foreach($events as $event)
-                            <div class="item">
-
-                                <div class="row">
-                                    <div class="col-4 date-holder text-right">
-                                        <div class="icon"><b><i class="tim-icons icon-time-alarm"></i></b></div>
-                                        <div class="date"> <span class="text-info">{{$event->start_date}}</span><br><span class="text-warning">{{$event->end_date}}</span></div>
-                                    </div>
-                                    <div class="col-8 content">
-                                        <h5>{{$event->title}}</h5>
-                                        <p>{{substr($event->description,0,80)}}</p>
-                                    </div>
-                                </div>
+                <div class="card mb-3" style="background-color: #1D293F" >
+                    <div class="row ">
+                        <div class="col-md-4 justify-content-center" >
+                            <img src="{{asset('black/img/clock.png')}}" alt="event" width="50%" class="ml-auto mr-auto mt-2 ">
+                            <p class="card-text text-info text-center mt-1">{{$event->start_date}}</p>
+                            <p class="card-text  text-center " style="color: #ED5374">{{$event->end_date}}</p>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title h4" style="color: {{$event->categories->color}}">{{$event->categories->name}}</h5>
+                                <p class="card-text">{{substr($event->description,0,100)}}...</p>
                             </div>
-                            @endforeach
-
                         </div>
                     </div>
                 </div>
             </div>
+                @endforeach
 
         </div>
-
 
     </div>
     <div class="row mb-3">
@@ -223,7 +147,7 @@
             <div class="row">
                 <button class="btn btn-info btn-lg ml-4 animation-on-hover" style="width: 92%;">
                     <div class="row">
-                        <div class="col-md-2">
+                        <div class="col-md-2 " >
                             <i class="tim-icons icon-calendar-60 " style="font-size: 20px;" ></i>
                         </div>
                         <div class="col-md-8 mt-1">
@@ -262,11 +186,12 @@
                     <td>{{$loi->DtAdoptAPN}}</td>
                     <td>{{$loi->comissions->name}}</td>
                     <td class="td-actions text-right">
-
                         <button type="button" rel="tooltip" class="btn btn-success btn-sm btn-round btn-icon">
-                            <i class="tim-icons icon-settings"></i>
+                            <i class="tim-icons icon-cloud-download-93"></i>
                         </button>
-
+                        <button type="button" rel="tooltip" class="btn btn-info btn-sm btn-round btn-icon">
+                            <i class="tim-icons icon-single-copy-04"></i>
+                        </button>
                     </td>
                 </tr>
                 @endforeach
@@ -333,7 +258,7 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col ml-3">
-                                    <h5 class="card-title text-white text-uppercase text-white mb-0">Lois Adoptées 8ème Législation</h5>
+                                    <h5 class="card-title text-white text-uppercase text-white mb-0">Lois Adoptées 9ème Législation</h5>
                                 </div>
                                 <div class="col-auto ">
                                     <div class="icon icon-shape  text-white rounded-circle shadow display-3 p-2">
@@ -351,7 +276,7 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col ml-3">
-                                    <h5 class="card-title text-white text-uppercase text-white mb-0">Session plénières 8ème législation</h5>
+                                    <h5 class="card-title text-white text-uppercase text-white mb-0">Session plénières 9ème législation</h5>
                                     <span id="value4" class="h2 text-white font-weight-bold mb-0"></span>
                                 </div>
                                 <div class="col-auto ">
@@ -368,7 +293,7 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col ml-3">
-                                    <h5 class="card-title text-white text-uppercase text-white mb-0">Journée Parlementaires 8ème Législation</h5>
+                                    <h5 class="card-title text-white text-uppercase text-white mb-0">Journée Parlementaires 9ème Législation</h5>
                                 </div>
                                 <div class="col-auto ">
                                     <div class="icon icon-shape  text-white rounded-circle shadow display-3 p-2">
@@ -444,7 +369,35 @@
                 </div>
                 <!-- end row -->
             </div>
+    </div>
 
+    <div class="row ">
+        <div class="col-6 ml-auto mr-auto">
+            <img  src="{{asset('black/img/bus.svg')}}" alt="event" width="75%" class="mt-2 ml-auto mr-auto" >
+        </div>
+        <div class="col-6 ml-auto mr-auto mt-3">
+            <div class="row">
+                <h1 class="h4 ml-3 mt-3 text-info"><b>Annuaires</b></h1>
+            </div>
+            <div class="card p-3 mt-auto mb-auto mt-3 " style="background-color: #1D293A ">
+                <div class="row ">
+                    <div class="col-12 text-center ">
+                        <img class="ml-auto mr-auto icon" src="{{asset('black/img/phones.svg')}}" alt="event" width="20%"  >
+                        <div class="col-sm-10 offset-1">
+                            <p class="text-center my-2  ">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s </p>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <a class="btn btn-sm btn-info text-center mt-2 text-white">Député</a>
+                            </div>
+                            <div class="col-sm-6">
+                                <a class="btn btn-sm btn-primary text-center mt-2 text-white">Fonctionnaire</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
 @endsection
