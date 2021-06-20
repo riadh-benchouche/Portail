@@ -76,8 +76,8 @@ Route::get('travaux/{id}','App\Http\Controllers\TraveauController@show')->name('
 
 Route::get('/Image', 'App\Http\Controllers\GImageController@index');
 Route::get('Image/create','App\Http\Controllers\GImageController@create')->name('Image/create');
-Route::post('Image','App\Http\GImageController@store');
-Route::delete( 'Image/{id}','App\Http\Controllers\GImageCsontroller@destroy');
+Route::post('Image','App\Http\Controllers\GImageController@store');
+Route::delete( 'Image/{id}','App\Http\Controllers\GImageController@destroy');
 Route::get('Image/{id}/edit','App\Http\Controllers\GImageController@edit');
 Route::put( 'Image/{id}','App\Http\Controllers\GImageController@update');
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Actualite;
 use App\Models\GImage;
 use Illuminate\Http\Request;
 
@@ -91,7 +92,7 @@ class GImageController extends Controller
          else {
              $image->title = $request->input('title');
          }
-         //    $actualite->putMedia($key('file'))->toMediaCollection();
+         //
 
 
          $image->save();
@@ -104,8 +105,12 @@ class GImageController extends Controller
      * @param  \App\Models\GImage  $gImage
      * @return \Illuminate\Http\Response
      */
-    public function destroy(GImage $gImage)
+    public function destroy($id)
     {
-        //
+        $image = GImage::find($id);
+
+        $image-> delete();
+        $image->getFirstMedia()->delete();
+        return redirect('Image');
     }
 }
