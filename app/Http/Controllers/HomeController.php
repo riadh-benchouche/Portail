@@ -65,7 +65,7 @@ class HomeController extends Controller
         //foreach (auth()->user()->unreadNotifications as $notification ){
         //  dd($notification->type);}
         $rhs = RH::latest()->take(8)->get();
-        $actualites = Actualite::latest()->take(6)->get();
+        $actualites = Actualite::latest()->take(4)->get();
         $annonces = Annonce::latest()->take(6)->get();
         $events = Event::latest()->take(3)->get();
         $lois = Lois::where('DtAdoptAPN','!=',null)->latest()->take(5)->get();

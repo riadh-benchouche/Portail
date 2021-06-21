@@ -64,7 +64,9 @@
                             @yield('content')
                         </div>
                     </div>
-                    @include('layouts.footer')
+                    @if(false)
+                      @include('layouts.footer')
+                    @endif
                 </div>
             </div>
         @endauth
@@ -76,7 +78,7 @@
                 <ul class="dropdown-menu">
                 <li class="header-title">Couleurs</li>
                 <li class="adjustments-line mb-3">
-                    <a href="javascript:void(0)" class="switch-trigger background-color">
+                    <a href="javascript:void(3)" class="switch-trigger background-color">
                     <div class="badge-colors text-center">
                         <span class="badge filter badge-primary " data-color="primary"></span>
                         <span class="badge filter badge-warning " data-color="orange"></span>

@@ -35,7 +35,17 @@ class PartageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $partage = new Partage();
+        $partage->department_id = $request->input('id');
+        $partage->user_id = $request->input('user_id');
+        $partage->name = $request->input('name');
+        $partage
+            ->addMedia($request->file)
+            ->toMediaCollection();
+        $partage->save();
+        session()->flash('success', 'Service  Ajouter');
+
+        return redirect('department/'.$request->id);
     }
 
     /**

@@ -14899,11 +14899,11 @@ table.tablesorter thead tr .headerSortDown {
 
 .sidebar,
 .off-canvas-sidebar {
-  background: #3a5d24;
-  background: -webkit-linear-gradient(0deg, #3a5d24 0%, #538037 100%);
-  background: -o-linear-gradient(0deg, #3a5d24 0%, #538037 100%);
-  background: -moz-linear-gradient(0deg, #3a5d24 0%, #538037 100%);
-  background: linear-gradient(0deg, #3a5d24 0%, #538037 100%);
+  background: #3c8ae0;
+  background: -webkit-linear-gradient(0deg, #24425d 0%, #67a4e5 100%);
+  background: -o-linear-gradient(0deg, #24425d 0%, #67a4e5 100%);
+  background: -moz-linear-gradient(0deg, #24425d 0%, #67a4e5 100%);
+  background: linear-gradient(0deg, #24425d 0%, #67a4e5 100%);
   height: calc(100vh - 90px);
   width: 230px;
   position: fixed;
@@ -14959,7 +14959,7 @@ table.tablesorter thead tr .headerSortDown {
   display: block;
   line-height: 23px;
   z-index: 1;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(0, 0, 0, 0.8);
 }
 
 .sidebar .sidebar-wrapper>.nav [data-toggle="collapse"]~div>ul>li>a .sidebar-mini-icon,
@@ -14970,7 +14970,7 @@ table.tablesorter thead tr .headerSortDown {
   width: 34px;
   margin-right: 10px;
   margin-left: 0px;
-  font-size: 12px;
+  font-size: 16px;
   text-align: center;
   line-height: 25px;
   position: relative;
@@ -14978,7 +14978,7 @@ table.tablesorter thead tr .headerSortDown {
   z-index: 1;
   display: inherit;
   line-height: 24px;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(0, 0, 0, 0.8);
 }
 
 .sidebar .sidebar-wrapper>.nav [data-toggle="collapse"]~div>ul>li>a i,
@@ -14994,7 +14994,7 @@ table.tablesorter thead tr .headerSortDown {
 .sidebar .sidebar-wrapper [data-toggle="collapse"]~div>ul>li:hover>a .sidebar-normal,
 .off-canvas-sidebar .sidebar-wrapper [data-toggle="collapse"]~div>ul>li:hover>a .sidebar-mini-icon,
 .off-canvas-sidebar .sidebar-wrapper [data-toggle="collapse"]~div>ul>li:hover>a .sidebar-normal {
-  color: #ffffff;
+  color: #000000;
 }
 
 .sidebar .sidebar-wrapper .nav [data-toggle="collapse"]~div>ul>li>a .sidebar-mini-icon,
@@ -15055,13 +15055,13 @@ table.tablesorter thead tr .headerSortDown {
 .off-canvas-sidebar .nav li>a {
   margin: 10px 15px 0;
   border-radius: 30px;
-  color: #ffffff;
+  color: #000000;
   display: block;
   text-decoration: none;
   position: relative;
   text-transform: uppercase;
   cursor: pointer;
-  font-size: 0.62475rem;
+  font-size: 12px;
   padding: 10px 8px;
   line-height: 1.625rem;
 }
@@ -15079,14 +15079,14 @@ table.tablesorter thead tr .headerSortDown {
 .off-canvas-sidebar .nav li:hover:not(.active)>a i,
 .off-canvas-sidebar .nav li:focus:not(.active)>a p,
 .off-canvas-sidebar .nav li:focus:not(.active)>a i {
-  color: #ffffff;
+  color: #000000;
 }
 
 .sidebar .nav li:hover:not(.active)>a i,
 .sidebar .nav li:focus:not(.active)>a i,
 .off-canvas-sidebar .nav li:hover:not(.active)>a i,
 .off-canvas-sidebar .nav li:focus:not(.active)>a i {
-  color: #ffffff;
+  color: #000000;
 }
 
 .sidebar .nav li.active>a:not([data-toggle="collapse"]),
@@ -15098,7 +15098,7 @@ table.tablesorter thead tr .headerSortDown {
 .sidebar .nav li.active>a:not([data-toggle="collapse"]) p,
 .off-canvas-sidebar .nav li.active>a:not([data-toggle="collapse"]) i,
 .off-canvas-sidebar .nav li.active>a:not([data-toggle="collapse"]) p {
-  color: white;
+  color: black;
 }
 
 .sidebar .nav li.active>a:not([data-toggle="collapse"]):before,
@@ -15109,7 +15109,7 @@ table.tablesorter thead tr .headerSortDown {
   width: 6px;
   top: 22px;
   left: -4px;
-  background: #ffffff;
+  background: #000000;
   border-radius: 50%;
 }
 
@@ -15117,12 +15117,12 @@ table.tablesorter thead tr .headerSortDown {
 .off-canvas-sidebar .nav li.active>a[data-toggle="collapse"] {
   background: transparent;
   box-shadow: none;
-  color: #ffffff;
+  color: #000000;
 }
 
 .sidebar .nav li.active>a[data-toggle="collapse"] i,
 .off-canvas-sidebar .nav li.active>a[data-toggle="collapse"] i {
-  color: #ffffff;
+  color: #000000;
 }
 
 .sidebar .nav li.active>a[data-toggle="collapse"]+div .nav .active a,
@@ -15134,7 +15134,7 @@ table.tablesorter thead tr .headerSortDown {
 .sidebar .nav li.active>a[data-toggle="collapse"]+div .nav .active a .sidebar-normal,
 .off-canvas-sidebar .nav li.active>a[data-toggle="collapse"]+div .nav .active a .sidebar-mini-icon,
 .off-canvas-sidebar .nav li.active>a[data-toggle="collapse"]+div .nav .active a .sidebar-normal {
-  color: #ffffff;
+  color: #000000;
   font-weight: 400;
 }
 
@@ -15146,7 +15146,7 @@ table.tablesorter thead tr .headerSortDown {
   width: 6px;
   top: 17px;
   left: -4px;
-  background: #ffffff;
+  background: #000000;
   border-radius: 50%;
 }
 
@@ -15158,7 +15158,7 @@ table.tablesorter thead tr .headerSortDown {
   width: 6px;
   top: 22px;
   left: -4px;
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(0, 0, 0, 0.6);
   border-radius: 50%;
 }
 
@@ -15228,9 +15228,9 @@ table.tablesorter thead tr .headerSortDown {
   float: left;
   font-size: 20px;
   margin: 10px 10px;
-  color: #ffffff;
+  color: #000000;
   line-height: 20px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 .sidebar .logo .simple-text,
@@ -15239,7 +15239,7 @@ table.tablesorter thead tr .headerSortDown {
   padding: 0.5rem 0;
   display: block;
   white-space: nowrap;
-  color: #ffffff;
+  color: #000000;
   text-decoration: none;
   font-weight: 400;
   line-height: 30px;
@@ -15355,7 +15355,7 @@ table.tablesorter thead tr .headerSortDown {
 
 .off-canvas-sidebar .nav>li>a,
 .off-canvas-sidebar .nav>li>a:hover {
-  color: #ffffff;
+  color: #000000;
 }
 
 .off-canvas-sidebar .nav>li>a:focus {
@@ -15499,7 +15499,7 @@ table.tablesorter thead tr .headerSortDown {
     margin-left: 10px;
   }
   .navbar-minimize button i {
-    color: #ffffff;
+    color: #000000;
     font-size: 20px;
   }
 }
