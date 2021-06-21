@@ -41,10 +41,10 @@
             </li>
              //-->
 
-            <li>
+            <li @if ($pageSlug ?? '' == 'icons') class="active " @endif>
                 <a data-toggle="collapse" href="#annuaire" aria-expanded="true">
                     <i class="tim-icons icon-badge" ></i>
-                    <span class="nav-link-text" >{{ __('Annuaire') }}</span>
+                    <span class="nav-link-text" ><b>{{ __('Annuaire') }}</b></span>
                     <b class="caret mt-1"></b>
                 </a>
 
@@ -53,7 +53,7 @@
                         <li >
                             <a href="{{ route('user.index')  }}">
                                 <i class="tim-icons icon-badge"></i>
-                                <p>{{ __('Annuaire Député') }}</p>
+                                <p><b>{{ __('Annuaire Député') }}</b></p>
                             </a>
                         </li>
                         <li  >
@@ -64,7 +64,7 @@
                         </li>
                     </ul>
                 </div>
-            <li>
+            <li @if ($pageSlug ?? '' == 'icons') class="active " @endif>
                 <a data-toggle="collapse" href="#Mediathéque" aria-expanded="true">
                     <i class="tim-icons icon-camera-18" ></i>
                     <span class="nav-link-text" >{{ __('Mediatéque') }}</span>
@@ -87,7 +87,7 @@
                     </ul>
                 </div>
             </li>
-            <li>
+            <li @if ($pageSlug ?? '' == 'icons') class="active " @endif>
                 <a data-toggle="collapse" href="#laravel-examples" aria-expanded="true">
                     <i class="fab fa-laravel" ></i>
                     <span class="nav-link-text" >{{ __('Gestion des lois') }}</span>
@@ -112,14 +112,14 @@
                 </div>
             </li>
 
-            <li >
+            <li @if ($pageSlug ?? '' == 'icons') class="active " @endif >
                 <a href="{{ url('commission')  }}">
                     <i class="tim-icons icon-bank "></i>
                     <p>{{ __('Commision') }}</p>
                 </a>
             </li>
 
-            <li >
+            <li @if ($pageSlug ?? '' == 'icons') class="active " @endif>
                 <a href="{{ route('annonce.index')  }}">
                     <i class="tim-icons icon-badge"></i>
                     <p>{{ __('Annonces et circulaire') }}</p>

@@ -20,7 +20,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="card-body">
+                <div class="card-body" style="background-image:url('{{asset('black/img/cal1.jpg')}}'); background-size: cover">
                     {!! $calendar->calendar() !!}
                 </div>
             </div>
