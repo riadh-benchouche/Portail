@@ -90,11 +90,10 @@ class VideotequeController extends Controller
         else {
             $video->title = $request->input('title');
         }
-        //    $actualite->putMedia($key('file'))->toMediaCollection();
 
 
         $video->save();
-        return redirect('Image');
+        return redirect('Video');
     }
 
     /**
