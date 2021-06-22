@@ -233,8 +233,7 @@
         </div>
         <div class="col-md-6 mt-2">
             <div class="card   ">
-                <!-- <embed width="100%" height="350" type="application/x-vlc-plugin" pluginspage="https://add0n.com/open-in-vlc.html" autoplay="yes" loop="no" width="300" height="200" target="mms://live.apn.gov.dz:8044" /> -->
-                <iframe width="100%" height="350" src="{{asset('black/img/video.mp4')}}" muted frameborder="0" ></iframe>
+                 <embed width="100%" height="350" type="application/x-vlc-plugin" pluginspage="https://add0n.com/open-in-vlc.html" autoplay="yes" loop="no" width="300" height="200" target="mms://live.apn.gov.dz:8044" />
             </div>
          <!--   <div class="row">
                 <a class="btn btn-warning btn-lg ml-4 animation-on-hover " style="width: 92% ; background-image: linear-gradient(#A03B8D,#E14C93)">
