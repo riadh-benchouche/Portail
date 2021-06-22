@@ -6,4 +6,19 @@
     </a>
 </div>
 
+<div class="row">
+    @foreach($videos as $video)
+        <div class="col-md-4 col-sm-4 col-xs-6">
+            <div class="relative mt-auto mb-auto">
+               <div class="col py-2">
+                        <div class="video"> <iframe src="{{ asset('storage').'/'.$video ->getFirstMedia()['id'].'/'.$video ->getFirstMedia()['file_name']}}" frameborder="0" allowfullscreen></iframe></div>
+                    </div>
+            </div>
+        </div>
+
+
+
+        </div>
+    @endforeach
+</div>
 @endsection
