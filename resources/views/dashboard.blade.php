@@ -57,66 +57,69 @@
 
     <div class="row animated fadeInDown">
                     <div class="row mt-3">
-                        <div class="col-6  mr-auto " >
-                            <div class="row ">
-                                <h1 class="h4 ml-3 mt-3 text-white "><b>Actualité – Ressources Humaines et Affaires Sociales</b></h1>
-                            </div>
-                            <div class="row-fluid">
-                                <div id="productSlider1" class="carousel slide" data-ride="carousel">
-                                    <div class="carousel-inner  mr-auto ml-auto w-100">
-                                        @foreach($annonces->chunk(2) as $productCollections)
-                                            <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
-                                                <div class="row ">
-                                                    @foreach($productCollections as $product)
-                                                        <div class="col-md-6">
-                                                            <div class="card "  >
-                                                                <iframe style="height:29em " class="img-fluid"  src="{{ asset('storage').'/'.$product ->getFirstMedia()['id'].'/'.$product ->getFirstMedia()['file_name']}}" alt="{{ $product->name }}"></iframe>
+                            <div class="col-md-6 " >
+                                <div class="row text-center">
+                                    <h1 class="h4  mt-3 ml-auto mr-auto text-info "><b>Actualité – Ressources Humaines et Affaires Sociales</b></h1>
+                                </div>
+                                <div class="row-fluid">
+                                    <div id="productSlider1" class="carousel slide" data-ride="carousel">
+                                        <div class="carousel-inner  mr-auto ml-auto w-100">
+                                            @foreach($annonces->chunk(2) as $productCollections)
+                                                <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
+                                                    <div class="row ">
+                                                        @foreach($productCollections as $product)
+                                                            <div class="col-md-6">
+                                                                <div class="card "  >
+                                                                    <iframe style="height:29em " class="img-fluid"  src="{{ asset('storage').'/'.$product ->getFirstMedia()['id'].'/'.$product ->getFirstMedia()['file_name']}}" alt="{{ $product->name }}"></iframe>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    @endforeach
+                                                        @endforeach
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        @endforeach
-                                    </div>
-                                    <div>
-                                        <a class="carousel-control-prev pr-md-5 " href="#productSlider1" role="button" data-slide="prev" >
-                                            <span class="carousel-control-prev-icon text-dark hover:bg-pink-500" aria-hidden="true"></span>
-                                            <span class="sr-only text-dark ">Previous</span>
-                                        </a>
-                                        <a class="carousel-control-next pl-md-5 text-dark" href="#productSlider1" role="button" data-slide="next">
-                                            <span class="carousel-control-next-icon hover:bg-pink-500" aria-hidden="true"></span>
-                                            <span class="sr-only text-dark">Next</span>
-                                        </a>
+                                            @endforeach
+                                        </div>
+                                        <div>
+                                            <a class="carousel-control-prev pr-md-5 " href="#productSlider1" role="button" data-slide="prev" >
+                                                <span class="carousel-control-prev-icon text-dark hover:bg-pink-500" aria-hidden="true"></span>
+                                                <span class="sr-only text-dark ">Previous</span>
+                                            </a>
+                                            <a class="carousel-control-next pl-md-5 text-dark" href="#productSlider1" role="button" data-slide="next">
+                                                <span class="carousel-control-next-icon hover:bg-pink-500" aria-hidden="true"></span>
+                                                <span class="sr-only text-dark">Next</span>
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-6 ml-auto mr-auto mt-3  " >
+                            <div class="col-md-6 mt-2  " >
+                                <div class="card p-2" style="background-image: url('{{asset('black/img/bg3.jpg')}}')">
+                                <div class="row ml-auto mr-auto">
+                                    <div class="col-12">
+                                        <div class="row ml-auto mr-auto">
+                                            <h1 class="ml-auto mr-auto  text-info h4 "><b>Formulaire à Télécharger</b></h1>
+                                        </div>
+                                        <div class="row  mb-3 ml-auto mr-auto">
+                                            @foreach($rhs as $rh)
+                                                <div class="col-md-3 text-center ">
+                                                    <div class="file-img-box">
+                                                        <iframe style="height:10em " class="img-fluid"  src="{{ asset('storage').'/'.$rh ->getFirstMedia()['id'].'/'.$rh ->getFirstMedia()['file_name']}}" alt="{{ $rh->name }}"></iframe>
+                                                    </div>
+                                                    <a href="#" class="file-download text-center"><i class="fa fa-download text-center"></i></a>
+                                                    <div class="file-man-title">
+                                                        <h5 class="mb-0 text-overflow text-center">{{substr($rh->getFirstMedia()['file_name'],0,10)}}</h5>
+                                                        <p class="mb-0 text-center"><small>{{$rh->getFirstMedia()['human_readable_size']}}</small></p>
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                    <!-- end col -->
+                                </div>
+                                </div>
+                                <!-- end row -->
+                            </div>
 
-                            <div class="row ml-auto mr-auto">
-                                <div class="col-12">
-                                    <div class="row ml-auto mr-auto">
-                                        <h1 class="ml-auto mr-auto mt-1 text-white h4 "><b>Formulaire à Télécharger</b></h1>
-                                    </div>
-                                    <div class="row  mb-3 ml-auto mr-auto">
-                                        @foreach($rhs as $rh)
-                                            <div class="col-md-3 text-center ">
-                                                <div class="file-img-box">
-                                                    <iframe style="height:10em " class="img-fluid"  src="{{ asset('storage').'/'.$rh ->getFirstMedia()['id'].'/'.$rh ->getFirstMedia()['file_name']}}" alt="{{ $rh->name }}"></iframe>
-                                                </div>
-                                                <a href="#" class="file-download text-center"><i class="fa fa-download text-center"></i></a>
-                                                <div class="file-man-title">
-                                                    <h5 class="mb-0 text-overflow text-center">{{substr($rh->getFirstMedia()['file_name'],0,10)}}</h5>
-                                                    <p class="mb-0 text-center"><small>{{$rh->getFirstMedia()['human_readable_size']}}</small></p>
-                                                </div>
-                                            </div>
-                                        @endforeach
-                                    </div>
-                                </div>
-                                <!-- end col -->
-                            </div>
-                            <!-- end row -->
-                        </div>
+
                     </div>
 
     </div>
@@ -125,7 +128,7 @@
             <div class="col-12 " >
                     <div class="row-fluid">
                     <div class="row">
-                        <h1 class="h3 text-info text-center animate-bounce mt-2" ><b>Actualités des Travaux des Commissions</b></h1>
+                        <h1 class="h4 text-info text-center ml-auto mr-auto mt-2" ><b>Travaux des Commissions</b></h1>
                     </div>
                     <div id="productSlider" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
@@ -228,12 +231,12 @@
         <div class="col-md-6 ">
             <img src="{{asset('black/img/test1.png')}}" width="80%" class="ml-auto mr-auto ">
         </div>
-        <div class="col-md-6 ">
-            <div class="card    ">
+        <div class="col-md-6 mt-2">
+            <div class="card   ">
                 <!-- <embed width="100%" height="350" type="application/x-vlc-plugin" pluginspage="https://add0n.com/open-in-vlc.html" autoplay="yes" loop="no" width="300" height="200" target="mms://live.apn.gov.dz:8044" /> -->
                 <iframe width="100%" height="350" src="{{asset('black/img/video.mp4')}}" muted frameborder="0" ></iframe>
             </div>
-            <div class="row">
+         <!--   <div class="row">
                 <a class="btn btn-warning btn-lg ml-4 animation-on-hover " style="width: 92% ; background-image: linear-gradient(#A03B8D,#E14C93)">
                     <div class="row">
                         <div class="col-md-2">
@@ -247,153 +250,162 @@
                         </div>
                     </div>
                 </a>
-            </div>
+            </div> -->
         </div>
 
     </div>
         <!-- Bouttons -->
         <!-- lois + stat -->
     <div class="row mb-3">
-        <div class="col-md-6">
+        <div class="card " style="background-image: url('{{asset('black/img/bg2.jpg')}}')" >
             <div class="row">
-                <h1 class="h4 ml-3 mt-3 text-white"><b>Lois Abordés : </b></h1>
+            <div class="col-md-6">
+                <div class="row">
+                    <h1 class="h4  ml-auto mr-auto mt-3 text-info"><b>Lois Abordés</b></h1>
+                </div>
+                <div class="container-fluid">
+                <table class="table table-striped table-dark p-2">
+                    <thead >
+                    <tr>
+                        <th class="text-center ">#</th>
+                        <th >Nom</th>
+                        <th>Date D'adoption</th>
+                        <th>Comission</th>
+                        <th class="text-right">Détail</th>
+                    </tr>
+                    </thead>
+                    <tbody >
+                    @foreach($lois as $loi)
+                    <tr class="text-darker">
+                        <td class="text-center">{{$loi->id}}</td>
+                        <td >{{substr($loi->name,0,20)}}...</td>
+                        <td>{{$loi->DtAdoptAPN}}</td>
+                        <td>{{$loi->comissions->name}}</td>
+                        <td class="td-actions text-right">
+                            <button type="button" rel="tooltip" class="btn btn-success btn-sm btn-round btn-icon">
+                                <i class="tim-icons icon-cloud-download-93"></i>
+                            </button>
+                            <button type="button" rel="tooltip" class="btn btn-info btn-sm btn-round btn-icon">
+                                <i class="tim-icons icon-single-copy-04"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+                </div>
             </div>
-            <table class="table">
-                <thead>
-                <tr>
-                    <th class="text-center">#</th>
-                    <th>Nom</th>
-                    <th>Date D'adoption</th>
-                    <th>Comission</th>
-                    <th class="text-right">Détail</th>
-                </tr>
-                </thead>
-                <tbody>
-                @foreach($lois as $loi)
-                <tr>
-                    <td class="text-center">{{$loi->id}}</td>
-                    <td>{{substr($loi->name,0,20)}}...</td>
-                    <td>{{$loi->DtAdoptAPN}}</td>
-                    <td>{{$loi->comissions->name}}</td>
-                    <td class="td-actions text-right">
-                        <button type="button" rel="tooltip" class="btn btn-success btn-sm btn-round btn-icon">
-                            <i class="tim-icons icon-cloud-download-93"></i>
-                        </button>
-                        <button type="button" rel="tooltip" class="btn btn-info btn-sm btn-round btn-icon">
-                            <i class="tim-icons icon-single-copy-04"></i>
-                        </button>
-                    </td>
-                </tr>
-                @endforeach
-                </tbody>
-            </table>
-        </div>
-        <div class="col-md-6">
-            <div class="row">
-                <h1 class="h4 ml-3 mt-3 text-white"><b>Statistiques Pertinantes : </b></h1>
-            </div>
-            <div class="row mt-3">
-                <div class="col-md-6" >
-                    <div class="card card-stats mb-4 mb-xl-0 " style="  background: linear-gradient(to bottom right,#59C9B7, #3795C4);" >
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col ml-3">
-                                    <h5 class="card-title text-white text-uppercase mb-0 mt-2" >députés </h5>
+
+            <div class="col-md-6">
+                <div class="container-fluid">
+                <div class="row">
+                    <h1 class="h4 ml-auto mr-auto mt-3 text-info"><b>Statistiques Pertinantes  </b></h1>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-6" >
+                        <div class="card card-stats mb-4 mb-xl-0 " style="  background: linear-gradient(to bottom right,#59C9B7, #3795C4); opacity: 0.8" >
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col ml-3">
+                                        <h5 class="card-title text-white text-uppercase mb-0 mt-2" >députés </h5>
+                                    </div>
+                                    <div class="col-auto ">
+                                        <div class="icon icon-shape  text-white rounded-circle shadow display-3 p-2">
+                                            <span id="value" class="h2 text-white font-weight-bold mb-0"></span>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="col-auto ">
-                                    <div class="icon icon-shape  text-white rounded-circle shadow display-3 p-2">
-                                        <span id="value" class="h2 text-white font-weight-bold mb-0"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card card-stats mb-4 mb-xl-0" style="background: linear-gradient(to bottom right,#F07556, #EC599C); opacity: 0.8 ">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col ml-3">
+                                        <h5 class="card-title text-white text-uppercase mb-0 mt-2">Personnel</h5>
+                                    </div>
+                                    <div class="col-auto ">
+                                        <div class="icon icon-shape  text-white rounded-circle shadow display-3 p-2">
+                                            <span id="value2" class="h2 text-white font-weight-bold mb-0"></span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="card card-stats mb-4 mb-xl-0" style="background: linear-gradient(to bottom right,#F07556, #EC599C); ">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col ml-3">
-                                    <h5 class="card-title text-white text-uppercase mb-0 mt-2">Personnel</h5>
+                <div class="row mt-3">
+                    <div class="col-md-6">
+                        <div class="card card-stats mb-4 mb-xl-0" style="background: linear-gradient(to bottom right,#c347d6, #ef61d2) ">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col ml-3">
+                                        <h5 class="card-title text-white text-uppercase  mb-0">Groupes parlementaires</h5>
+                                    </div>
+                                    <div class="col-auto ">
+                                        <div class="icon icon-shape  text-white rounded-circle shadow display-3 p-2">
+                                            <span id="value3" class="h2  text-white font-weight-bold mb-0 "></span>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="col-auto ">
-                                    <div class="icon icon-shape  text-white rounded-circle shadow display-3 p-2">
-                                        <span id="value2" class="h2 text-white font-weight-bold mb-0"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card card-stats mb-4 mb-xl-0" style="background: linear-gradient(to bottom right,#2D75C1, #7E65E7)">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col ml-3">
+                                        <h5 class="card-title text-white text-uppercase text-white mb-0">Lois Adoptées 9ème Législation</h5>
+                                    </div>
+                                    <div class="col-auto ">
+                                        <div class="icon icon-shape  text-white rounded-circle shadow display-3 p-2">
+                                            <span id="value4" class="h2 text-white font-weight-bold mb-0"></span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="row mt-3">
-                <div class="col-md-6">
-                    <div class="card card-stats mb-4 mb-xl-0" style="background: linear-gradient(to bottom right,#c347d6, #ef61d2) ">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col ml-3">
-                                    <h5 class="card-title text-white text-uppercase  mb-0">Groupes parlementaires</h5>
-                                </div>
-                                <div class="col-auto ">
-                                    <div class="icon icon-shape  text-white rounded-circle shadow display-3 p-2">
-                                        <span id="value3" class="h2  text-white font-weight-bold mb-0 "></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card card-stats mb-4 mb-xl-0" style="background: linear-gradient(to bottom right,#2D75C1, #7E65E7)">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col ml-3">
-                                    <h5 class="card-title text-white text-uppercase text-white mb-0">Lois Adoptées 9ème Législation</h5>
-                                </div>
-                                <div class="col-auto ">
-                                    <div class="icon icon-shape  text-white rounded-circle shadow display-3 p-2">
+                <div class="row mt-3">
+                    <div class="col-md-6">
+                        <div class="card card-stats mb-4 mb-xl-0" style="background: linear-gradient(to bottom right,#ffcd6a, #dd8c00)">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col ml-3">
+                                        <h5 class="card-title text-white text-uppercase text-white mb-0">Session plénières 9ème législation</h5>
                                         <span id="value4" class="h2 text-white font-weight-bold mb-0"></span>
                                     </div>
+                                    <div class="col-auto ">
+                                        <div class="icon icon-shape  text-white rounded-circle shadow display-3 p-2">
+                                            <span id="value5" class="h2 text-white font-weight-bold mb-0">75</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <div class="col-md-6 ">
+                        <div class="card card-stats mb-4 mb-xl-0" style="background: linear-gradient(to bottom right,#007bff, #6ea0ff)">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col ml-3">
+                                        <h5 class="card-title text-white text-uppercase h5 text-white mb-0">Journée Parlementaires 9ème Législation</h5>
+                                    </div>
+                                    <div class="col-auto ">
+                                        <div class="icon icon-shape  text-white rounded-circle shadow display-3 p-2">
+                                            <span id="value6" class="h2 text-white font-weight-bold mb-0">68</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 </div>
             </div>
-            <div class="row mt-3">
-                <div class="col-md-6">
-                    <div class="card card-stats mb-4 mb-xl-0" style="background: linear-gradient(to bottom right,#ffcd6a, #dd8c00)">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col ml-3">
-                                    <h5 class="card-title text-white text-uppercase text-white mb-0">Session plénières 9ème législation</h5>
-                                    <span id="value4" class="h2 text-white font-weight-bold mb-0"></span>
-                                </div>
-                                <div class="col-auto ">
-                                    <div class="icon icon-shape  text-white rounded-circle shadow display-3 p-2">
-                                        <span id="value5" class="h2 text-white font-weight-bold mb-0">75</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 ">
-                    <div class="card card-stats mb-4 mb-xl-0" style="background: linear-gradient(to bottom right,#007bff, #6ea0ff)">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col ml-3">
-                                    <h5 class="card-title text-white text-uppercase h5 text-white mb-0">Journée Parlementaires 9ème Législation</h5>
-                                </div>
-                                <div class="col-auto ">
-                                    <div class="icon icon-shape  text-white rounded-circle shadow display-3 p-2">
-                                        <span id="value6" class="h2 text-white font-weight-bold mb-0">68</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>

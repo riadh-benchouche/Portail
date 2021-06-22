@@ -220,25 +220,25 @@
     z-index: 1;
 }
 .single-footer-widget .copywrite-text a {
-    color: #747794;
+    color: #282b40;
     font-size: 1rem;
 }
 .single-footer-widget .copywrite-text a:hover,
 .single-footer-widget .copywrite-text a:focus {
-    color: #3f43fd;
+    color: #70b8d6;
 }
 .single-footer-widget .widget-title {
     margin-bottom: 1.5rem;
 }
 .single-footer-widget .footer_menu li a {
-    color: #747794;
+    color: #282b40;
     margin-bottom: 1rem;
     display: block;
     font-size: 1rem;
 }
 .single-footer-widget .footer_menu li a:hover,
 .single-footer-widget .footer_menu li a:focus {
-    color: #3f43fd;
+    color: #70b8d6;
 }
 .single-footer-widget .footer_menu li:last-child a {
     margin-bottom: 0;

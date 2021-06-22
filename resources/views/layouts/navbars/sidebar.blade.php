@@ -11,7 +11,7 @@
             <li @if ($pageSlug ?? '' == 'dashboard') class="active " @endif>
                 <a href="{{ route('home') }}">
                     <i class="tim-icons icon-components"></i>
-                    <p>{{ __('Accueil') }}</p>
+                    <p class="font-weight-bold">{{ __('Accueil') }}</p>
                 </a>
             </li>
         <!--
@@ -44,7 +44,7 @@
             <li @if ($pageSlug ?? '' == 'icons') class="active " @endif>
                 <a data-toggle="collapse" href="#annuaire" aria-expanded="true">
                     <i class="tim-icons icon-badge" ></i>
-                    <span class="nav-link-text" ><b>{{ __('Annuaire') }}</b></span>
+                    <span class="nav-link-text font-weight-bold" >{{ __('Annuaire') }}</span>
                     <b class="caret mt-1"></b>
                 </a>
 
@@ -53,13 +53,13 @@
                         <li >
                             <a href="{{ route('user.index')  }}">
                                 <i class="tim-icons icon-badge"></i>
-                                <p><b>{{ __('Annuaire Député') }}</b></p>
+                                <p class="font-weight-bold">{{ __('Annuaire Député') }}</p>
                             </a>
                         </li>
                         <li  >
                             <a href="">
                                 <i class="tim-icons icon-bullet-list-67"></i>
-                                <p>{{ __('Annuaire fonctionnair') }}</p>
+                                <p class="font-weight-bold">{{ __('Annuaire fonctionnaire') }}</p>
                             </a>
                         </li>
                     </ul>
@@ -67,7 +67,7 @@
             <li @if ($pageSlug ?? '' == 'icons') class="active " @endif>
                 <a data-toggle="collapse" href="#Mediathéque" aria-expanded="true">
                     <i class="tim-icons icon-camera-18" ></i>
-                    <span class="nav-link-text" >{{ __('Mediatéque') }}</span>
+                    <span class="nav-link-text font-weight-bold" >Mediatéque</span>
                     <b class="caret mt-1"></b>
                 </a>
                 <div class="collapse" id="Mediathéque">
@@ -90,7 +90,7 @@
             <li @if ($pageSlug ?? '' == 'icons') class="active " @endif>
                 <a data-toggle="collapse" href="#laravel-examples" aria-expanded="true">
                     <i class="fab fa-laravel" ></i>
-                    <span class="nav-link-text" >{{ __('Gestion des lois') }}</span>
+                    <span class="nav-link-text font-weight-bold" >{{ __('Gestion des lois') }}</span>
                     <b class="caret mt-1"></b>
                 </a>
 
@@ -115,44 +115,44 @@
             <li @if ($pageSlug ?? '' == 'icons') class="active " @endif >
                 <a href="{{ url('commission')  }}">
                     <i class="tim-icons icon-bank "></i>
-                    <p>{{ __('Commision') }}</p>
+                    <p class="font-weight-bold">{{ __('Commision') }}</p>
                 </a>
             </li>
 
             <li @if ($pageSlug ?? '' == 'icons') class="active " @endif>
                 <a href="{{ route('annonce.index')  }}">
                     <i class="tim-icons icon-badge"></i>
-                    <p>{{ __('Annonces et circulaire') }}</p>
+                    <p class="font-weight-bold">{{ __('Annonces et circulaire') }}</p>
                 </a>
             </li>
             <li @if ($pageSlug ?? '' == 'icons') class="active " @endif>
                 <a href="{{ route('pages.icons') }}">
                     <i class="tim-icons icon-calendar-60"></i>
-                    <p>{{ __('Calendrier') }}</p>
+                    <p class="font-weight-bold">{{ __('Calendrier') }}</p>
                 </a>
             </li>
             <li @if ($pageSlug ?? '' == 'maps') class="active " @endif>
                 <a href="{{ route('pages.maps') }}">
                     <i class="tim-icons icon-email-85"></i>
-                    <p>{{ __('Messagerie') }}</p>
+                    <p class="font-weight-bold">{{ __('Messagerie') }}</p>
                 </a>
             </li>
             <li @if ($pageSlug ?? '' == 'tables') class="active " @endif>
                 <a href="{{ url('rh') }}">
                     <i class="tim-icons icon-single-02"></i>
-                    <p>{{ __('Ressources humaines') }}</p>
+                    <p class="font-weight-bold">{{ __('Ressources humaines') }}</p>
                 </a>
             </li>
             <li @if ($pageSlug ?? '' == 'typography') class="active " @endif>
                 <a href="{{ route('bibu.index') }}">
                     <i class="tim-icons icon-laptop"></i>
-                    <p>{{ __('Bibliotheque Universel') }}</p>
+                    <p class="font-weight-bold">{{ __('Bibliotheque Universel') }}</p>
                 </a>
             </li>
              <li @if ($pageSlug ?? '' == 'typography') class="active " @endif>
                 <a href="{{ route('actualite.index') }}">
                     <i class="tim-icons icon-paper"></i>
-                    <p>{{ __('Actualite') }}</p>
+                    <p class="font-weight-bold" >{{ __('Actualite') }}</p>
                 </a>
             </li>
         </ul>

@@ -5,7 +5,7 @@
   <div class="col-md-8 ml-auto mr-auto">
     <div class="card card-upgrade">
       <div class="card-header text-center">
-        <h4 class="card-title">Black Dashboard PRO</h3>
+        <h4 class="card-title">Black Dashboard PRO</h4>
           <p class="card-category">Are you looking for more components? Please check our Premium Version of Black Dashboard PRO.</p>
       </div>
       <div class="card-body">
