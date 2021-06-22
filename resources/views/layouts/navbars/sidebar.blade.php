@@ -67,7 +67,7 @@
             <li @if ($pageSlug ?? '' == 'icons') class="active " @endif>
                 <a data-toggle="collapse" href="#Mediathéque" aria-expanded="true">
                     <i class="tim-icons icon-camera-18" ></i>
-                    <span class="nav-link-text font-weight-bold" >Mediatéque</span>
+                    <span class="nav-link-text font-weight-bold" >Mediatéques</span>
                     <b class="caret mt-1"></b>
                 </a>
                 <div class="collapse" id="Mediathéque">
