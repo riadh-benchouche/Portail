@@ -7,6 +7,7 @@
         var player = videojs('Video');
         player.play();
     </script>
+        <!--Slide -->
     <div class="row ">
         <!--Carousel Wrapper-->
         <div id="carousel-example-2" class="carousel slide carousel-fade" data-ride="carousel">
@@ -71,102 +72,110 @@
         </div>
         <!--/.Carousel Wrapper-->
     </div>
+        <!--document -->
+    <div class="row">
 
-    <div class="row animated fadeInDown">
-                    <div class="row mt-5">
-                            <div class="col-md-6 " >
-                                <div class="row-fluid">
-                                    <div id="productSlider1" class="carousel slide" data-ride="carousel">
-                                        <div class="carousel-inner  mr-auto ml-auto w-100">
-                                            @foreach($annonces->chunk(2) as $productCollections)
-                                                <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
-                                                    <div class="row ">
-                                                        @foreach($productCollections as $product)
-                                                            <div class="col-md-6">
-                                                                <div class="card "  >
-                                                                    <iframe style="height:29em " class="img-fluid"  src="{{ asset('storage').'/'.$product ->getFirstMedia()['id'].'/'.$product ->getFirstMedia()['file_name']}}" alt="{{ $product->name }}"></iframe>
+    <div class="card border-neutral pl-3 pr-4 pb-3  mt-3">
+        <div class="row animated fadeInDown">
+                        <div class="row mt-3">
+                                <div class="col-md-6 " >
+                                    <div class="row-fluid ml-3">
+                                        <div id="productSlider1" class="carousel slide" data-ride="carousel">
+                                            <div class="carousel-inner  mr-auto ml-auto w-100">
+                                                @foreach($annonces->chunk(2) as $productCollections)
+                                                    <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
+                                                        <div class="row ">
+                                                            @foreach($productCollections as $product)
+                                                                <div class="col-md-6">
+                                                                    <div class="card "  >
+                                                                        <iframe style="height:29em " class="img-fluid"  src="{{ asset('storage').'/'.$product ->getFirstMedia()['id'].'/'.$product ->getFirstMedia()['file_name']}}" alt="{{ $product->name }}"></iframe>
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                        @endforeach
+                                                            @endforeach
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            @endforeach
-                                        </div>
-                                        <div>
-                                            <a class="carousel-control-prev pr-md-5 " href="#productSlider1" role="button" data-slide="prev" >
-                                                <span class="carousel-control-prev-icon text-dark hover:bg-pink-500" aria-hidden="true"></span>
-                                                <span class="sr-only text-dark ">Previous</span>
-                                            </a>
-                                            <a class="carousel-control-next pl-md-5 text-dark" href="#productSlider1" role="button" data-slide="next">
-                                                <span class="carousel-control-next-icon hover:bg-pink-500" aria-hidden="true"></span>
-                                                <span class="sr-only text-dark">Next</span>
-                                            </a>
+                                                @endforeach
+                                            </div>
+                                            <div>
+                                                <a class="carousel-control-prev pr-md-5 " href="#productSlider1" role="button" data-slide="prev" >
+                                                    <span class="carousel-control-prev-icon text-dark hover:bg-pink-500" aria-hidden="true"></span>
+                                                    <span class="sr-only text-dark ">Previous</span>
+                                                </a>
+                                                <a class="carousel-control-next pl-md-5 text-dark" href="#productSlider1" role="button" data-slide="next">
+                                                    <span class="carousel-control-next-icon hover:bg-pink-500" aria-hidden="true"></span>
+                                                    <span class="sr-only text-dark">Next</span>
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-md-6   " >
-                                <div class="row ml-auto mr-auto">
-                                    <div class="col-12">
-                                        <div class="row  mb-3 ml-auto mr-auto">
-                                            @foreach($rhs as $rh)
-                                                <div class="col-md-3 text-center ">
-                                                    <div class="file-img-box">
-                                                        <iframe style="height:10em " class="img-fluid"  src="{{ asset('storage').'/'.$rh ->getFirstMedia()['id'].'/'.$rh ->getFirstMedia()['file_name']}}" alt="{{ $rh->name }}"></iframe>
+
+
+                                <div class="col-md-6   " >
+                                    <div class="row ml-auto mr-auto">
+                                        <div class="col-12">
+                                            <div class="row  mb-3 ml-auto mr-auto">
+                                                @foreach($rhs as $rh)
+                                                    <div class="col-md-3 text-center ">
+                                                        <div class="file-img-box">
+                                                            <iframe style="height:10em " class="img-fluid"  src="{{ asset('storage').'/'.$rh ->getFirstMedia()['id'].'/'.$rh ->getFirstMedia()['file_name']}}" alt="{{ $rh->name }}"></iframe>
+                                                        </div>
+                                                        <a href="#" class="file-download text-center"><i class="fa fa-download text-center"></i></a>
+                                                        <div class="file-man-title">
+                                                            <h5 class="mb-0 text-overflow text-center">{{substr($rh->getFirstMedia()['file_name'],0,10)}}</h5>
+                                                            <p class="mb-0 text-center"><small>{{$rh->getFirstMedia()['human_readable_size']}}</small></p>
+                                                        </div>
                                                     </div>
-                                                    <a href="#" class="file-download text-center"><i class="fa fa-download text-center"></i></a>
-                                                    <div class="file-man-title">
-                                                        <h5 class="mb-0 text-overflow text-center">{{substr($rh->getFirstMedia()['file_name'],0,10)}}</h5>
-                                                        <p class="mb-0 text-center"><small>{{$rh->getFirstMedia()['human_readable_size']}}</small></p>
-                                                    </div>
-                                                </div>
-                                            @endforeach
+                                                @endforeach
+                                            </div>
                                         </div>
+                                        <!-- end col -->
                                     </div>
-                                    <!-- end col -->
+                                    <!-- end row -->
                                 </div>
-                                <!-- end row -->
-                            </div>
 
 
-                    </div>
+                        </div>
+
+        </div>
+           <div class="row">
+               <div class="col-md-6">
+                 <a class="btn btn-success btn-lg mr-3 w-100 animation-on-hover " >
+                     <div class="row">
+                         <div class="col-md-2">
+                             <i class="tim-icons icon-notes text-white " style="font-size: 20px;"></i>
+                         </div>
+                         <div class="col-md-8">
+                             <h1 class="text-white mt-1" >Notes et Informations administratives</h1>
+                         </div>
+                         <div class="col-md-2">
+                             <i class="tim-icons icon-minimal-right text-white" style="font-size: 20px"></i>
+                         </div>
+                     </div>
+                 </a>
+               </div>
+               <div class="col-md-6 ">
+               <a class="btn btn-info btn-lg w-100 ml-2  animation-on-hover " >
+                   <div class="row">
+                       <div class="col-md-2">
+                           <i class="tim-icons icon-paper text-white " style="font-size: 20px;"></i>
+                       </div>
+                       <div class="col-md-8">
+                           <h1 class="text-white mt-1" >Documents et Formulaires</h1>
+                       </div>
+                       <div class="col-md-2">
+                           <i class="tim-icons icon-minimal-right text-white" style="font-size: 20px"></i>
+                       </div>
+                   </div>
+               </a>
+             </div>
+           </div>
 
     </div>
-       <div class="row">
-           <div class="col-md-6">
-             <a class="btn btn-success btn-lg mr-3 w-100 animation-on-hover " >
-                 <div class="row">
-                     <div class="col-md-2">
-                         <i class="tim-icons icon-notes text-white " style="font-size: 20px;"></i>
-                     </div>
-                     <div class="col-md-8">
-                         <h1 class="text-white mt-1" >Notes et Informations administratives</h1>
-                     </div>
-                     <div class="col-md-2">
-                         <i class="tim-icons icon-minimal-right text-white" style="font-size: 20px"></i>
-                     </div>
-                 </div>
-             </a>
-           </div>
-           <div class="col-md-6 ">
-           <a class="btn btn-info btn-lg w-100 ml-2  animation-on-hover " >
-               <div class="row">
-                   <div class="col-md-2">
-                       <i class="tim-icons icon-paper text-white " style="font-size: 20px;"></i>
-                   </div>
-                   <div class="col-md-8">
-                       <h1 class="text-white mt-1" >Documents et Formulaires</h1>
-                   </div>
-                   <div class="col-md-2">
-                       <i class="tim-icons icon-minimal-right text-white" style="font-size: 20px"></i>
-                   </div>
-               </div>
-           </a>
-         </div>
-       </div>
-
-    <div class="container-lg">
-        <div class="card  border p-2 " style="  background-color: #2b3858">
+</div>
+        <!--actualité + calendirier -->
+    <div class="row">
+        <div class="card  border-neutral p-2 " style="  background-color: #2b3858">
             <div class="row">
                 <div class="col-12 " >
                     <div class="row-fluid">
@@ -203,11 +212,11 @@
 
             <div class="row mb-2 " style="z-index: 2">
             <div class="col-md-5 ml-auto mr-auto  ">
-                <div class="row">
-                        <div class="row ">
-                            <h1 class="h3 text-info text-center ml-auto mr-auto" ><b>Activité Legislative 9ème Législation</b></h1>
+                <div class="row mr-auto ml-auto">
+                        <div class="row ml-auto mr-auto ">
+                            <h1 class="h3 text-info  ml-auto mr-auto" ><b>Activité Legislative 9ème Législation</b></h1>
                         </div>
-                        <div class="card p-3   "  style="background-color: #1D283F; opacity: 0.9 ;width: 480px">
+                        <div class="card p-3   "  style="background-color: #1D283F; opacity: 0.9 ;">
                             <div class="row ">
                                 <div class="col-6 text-center ">
                                     <img class="ml-auto mr-auto icon mt-2" src="{{asset('black/img/calendar.svg')}}" alt="event" width="40%"  >
@@ -222,12 +231,12 @@
                             </div>
                         </div>
                 </div>
-                <div class="row">
-                    <div class="card  py-3 " style="background-color: #1D293F; opacity: 0.9; width: 480px"  >
+                    <div class="card  py-3 " style="background-color: #1D293F; opacity: 0.9; "  >
                         <div class="row ">
                             <div class="col-md-8 justify-content-center" >
                                 <div class="card-body">
                                     <h4 class="card-title font-weight-bold h4">Documents législatives</h4>
+                                    <p class="text-left my-2 ">Pour consulter les documents législatives cliquer sur l'icone</p>
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -235,13 +244,13 @@
                             </div>
                         </div>
                     </div>
-                </div>
 
                 </div>
             <div class="col-6 ml-auto mr-auto">
                 <div class="row">
-                    <h1 class="h3 text-white ml-auto mr-auto text-center" ><b>Activité Legislative 9ème Législation</b></h1>
+                    <h1 class="h3 text-white ml-auto mr-auto text-center" ><b>Évenements à venir</b></h1>
                 </div>
+                <div class="card  pt-3" style="background-color: #222730">
                 @foreach($events as $event)
                     <div class="row">
                         <div class="card mb-3" style="background-color: #1D293F; z-index: 0; opacity: 0.9"  >
@@ -261,35 +270,25 @@
                         </div>
                     </div>
                 @endforeach
+                </div>
             </div>
         </div>
 </div>
     </div>
         <!-- En direct -->
     <div class="row">
-
         <div class="col-md-6 ">
-            <img src="{{asset('black/img/test1.png')}}" width="80%" class="ml-auto mr-auto ">
+            <img src="{{asset('black/img/bg22.png')}}" width="90%" class="ml-auto mr-auto ">
         </div>
-        <div class="col-md-6 mt-2">
-            <div class="card   ">
-                <video
-                    id="Video"
-                    class="video-js vjs-default-skin vjs-big-play-centered"
-                    controls
-                    preload="none"
-                    width="auto"
-                    height="auto"
-                    data-setup='{"techOrder": ["flash", "html5", "other supported tech"], "nativeControlsForTouch": true, "controlBar": { "muteToggle": false, "volumeControl": false, "timeDivider": false, "durationDisplay": false, "progressControl": false } }'
-                >
-                    <source src="mms://live.apn.gov.dz:8044" type='mms/mp4'/>
+        <div class="col-md-6 mt-5">
+            <div class="card   " style="background-color: transparent">
+                <video class="video-fluid z-depth-1"  loop controls muted>
+                    <source src="{{asset('black/img/video.mp4')}}" type="video/mp4" />
                 </video>
-            </div>
-         <!--   <div class="row">
-                <a class="btn btn-warning btn-lg ml-4 animation-on-hover " style="width: 92% ; background-image: linear-gradient(#A03B8D,#E14C93)">
+                <a class="btn  btn-lg ml-4 animation-on-hover mt-2 " style="width: 92% ; background-image: linear-gradient(#44698E,#70A6E1)">
                     <div class="row">
                         <div class="col-md-2">
-                            <i class="tim-icons icon-attach-87 text-white " style="font-size: 20px;"></i>
+                            <i class="tim-icons icon-video-66 text-white " style="font-size: 20px;"></i>
                         </div>
                         <div class="col-md-8">
                             <h1 class="text-white mt-1" >Diffusion en Direct</h1>
@@ -299,21 +298,24 @@
                         </div>
                     </div>
                 </a>
-            </div> -->
+            </div>
+
+
+
         </div>
 
     </div>
         <!-- Bouttons -->
         <!-- lois + stat -->
     <div class="row mb-3">
-        <div class="card " style="background-image: url('{{asset('black/img/bg2.jpg')}}')" >
+        <div class="card border-neutral p-3" style="background-color: #062337">
             <div class="row">
             <div class="col-md-6">
                 <div class="row">
                     <h1 class="h4  ml-auto mr-auto mt-3 text-info"><b>Lois Abordés</b></h1>
                 </div>
                 <div class="container-fluid">
-                <table class="table table-striped table-dark p-2">
+                <table class="table table-striped  p-2">
                     <thead >
                     <tr>
                         <th class="text-center ">#</th>
