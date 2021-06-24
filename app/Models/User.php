@@ -32,6 +32,8 @@ class User extends Authenticatable implements HasMedia
     }
 
 
+
+
     public function isAdmin() {
         return (bool) $this->id === 1;
     }

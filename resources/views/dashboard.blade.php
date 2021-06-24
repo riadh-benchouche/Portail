@@ -1,6 +1,12 @@
 @extends('layouts.app', ['pageSlug' => 'dashboard'])
 
 @section('content')
+    <link href="//vjs.zencdn.net/5.11/video-js.min.css" rel="stylesheet">
+    <script src="//vjs.zencdn.net/5.11/video.min.js"></script>
+    <script>
+        var player = videojs('Video');
+        player.play();
+    </script>
     <div class="row ">
         <!--Carousel Wrapper-->
         <div id="carousel-example-2" class="carousel slide carousel-fade" data-ride="carousel">
@@ -19,7 +25,6 @@
                         </video>
                         <div class="mask rgba-black-light"></div>
                     </div>
-
                 </div> -->
                 <div class="carousel-item active">
                     <!--Mask color-->
@@ -29,12 +34,24 @@
                         <div class="mask rgba-black-strong"></div>
                     </div>
                     <div class="carousel-caption ">
-                        <h1 class="h1 ml-auto mr-auto text-white w-100 animated fadeInDown  " style="    font-family: 'Kaushan Script', cursive;"  ><b>Bienvenue a l’intranet</b> </h1>
-                        <h2 class="h2 ml-auto mr-auto text-white w-75 animated fadeInDown " style="    font-family: 'Comfortaa', cursive;">Espace colaboratif pour les Parlementaire et Fonctionnaire de l’Assemblée Populaire Nationale</h2>
+                        <h1 class="h1 ml-auto mr-auto text-white w-100 animated fadeInDown ">Bienvenue sur votre espace <b>INTRANET</b> </h1>
                         <div class="row ml-auto mr-auto">
                             <div class="col-12 text-center animated carousel-fade" style="padding: 90px ">
-                                <button class="gbutton noselect"><b>Mediathque</b></button>
-                                <button class="gbutton noselect"><b>JOD</b></button>
+                                <div class="row w-100">
+                                    <div class="col-md-4">
+                                        <button class="gbutton noselect mt-4 mr-4"><b>Planning</b></button>
+                                        <button class="gbutton noselect mt-3 mr-4"><b>News</b></button>
+                                    </div>
+                                    <div class="col-md-8 " style="background-color: black; opacity: 0.8; padding: 5px; border-radius: 5px">
+                                            <ul class="  ml-4" >
+                                                <li class="text-left font-weight-bold text-justify"  style=" font-size: 15px"><span  class="mr-1" style="color: #42A1AA; margin-left: -18px;">&#10003;</span>  Suivre l'actualité des travaux législatives ;</li>
+                                                <li class="text-left font-weight-bold mt-2 text-justify"  style=" font-size: 15px"> <span class="mr-1" style="color: #42A1AA; margin-left: -18px;">&#10003;</span>  Consulter le planning des travaux des commissions ;</li>
+                                                <li class="text-left font-weight-bold mt-2 text-justify"  style="font-size: 15px"><span  class="mr-1" style="color: #42A1AA; margin-left: -18px;">&#10003;</span>  Accès à la diffusion en direct ;</li>
+                                                <li class="text-left font-weight-bold mt-2 text-justify" style="font-size: 15px"><span  class="mr-1" style="color: #42A1AA; margin-left: -18px;">&#10003;</span>  Processus de gestion des projets de lois ;</li>
+                                                <li class="text-left font-weight-bold mt-2 text-justify" style="font-size:15px"><span class="mr-1" style="color: #42A1AA; margin-left: -18px;">&#10003;</span>  Téléchargement des formulaires administratifs.</li>
+                                            </ul>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -56,11 +73,8 @@
     </div>
 
     <div class="row animated fadeInDown">
-                    <div class="row mt-3">
+                    <div class="row mt-5">
                             <div class="col-md-6 " >
-                                <div class="row text-center">
-                                    <h1 class="h4  mt-3 ml-auto mr-auto text-info "><b>Actualité – Ressources Humaines et Affaires Sociales</b></h1>
-                                </div>
                                 <div class="row-fluid">
                                     <div id="productSlider1" class="carousel slide" data-ride="carousel">
                                         <div class="carousel-inner  mr-auto ml-auto w-100">
@@ -91,13 +105,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6 mt-2  " >
-                                <div class="card p-2" style="background-image: url('{{asset('black/img/bg3.jpg')}}')">
+                            <div class="col-md-6   " >
                                 <div class="row ml-auto mr-auto">
                                     <div class="col-12">
-                                        <div class="row ml-auto mr-auto">
-                                            <h1 class="ml-auto mr-auto  text-info h4 "><b>Formulaire à Télécharger</b></h1>
-                                        </div>
                                         <div class="row  mb-3 ml-auto mr-auto">
                                             @foreach($rhs as $rh)
                                                 <div class="col-md-3 text-center ">
@@ -115,7 +125,6 @@
                                     </div>
                                     <!-- end col -->
                                 </div>
-                                </div>
                                 <!-- end row -->
                             </div>
 
@@ -123,22 +132,56 @@
                     </div>
 
     </div>
+       <div class="row">
+           <div class="col-md-6">
+             <a class="btn btn-success btn-lg mr-3 w-100 animation-on-hover " >
+                 <div class="row">
+                     <div class="col-md-2">
+                         <i class="tim-icons icon-notes text-white " style="font-size: 20px;"></i>
+                     </div>
+                     <div class="col-md-8">
+                         <h1 class="text-white mt-1" >Notes et Informations administratives</h1>
+                     </div>
+                     <div class="col-md-2">
+                         <i class="tim-icons icon-minimal-right text-white" style="font-size: 20px"></i>
+                     </div>
+                 </div>
+             </a>
+           </div>
+           <div class="col-md-6 ">
+           <a class="btn btn-info btn-lg w-100 ml-2  animation-on-hover " >
+               <div class="row">
+                   <div class="col-md-2">
+                       <i class="tim-icons icon-paper text-white " style="font-size: 20px;"></i>
+                   </div>
+                   <div class="col-md-8">
+                       <h1 class="text-white mt-1" >Documents et Formulaires</h1>
+                   </div>
+                   <div class="col-md-2">
+                       <i class="tim-icons icon-minimal-right text-white" style="font-size: 20px"></i>
+                   </div>
+               </div>
+           </a>
+         </div>
+       </div>
 
-    <div class="row">
-            <div class="col-12 " >
+    <div class="container-lg">
+        <div class="card  border p-2 " style="  background-color: #2b3858">
+            <div class="row">
+                <div class="col-12 " >
                     <div class="row-fluid">
-                    <div class="row">
-                        <h1 class="h4 text-info text-center ml-auto mr-auto mt-2" ><b>Travaux des Commissions</b></h1>
-                    </div>
-                    <div id="productSlider" class="carousel slide" data-ride="carousel">
-                        <div class="carousel-inner">
-                            @foreach($actualites->chunk(4) as $productCollections)
-                                <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
-                                    <div class="row ">
-                                        @foreach($productCollections as $product)
-                                            <div class="col-md-3">
-                                                <div class="card" style="height: 28em" >
-                                                    <img class="img-fluid"  src="{{ asset('storage').'/'.$product ->getFirstMedia()['id'].'/'.$product ->getFirstMedia()['file_name']}}" alt="{{ $product->name }}">
+                        <div class="row">
+                            <h1 class="h3 text-info text-center ml-auto mr-auto mt-2" ><b>Travaux des Commissions</b></h1>
+                        </div>
+                        <div id="productSlider" class="carousel slide" data-ride="carousel">
+                            <div class="carousel-inner">
+                                @foreach($actualites->chunk(4) as $productCollections)
+                                    <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
+                                        <div class="row ">
+                                            @foreach($productCollections as $product)
+                                                <div class="col-md-3">
+                                                    <div class="card" style="height: 28em" >
+                                                        <img class="img-fluid"  src="{{ asset('storage').'/'.$product ->getFirstMedia()['id'].'/'.$product ->getFirstMedia()['file_name']}}" alt="{{ $product->name }}">
                                                         <div class="card-body text-center ">
                                                             <h4 class="card-title text-white " ><b>{{substr($product ->title,0,25)}}...</b></h4>
                                                             <p class="card-text">{{substr($product ->contenu,0,200)}}</p>
@@ -146,25 +189,25 @@
                                                         <div class="card-footer text-center">
                                                             <a href="{{url('actualite/'.$product->id)}}" class="btn btn-sm btn-info mt-auto mb-auto animation-on-hover">Lire la suite</a>
                                                         </div>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        @endforeach
+                                            @endforeach
+                                        </div>
                                     </div>
-                                </div>
-                            @endforeach
+                                @endforeach
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-    </div>
-    <div class="container-lg">
-        <div class="card" style="background-image: url('{{asset('black/img/bg3.jpg')}}');   background-position: revert ;background-size: cover;">
-        <div class="row mb-2 " style="z-index: 2">
-            <div class="col-5 ml-auto mr-auto  ">
-                        <div class="my-3">
-                            <h1 class="h4 text-info" ><b>Activité Legislative 9ème Législation</b></h1>
+
+            <div class="row mb-2 " style="z-index: 2">
+            <div class="col-md-5 ml-auto mr-auto  ">
+                <div class="row">
+                        <div class="row ">
+                            <h1 class="h3 text-info text-center ml-auto mr-auto" ><b>Activité Legislative 9ème Législation</b></h1>
                         </div>
-                        <div class="card p-3 mt-auto mb-auto mt-3 " style="background-color: #1D283F; opacity: 0.9">
+                        <div class="card p-3   "  style="background-color: #1D283F; opacity: 0.9 ;width: 480px">
                             <div class="row ">
                                 <div class="col-6 text-center ">
                                     <img class="ml-auto mr-auto icon mt-2" src="{{asset('black/img/calendar.svg')}}" alt="event" width="40%"  >
@@ -178,35 +221,33 @@
                                 </div>
                             </div>
                         </div>
-                            <div class="card mt-3 p-1" style="background-color: transparent; " >
-                                <div class="row ">
-                                    <div class="col-md-12" >
-                                        <div class="card-body ">
-                                            <h1 class="  h1 text-center" style="color: #d6d8db;  "><b>Annuaire</b></h1>
-                                            <div class="row text-center" >
-                                                <div class="col-sm-6 text-center">
-                                                    <a class="btn btn-sm btn-info text-center mt-2 text-white">Député</a>
-                                                </div>
-                                                <div class="col-sm-6">
-                                                    <a class="btn btn-sm btn-success text-center mt-2 text-white">Personnel</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                </div>
+                <div class="row">
+                    <div class="card  py-3 " style="background-color: #1D293F; opacity: 0.9; width: 480px"  >
+                        <div class="row ">
+                            <div class="col-md-8 justify-content-center" >
+                                <div class="card-body">
+                                    <h4 class="card-title font-weight-bold h4">Documents législatives</h4>
                                 </div>
                             </div>
-
+                            <div class="col-md-4">
+                                <img src="{{asset('black/img/des.svg')}}"  alt="event" width="50%" class="ml-auto mr-auto mt-2 ">
+                            </div>
+                        </div>
                     </div>
+                </div>
+
+                </div>
             <div class="col-6 ml-auto mr-auto">
-                <div class="my-3">
-                    <h1 class="h4 text-info" ><b>Activité Legislative 9ème Législation</b></h1>
+                <div class="row">
+                    <h1 class="h3 text-white ml-auto mr-auto text-center" ><b>Activité Legislative 9ème Législation</b></h1>
                 </div>
                 @foreach($events as $event)
                     <div class="row">
                         <div class="card mb-3" style="background-color: #1D293F; z-index: 0; opacity: 0.9"  >
                             <div class="row ">
                                 <div class="col-md-4 justify-content-center" >
-                                    <img src="{{asset('black/img/clock.png')}}"  alt="event" width="50%" class="ml-auto mr-auto mt-2 ">
+                                    <img src="{{asset('black/img/watch.svg')}}"  alt="event" width="46%" class="ml-auto mr-auto mt-2 ">
                                     <p class="card-text text-info text-center mt-1">{{$event->start_date}}</p>
                                     <p class="card-text  text-center " style="color: #ed5374">{{$event->end_date}}</p>
                                 </div>
@@ -221,7 +262,6 @@
                     </div>
                 @endforeach
             </div>
-
         </div>
 </div>
     </div>
@@ -233,7 +273,17 @@
         </div>
         <div class="col-md-6 mt-2">
             <div class="card   ">
-                 <embed width="100%" height="350" type="application/x-vlc-plugin" pluginspage="https://add0n.com/open-in-vlc.html" autoplay="yes" loop="no" width="300" height="200" target="mms://live.apn.gov.dz:8044" />
+                <video
+                    id="Video"
+                    class="video-js vjs-default-skin vjs-big-play-centered"
+                    controls
+                    preload="none"
+                    width="auto"
+                    height="auto"
+                    data-setup='{"techOrder": ["flash", "html5", "other supported tech"], "nativeControlsForTouch": true, "controlBar": { "muteToggle": false, "volumeControl": false, "timeDivider": false, "durationDisplay": false, "progressControl": false } }'
+                >
+                    <source src="mms://live.apn.gov.dz:8044" type='mms/mp4'/>
+                </video>
             </div>
          <!--   <div class="row">
                 <a class="btn btn-warning btn-lg ml-4 animation-on-hover " style="width: 92% ; background-image: linear-gradient(#A03B8D,#E14C93)">
