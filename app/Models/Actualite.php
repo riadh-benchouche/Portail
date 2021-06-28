@@ -16,37 +16,9 @@ class Actualite extends Model implements HasMedia
     protected $dates=['deleted_at'];
     public $table = 'actualite';
 
-    public function updateMedia(array $newMediaArray, string $collectionName = 'default') : array
+    public function comments()
     {
-        $this->removeMediaItemsNotPresentInArray($newMediaArray, $collectionName);
-
-        $orderColumn = 1;
-
-        $updatedMedia = [];
-        foreach ($newMediaArray as $newMediaItem) {
-            $mediaClass = config('laravel-medialibrary.media_model');
-            $currentMedia = $mediaClass::findOrFail($newMediaItem['id']);
-
-            if ($currentMedia->collection_name != $collectionName) {
-                throw MediaCannotBeUpdated::doesNotBelongToCollection($collectionName, $currentMedia);
-            }
-
-            if (array_key_exists('name', $newMediaItem)) {
-                $currentMedia->name = $newMediaItem['name'];
-            }
-
-            if (array_key_exists('custom_properties', $newMediaItem)) {
-                $currentMedia->custom_properties = $newMediaItem['custom_properties'];
-            }
-
-            $currentMedia->order_column = $orderColumn++;
-
-            $currentMedia->save();
-
-            $updatedMedia[] = $currentMedia;
-        }
-
-        return $updatedMedia;
+        return $this->morphMany('App\Models\Comment', 'commentable')->latest();
     }
 
 }

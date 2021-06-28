@@ -282,7 +282,7 @@
         </div>
         <div class="col-md-6 mt-5">
             <div class="card   " style="background-color: transparent">
-                <video class="video-fluid z-depth-1"  loop controls muted>
+                <video class="video-fluid z-depth-1"  loop controls  muted>
                     <source src="{{asset('black/img/video.mp4')}}" type="video/mp4" />
                 </video>
                 <a class="btn  btn-lg ml-4 animation-on-hover mt-2 " style="width: 92% ; background-image: linear-gradient(#44698E,#70A6E1)">

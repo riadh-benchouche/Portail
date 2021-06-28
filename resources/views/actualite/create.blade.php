@@ -16,7 +16,7 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <form method="post" action="{{url('actualite')}}" enctype="multipart/form-data" >
+                        <form method="post" action="{{ url('actualite') }}" enctype="multipart/form-data" >
                             {{csrf_field()}}
                             {{ method_field('POST') }}
                             <h6 class="heading-small text-muted mb-4">{{ __('Nouvelle Actualite') }}</h6>

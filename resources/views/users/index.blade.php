@@ -35,7 +35,7 @@
                         @endforeach
                 </div>
                  <div class="card-footer">
-                     <div class="pagination page-item justify-content-center" >
+                     <div class="pagination " >
                             {{ $users -> links() }}
                      </div>
                  </div>

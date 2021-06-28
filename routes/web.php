@@ -23,6 +23,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('comments','App\Http\Controllers\CommentController@create')->name('comments.create');
+Route::post('comments/{$actualite}','App\Http\Controllers\CommentController@store')->name('comments.store');
+
+
 Route::get('rh/create','App\Http\Controllers\Rhcontroller@create')->name('rh/create');
 Route::post('rh','App\Http\Controllers\Rhcontroller@store');
 Route::get('/ile/download/{id}','App\Http\Controllers\Rhcontroller@show')->name('downloadfile');
@@ -83,7 +87,7 @@ Route::put( 'Image/{id}','App\Http\Controllers\GImageController@update');
 
 Route::get('/Video', 'App\Http\Controllers\VideotequeController@index');
 Route::get('Video/create','App\Http\Controllers\VideotequeController@create')->name('Video/create');
-Route::post('Video','App\Http\VideotequeController@store');
+Route::post('Video','App\Http\Controllers\VideotequeController@store');
 Route::delete( 'Video/{id}','App\Http\Controllers\VideotequeController@destroy');
 Route::get('Video/{id}/edit','App\Http\Controllers\VideotequeController@edit');
 Route::put( 'Video/{id}','App\Http\Controllers\VideotequeController@update');
@@ -192,15 +196,3 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 
-
-Route::group(['middleware' => 'auth'], function () {
-    Route::get('tasks', 'TaskController@index')->name('tasks.index');
-    Route::post('tasks', 'TaskController@store')->name('tasks.store');
-    Route::put('tasks/sync', 'TaskController@sync')->name('tasks.sync');
-    Route::put('tasks/{task}', 'TaskController@update')->name('tasks.update');
-});
-
-Route::group(['middleware' => 'auth'], function () {
-    Route::post('statuses', 'StatusController@store')->name('statuses.store');
-    Route::put('statuses', 'StatusController@update')->name('statuses.update');
-});
