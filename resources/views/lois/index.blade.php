@@ -39,15 +39,16 @@
                                 <td class="text-center">{{$loi->NbAraticle}}</td>
                                 <td class="text-center">@if($loi->etat < 4 ) En cours @endif</td>
                                 <td class="td-actions text-right">
-                                    <a href="{{url('loisdetails/'.$loi->id)}}" type="button" rel="tooltip" class="btn btn-info btn-sm btn-icon">
-                                        <i class="tim-icons icon-single-02"></i>
-                                    </a>
-                                    <button type="button" rel="tooltip" class="btn btn-success btn-sm btn-icon">
-                                        <i class="tim-icons icon-settings"></i>
-                                    </button>
-                                    <button type="button" rel="tooltip" class="btn btn-danger btn-sm btn-icon">
-                                        <i class="tim-icons icon-simple-remove"></i>
-                                    </button>
+                                    <form class="text-center " action="{{ url('loisdelete/'.$loi->id) }}" method="post">
+                                        @csrf
+                                        @method('delete')
+                                        <a href="{{url('loisdetails/'.$loi->id)}}" type="button" rel="tooltip" class="btn btn-info btn-sm btn-icon">
+                                            <i class="tim-icons icon-book-bookmark"></i>
+                                        </a>
+                                        <button type="button" class="btn btn-danger btn-sm btn-icon" onclick="confirm('{{ __("Êtes vous sûr de vouloir supprimer ?") }}') ? this.parentElement.submit() : ''">
+                                            <i class="tim-icons icon-trash-simple" title="supprimer"></i>
+                                        </button>
+                                    </form>
                                 </td>
                             </tr>
                         @endforeach

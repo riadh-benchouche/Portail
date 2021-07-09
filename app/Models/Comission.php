@@ -10,12 +10,17 @@ use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 
 class Comission extends Model implements HasMedia
 {
-
-
-    public function users(){
+    public function users()
+    {
         return $this ->hasMany('App\Models\User');
     }
-    public function lois(){
+
+    public function traveaux()
+    {
+        return $this ->hasMany('App\Models\Traveau');
+    }
+    public function lois()
+    {
         return $this ->hasMany('App\Models\Lois');
     }
 

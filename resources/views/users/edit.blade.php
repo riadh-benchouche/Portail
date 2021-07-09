@@ -75,12 +75,23 @@
                                 </fieldset>
 
                                 <fieldset class="form-group" style="display:none;" id="salarie">
-                                    <label for="PartyWalls">Structure :</label>
-                                    <select name="service" class="form-control bg-dark" id="TypeOfConstruction" >
-                                    @foreach($services as $service)
-                                    <option value="{{$service->id}}" @if( $user->service_id == $service->id ) selected @endif>{{ $service ->name }}</option>
+                                    <label for="PartyWalls">Direction :</label>
+                                    <select name="department" class="form-control bg-dark" id="TypeOfConstruction" >
+                                    @foreach($departments as $department)
+                                        <option value="{{ $department->id }}" @if( $user->department_id == $department->id  ) selected @endif>{{ $department->name }}</option>
                                     @endforeach
-                                </select>
+                                    </select>
+                                    <label for="PartyWalls">Sous-Direction :</label>
+                                    <select name="service" class="form-control bg-dark" id="TypeOfConstruction" >
+                                        @foreach($services as $service)
+                                            <option value="{{$service->id}}" @if( $user->service_id == $service->id ) selected @endif>{{ $service ->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    <div class="form-group{{ $errors->has('fonction') ? ' has-danger' : '' }}">
+                                        <label class="form-control-label" for="PartyWalls">{{ __('fonction') }}</label>
+                                        <input type="text" name="fonction" id="TypeOfConstruction" class="form-control form-control-alternative{{ $errors->has('fonction') ? ' is-invalid' : '' }}" placeholder="{{ __('fonction') }}" value="{{ old('fonction', $user->fonction) }}" >
+                                        @include('alerts.feedback', ['field' => 'fonction'])
+                                    </div>
                                 </fieldset>
 
                                 <fieldset class="form-group" style="display:none;" id="depute">
@@ -91,10 +102,13 @@
                                     @endforeach
                                     </select>
                                         <br>
-                                    <label for="president">Président de commission :</label>
-                                                <input type="checkbox" name="president" id="president" class="form-control form-control-alternative{{ $errors->has('president') ? ' is-invalid' : '' }}"  value="{{ old('president', $user->president) }}" required>
-                                    @include('alerts.feedback', ['field' => 'president'])
-                            
+                                    <label for="PartyWalls1">Role du parlementaire :</label>
+                                    <select name="president" class="form-control bg-dark" id="TypeOfConstruction" >
+                                        <option value="1" @if( $user->president == 1 ) selected @endif>Président</option>
+                                        <option value="2" @if( $user->president == 2 ) selected @endif>Vice-président</option>
+                                        <option value="3" @if( $user->president == 3 ) selected @endif>Référendaire</option>
+                                        <option value="3" @if( $user->president == 4 ) selected @endif>Membre</option>
+                                    </select>
                                 </fieldset>
 
                             <!--    <div class="form-group{{ $errors->has('password') ? ' has-danger' : '' }}">
@@ -111,20 +125,12 @@
                                     <input type="text" name="phone" id="input-phone" class="form-control form-control-alternative{{ $errors->has('phone') ? ' is-invalid' : '' }}" placeholder="{{ __('phone') }}" value="{{ old('phone', $user->phone) }}" required autofocus>
                                     @include('alerts.feedback', ['field' => 'phone'])
                                 </div>
-                                <div class="form-group{{ $errors->has('fonction') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label" for="input-name">{{ __('fonction') }}</label>
-                                    <input type="text" name="fonction" id="input-fonction" class="form-control form-control-alternative{{ $errors->has('fonction') ? ' is-invalid' : '' }}" placeholder="{{ __('fonction') }}" value="{{ old('fonction', $user->fonction) }}" required autofocus>
-                                    @include('alerts.feedback', ['field' => 'fonction'])
-                                </div>
                                 <div class="form-group{{ $errors->has('Wilaya') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-name">{{ __('Wilaya') }}</label>
                                     <input type="text" name="Wilaya" id="input-wilaya" class="form-control form-control-alternative{{ $errors->has('Wilaya') ? ' is-invalid' : '' }}" placeholder="{{ __('Wilaya') }}" value="{{ old('Wilaya', $user->Wilaya) }}" required autofocus>
                                     @include('alerts.feedback', ['field' => 'Wilaya'])
                                 </div>
-
-
                                 <div class="form-check">
-
                                     <label class="form-control-label" for="input-password-confirmation">{{ __('Give rights') }}</label>
                                         @foreach($roles as $role)
                                             <label for="{{ $role -> id}}" class="form-check-label ml-2"> {{$role -> name}}
@@ -137,9 +143,7 @@
                                              </span>
                                             </label>
                                         @endforeach
-
                                 </div>
-
                                 <script>
                                     $(document).ready(function(){
                                         $("#TypeOfConstruction").on("change", function(e){

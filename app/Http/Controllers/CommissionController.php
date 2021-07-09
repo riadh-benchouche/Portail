@@ -68,14 +68,21 @@ class CommissionController extends Controller
     {
 
         $comission =Comission::find($id);
-        $travaux = Traveau::where('commission_id','=',$comission->id)->paginate(4);
+        $travaux = Traveau::where('commission_id','=',$comission->id)->paginate(3);
         $loisp = Lois::where('comission_id','=',$comission->id)->paginate(6);
         $president =User::where('comission_id','=', $comission->id )
-                                      ->where('president', '=', 1)->first();
+                                      ->where('president','=', 1)->first();
+        $vice =User::where('comission_id','=', $comission->id )
+            ->where('president','=', 2)->first();
+        $refer =User::where('comission_id','=', $comission->id )
+            ->where('president','=', 3)->first();
+        $depute =User::where('comission_id','=', $comission->id )
+            ->where('president', '=', 4)->first();
+
         $membre =User::where('comission_id','=', $comission->id )
-                     ->where('president', '=', 0)->paginate(2);
+                     ->where('president', '=', 4)->paginate(2);
         //dd($membre);
-        return view('commission.detail',['president' => $president, 'membres' => $membre , 'loisp'=>$loisp, 'travaux' => $travaux]);
+        return view('commission.detail',['president' => $president,'depute'=>$depute, 'refer'=>$refer, 'vice'=>$vice ,'membres' => $membre , 'loisp'=>$loisp, 'travaux' => $travaux]);
     }
 
     /**

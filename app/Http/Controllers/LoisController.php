@@ -35,6 +35,7 @@ class LoisController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
+
     {
         $lois = Lois::all();
         //$loisC = $lois->where('DtAdoptAPN','=',null);
@@ -113,6 +114,7 @@ class LoisController extends Controller
     public function detail($id)
     {
         $lois=Lois::find($id);
+        $catergorys = Category_e::all();
         $chart = (new LarapexChart)->pieChart()
             ->addData([$lois->oui, $lois->non, $lois->abs])
             ->setLabels(['OUI', 'NON', 'ABS'])
@@ -120,7 +122,7 @@ class LoisController extends Controller
             ->setGrid([false, '#3F51B5', 0.1]);
 
         $events = [];
-        $data = Event::all();
+        $data = Event::Where('lois_id','=',$id)->get();
         if($data->count())
         {
             foreach ($data as $key => $value)
@@ -149,7 +151,7 @@ class LoisController extends Controller
         ]);
 
 
-        return view('lois.description',['lois'=>$lois, 'chart' => $chart, 'events'=>$events, 'calendar'=>$calendar]);
+        return view('lois.description',['lois'=>$lois, 'chart' => $chart,'catergorys'=>$catergorys, 'events'=>$events, 'calendar'=>$calendar]);
     }
 
     /**
@@ -185,10 +187,24 @@ class LoisController extends Controller
 
 
         $lois = Lois::find($request->input('id'));
-        if($lois->etat < 1 )
+        if($lois->type == 2 )
         {
-            $lois->etat = "1";
+            if($lois->etat < 4 )
+            {
+                $lois->etat = "4";
+            }
         }
+        else
+        {
+            if($lois->etat < 1 )
+            {
+                $lois->etat = "1";
+            }
+        }
+
+
+
+
 
         $enonce->save();
         $lois->save();
@@ -274,6 +290,10 @@ class LoisController extends Controller
         $sean
             ->addMedia($request->file)
             ->toMediaCollection();
+        $lois = Lois::find($request->input('id'));
+        if($lois->etat < 4 ) {
+            $lois->etat = "4";
+        }
 
         $sean->save();
 
@@ -379,8 +399,8 @@ class LoisController extends Controller
         $lois->oui = $request->input('oui');
         $lois->non = $request->input('non');
         $lois->abs = $request->input('abs');
-        if($lois->etat < 4 ) {
-            $lois->etat = 4;
+        if($lois->etat < 5 ) {
+            $lois->etat = 5;
         }
 
         if ($request->input('oui')>$request->input('non')){
@@ -600,6 +620,19 @@ class LoisController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $lois = Lois::find($id);
+
+        if ($lois->getFirstMedia()){
+            $lois->getFirstMedia()->delete();
+            $lois-> delete();
+        }
+        else {
+            $lois-> delete();
+        }
+
+
+
+        return redirect('lois');
+
     }
 }

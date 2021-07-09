@@ -19,7 +19,9 @@ class TraveauController extends Controller
     }
     public function index()
     {
-        //
+        $travaux = Traveau::all();
+        return view ('Travaux.index', compact('travaux'));
+
     }
 
     /**

@@ -3,7 +3,7 @@
 @section('content')
         <div class="row">
             <div class="col-md-9 mt-1">
-                <h1 class="h3 text-white">Department :</h1>
+                <h1 class="h3 text-white">Direction </h1>
             </div>
             <div class="col-md-3 text-sm-right">
                 <a href="{{ url('department/create') }}" class="btn btn-sm btn-primary ">
@@ -31,15 +31,19 @@
                             <td>{{$depatment->name}}</td>
                             <td>{{$depatment->created_at}}</td>
                             <td class="td-actions text-right">
-                                <button type="button" rel="tooltip" class="btn btn-info btn-sm btn-round btn-icon">
-                                    <i class="tim-icons icon-single-02"></i>
-                                </button>
-                                <button type="button" rel="tooltip" class="btn btn-success btn-sm btn-round btn-icon">
-                                    <i class="tim-icons icon-settings"></i>
-                                </button>
-                                <button type="button" rel="tooltip" class="btn btn-danger btn-sm btn-round btn-icon">
-                                    <i class="tim-icons icon-simple-remove"></i>
-                                </button>
+                                <form class="text-center " action="{{ url('department/'.$depatment->id) }}" method="post">
+                                    @csrf
+                                    @method('delete')
+                                    <a href="{{ url('department/'.$depatment->id) }}" class="btn btn-info btn-fab btn-icon btn-round" >
+                                        <i class="tim-icons icon-book-bookmark"></i>
+                                    </a>
+                                    <a rel="tooltip" class="btn btn-warning btn-fab btn-icon btn-round " href="{{ url ('department/'.$depatment->id.'/edit')}}" data-original-title="" title="">
+                                        <i class="tim-icons icon-pencil" title="edit"></i>
+                                    </a>
+                                    <button type="button" class="btn btn-danger btn-fab btn-icon btn-round " onclick="confirm('{{ __("Êtes vous sûr de vouloir supprimer ?") }}') ? this.parentElement.submit() : ''">
+                                        <i class="tim-icons icon-trash-simple" title="supprimer"></i>
+                                    </button>
+                                </form>
                             </td>
                         </tr>
                         @endforeach

@@ -13,7 +13,11 @@
                         @endif
                         <div class="mt-3">
                             <p class="text-secondary text-center font-weight-bold mb-2" style="font-size: 15px">{{ $user->name }} | {{ $user->nom_a }}</p>
+                            @if ($user->category == 'Député')
+                                <p class="text-secondary mb-3 " style="font-size: 22px">@if ($user->president==1) Président @elseif($user->president==2) Vice-président @elseif($user->president==3) Référendaire @elseif($user->president==4)Membre @endif  </p>
+                            @elseif($user->category == 'Salarié')
                             <p class="text-secondary mb-3 " style="font-size: 22px">{{ $user->fonction }}</p>
+                            @endif
                             <form class="text-center" action="{{ url('user/'.$user->id) }}" method="post">
                                 @csrf
                                 @method('delete')
@@ -76,23 +80,37 @@
                             <div class="col-sm-8 text-secondary">
                            @if($user->comissions == null)
                            <b>Non atribué</b>
-                                   @else 
+                                   @else
                                 <b>{{ $user->comissions->name}}</b>
-                               @endif 
+                               @endif
                             </div>
                         </div>
                     @elseif($user->category == 'Salarié')
                         <div class="row">
                             <div class="col-sm-4">
-                                <h6 >Structure</h6>
+                                <h6 >Direction-direction</h6>
                             </div>
                             <div class="col-sm-8 text-secondary">
-                            @if($user->comissions == null)
+                                @if($user->departments == null)
+                                    <b>Non atribué</b>
+                                @else
+                                    <b>{{ $user->departments->name}}</b>
+                                @endif
+
+                            </div>
+                        </div>
+                        <hr class="m-2">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <h6 >Sous-direction</h6>
+                            </div>
+                            <div class="col-sm-8 text-secondary">
+                            @if($user->services == null)
                            <b>Non atribué</b>
-                                   @else 
+                                   @else
                                    <b>{{ $user->services->name}}</b>
-                            @endif 
-                                
+                            @endif
+
                             </div>
                         </div>
                     @endif

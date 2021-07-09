@@ -16,7 +16,7 @@
         <div class="card-body ">
             <div class="tab-content text-center">
                 <div class="tab-pane active" id="pill1">
-                    @if($president || $membres == null )
+                    @if($president == null && $vice == null && $depute == null && $refer == null)
                         <h6 class="mr-2 text-primary" style="font-size: 20px">Liste des membres non a jour</h6>
                     @else
                     <div class="row flex-lg-nowrap">
@@ -39,6 +39,7 @@
                                                 </tr>
                                                 </thead>
                                                 <tbody>
+                                                @if($president != null)
                                                 <tr style="background-color: #1F1F26">
                                                     <td class="align-middle text-center">
                                                         <div class="bg-light d-inline-flex justify-content-center align-items-center align-top" style="width: 35px; height: 35px; border-radius: 3px;"><img @if($president->getFirstMedia() == null) src="http://style.anu.edu.au/_anu/4/images/placeholders/person_8x10.png " @else  src="{{ asset('storage').'/'.$president ->getFirstMedia()['id'].'/'.$president ->getFirstMedia()['file_name']}}" @endif></div>
@@ -54,7 +55,42 @@
                                                         </div>
                                                     </td>
                                                 </tr>
-
+                                                @endif
+                                                @if($vice != null)
+                                                    <tr style="background-color: #1F1F26">
+                                                    <td class="align-middle text-center">
+                                                        <div class="bg-light d-inline-flex justify-content-center align-items-center align-top" style="width: 35px; height: 35px; border-radius: 3px;"><img @if($vice->getFirstMedia() == null) src="http://style.anu.edu.au/_anu/4/images/placeholders/person_8x10.png " @else  src="{{ asset('storage').'/'.$vice ->getFirstMedia()['id'].'/'.$vice ->getFirstMedia()['file_name']}}" @endif></div>
+                                                    </td>
+                                                    <td class="text-nowrap align-middle">{{ $vice->name }} {{$vice->nom_a}}</td>
+                                                    <td class="text-nowrap align-middle"><span>{{ $vice->email }}</span></td>
+                                                    <td class="text-center align-middle">Vice-Président</td>
+                                                    <td class="text-center align-middle">
+                                                        <div class="btn-group align-top">
+                                                            <a href="{{ url('user/'.$vice->id) }}" class="btn btn-info btn-sm  btn-round" >
+                                                                <i class="tim-icons icon-badge font-weight-bold"></i>  Consulter
+                                                            </a>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                @endif
+                                                @if($refer != null)
+                                                    <tr style="background-color: #1F1F26">
+                                                        <td class="align-middle text-center">
+                                                            <div class="bg-light d-inline-flex justify-content-center align-items-center align-top" style="width: 35px; height: 35px; border-radius: 3px;"><img @if($refer->getFirstMedia() == null) src="http://style.anu.edu.au/_anu/4/images/placeholders/person_8x10.png " @else  src="{{ asset('storage').'/'.$refer ->getFirstMedia()['id'].'/'.$refer ->getFirstMedia()['file_name']}}" @endif></div>
+                                                        </td>
+                                                        <td class="text-nowrap align-middle">{{ $refer->name }} {{$refer->nom_a}}</td>
+                                                        <td class="text-nowrap align-middle"><span>{{ $refer->email }}</span></td>
+                                                        <td class="text-center align-middle">Référendaire</td>
+                                                        <td class="text-center align-middle">
+                                                            <div class="btn-group align-top">
+                                                                <a href="{{ url('user/'.$refer->id) }}" class="btn btn-info btn-sm  btn-round" >
+                                                                    <i class="tim-icons icon-badge font-weight-bold"></i>  Consulter
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                @endif
+                                                @if($depute != null)
                                                 @foreach($membres as $membre)
                                                 <tr>
 
@@ -73,6 +109,7 @@
                                                     </td>
                                                 </tr>
                                                 @endforeach
+                                                    @endif
 
                                                 </tbody>
                                             </table>

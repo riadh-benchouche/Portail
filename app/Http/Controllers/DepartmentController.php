@@ -46,7 +46,7 @@ class DepartmentController extends Controller
 
         $department->save();
 
-        session()->flash('success', 'Department Ajouter Ajouter');
+        session()->flash('success', 'Department Ajouter ');
 
         return redirect('department');
     }
@@ -76,9 +76,10 @@ class DepartmentController extends Controller
      * @param  \App\Models\Department  $department
      * @return \Illuminate\Http\Response
      */
-    public function edit(Department $department)
+    public function edit($id)
     {
-        //
+        $department =Department::find($id);
+        return view('department.edit', ['department'=>$department ]);
     }
 
     /**
@@ -88,9 +89,18 @@ class DepartmentController extends Controller
      * @param  \App\Models\Department  $department
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Department $department)
+    public function update(Request $request, $id)
     {
-        //
+        $department =Department::find($id);
+
+        $department->name = $request->input('name');
+        $department->matricule = $request->input('matricule');
+
+        $department->save();
+
+        session()->flash('success', 'Department Ajouter ');
+
+        return redirect('department');
     }
 
     /**
@@ -99,8 +109,10 @@ class DepartmentController extends Controller
      * @param  \App\Models\Department  $department
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Department $department)
+    public function destroy($id)
     {
-        //
+        $department =Department::find($id);
+        $department->delete();
+        return redirect('department');
     }
 }

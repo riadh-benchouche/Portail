@@ -14,6 +14,11 @@ class Event extends Model
         return $this ->belongsTo('App\Models\Category_e', 'category_id' ,'id');
     }
 
+    public function lois()
+    {
+        return $this ->belongsTo('App\Models\Lois', 'lois_id' ,'id');
+    }
+
     protected $fillable = [
 
         'title', 'start_date', 'end_date',

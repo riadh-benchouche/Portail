@@ -71,6 +71,26 @@ class FullCalenderController extends Controller
         return redirect('icons');
     }
 
+    public function lois(Request $request)
+    {
+        $request->validate([
+            'title'=>'required',
+            'category'=>'required',
+            'start_date'=>'required',
+            'end_date'=>'required ',
+            'description'=>'required ',
+        ]);
+        $events=new Event;
+        $events->title=$request->input('title');
+        $events->lois_id=$request->input('id');
+        $events->category_id = $request->input('category');
+        $events->start_date=$request->input('start_date');
+        $events->end_date=$request->input('end_date');
+        $events->description=$request->input('description');
+        $events->save();
+        return redirect('loisdetails/'.$request->input('id'));
+    }
+
     public function detail($id)
     {
         $event = Event::find($id);

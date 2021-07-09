@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Actualite;
 use App\Models\User;
+use App\Models\Comment;
 use App\Notifications\ActualiteAjouter;
 use App\Notifications\ajouter;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Notification;
 
 class ActualiteController extends Controller
@@ -59,6 +61,23 @@ class ActualiteController extends Controller
         return redirect('actualite');
     }
 
+    public function comment(Request $request, $id)
+    {
+        $actualite = Actualite::find($id);
+        $user = User::find(Auth::id());
+
+        //$user = User::find(Auth::id());
+        $comment = new Comment();
+        $comment->commentable_type = "App\Models\Actualite";
+        $comment->commentable_id = $actualite->id;
+        $comment->comment = $request->input('content');
+        $comment->user_id = $user->id;
+
+        $comment->save();
+
+        return redirect('actualite');
+    }
+
     /**
      * Display the specified resource.
      *
@@ -68,10 +87,10 @@ class ActualiteController extends Controller
     public function show($id)
     {
         $actualite = Actualite::find($id);
-        $actualites = Actualite::latest()->take(3)->get();
+        $comments = Comment::Where('commentable_id','=',$actualite->id)->Where('commentable_type','=','App\Models\Actualite')->get();
 
       //  dd($actualites);
-        return view ('actualite.detail', ['actualite'=>$actualite , 'actualites'=>$actualites]);
+        return view ('actualite.detail', ['actualite'=>$actualite , 'comments'=>$comments]);
     }
 
     /**

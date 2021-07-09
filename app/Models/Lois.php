@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 
@@ -12,6 +13,9 @@ class Lois extends Model implements HasMedia
     public $table = 'lois';
     use HasMediaTrait;
     use HasFactory;
+
+    use SoftDeletes;
+    protected $dates=['deleted_at'];
 
 
 
@@ -32,6 +36,12 @@ class Lois extends Model implements HasMedia
     {
         return $this->hasOne(Enonce::class );
     }
+
+    public function events()
+    {
+        return $this->hasMany('App\Models\Event');
+    }
+
     public function preliminaire()
     {
         return $this->hasOne(Preliminaire::class);

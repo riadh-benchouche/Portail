@@ -19,10 +19,20 @@
         </div>
         <hr>
         <h5>Commentaires</h5>
-        <form action="{{action('App\Http\Controllers\CommentController@store', $actualite)}}" method="POST" class="mt-3">
+        @foreach($comments as $comment)
+            <div class="card">
+                <div class="display-comment">
+                    <strong>{{ $comment->users->name}}</strong>
+                    <p>{{ $comment->comment }}</p>
+                    <a href="" id="reply"></a>
+                </div>
+            </div>
+        @endforeach
+        <form action="{{action('App\Http\Controllers\ActualiteController@comment',$actualite->id)}}" method="POST" class="mt-3">
             {{csrf_field()}}
             {{ method_field('POST') }}
             <div class="form-group">
+                <input hidden name="user" value="{{auth()->user()}}">
                 <label for="content">Votre commentaire</label>
                 <textarea class="form-control" @error('content') aria-invalid @enderror name="content" id="content" rows="5"></textarea>
                 @error('content')
@@ -33,6 +43,7 @@
             </div>
             <button type="submit" class="btn btn-success">Soumettre Commentaire</button>
         </form>
+
 
     </div>
 @endsection

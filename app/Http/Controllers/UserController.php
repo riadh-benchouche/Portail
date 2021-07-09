@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comission;
+use App\Models\Department;
 use App\Models\Service;
 use App\Models\User;
 use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
+use function React\Promise\all;
 
 
 class UserController extends Controller
@@ -19,10 +21,75 @@ class UserController extends Controller
      * @param  \App\Models\User  $model
      * @return \Illuminate\View\View
      */
-    public function index(User $model)
+    public function index()
     {
-        //$depute = User::where('categorie','=','Député');
-        return view('users.index', ['users' => $model->Paginate(6)]);
+        $commission = Comission::all();
+        $users = User::where('category','=','Député')->paginate(6);
+        return view('users.index', ['users' => $users, 'commissions'=>$commission]);
+    }
+    public function search()
+    {
+        $commission = Comission::all();
+
+        $n = request()->input('n');
+        $m = request()->input('m');
+        $comission = request()->input('comission');
+        $president = request()->input('president');
+        $depute = User::Where('category','=','Député');
+
+        if ($comission && $president) {
+            $users=$depute->Where('matricule','like',"$m%")->Where('name','like',"%$n%" )->Where('comission_id','=',"$comission" )->Where('president','=',"$president" )->get();
+        }
+        elseif ($comission && !$president) {
+            $users=$depute->Where('matricule','like',"$m%")->Where('name','like',"%$n%" )->Where('comission_id','=',"$comission" )->get();
+        }
+        elseif (!$comission && $president) {
+            $users=$depute->Where('matricule','like',"$m%")->Where('name','like',"%$n%" )->Where('president','=',"$president" )->get();
+        }
+        else {
+            $users=$depute->Where('matricule','like',"$m%")->Where('name','like',"%$n%" )->get();
+        }
+        return view('users.searchd', ['users' => $users, 'commissions'=>$commission]);
+    }
+
+    public function searchf()
+    {
+        $directions = Department::all();
+        $services = Service::all();
+
+        $n = request()->input('n');
+        $m = request()->input('m');
+        $direction = request()->input('dir');
+        $service = request()->input('ser');
+        $fonc = User::Where('category','=','Salarié');
+
+        if ($direction && $service) {
+            $users=$fonc->Where('matricule','like',"$m%")->Where('name','like',"%$n%" )->Where('department_id','=',"$direction" )->Where('service_id','=',"$service" )->get();
+        }
+        elseif ($direction && !$service) {
+            $users=$fonc->Where('matricule','like',"$m%")->Where('name','like',"%$n%" )->Where('department_id','=',"$direction" )->get();
+        }
+        elseif (!$direction && $service) {
+            $users=$fonc->Where('matricule','like',"$m%")->Where('name','like',"%$n%" )->Where('service_id','=',"$service" )->get();
+        }
+        else {
+            $users=$fonc->Where('matricule','like',"$m%")->Where('name','like',"%$n%" )->get();
+        }
+        return view('users.searchf', ['users' => $users, 'directions'=>$directions,'services'=>$services]);
+    }
+
+
+    public function index1()
+    {
+        $directions = Department::all();
+        $services = Service::all();
+        $users = User::where('category','=','Salarié')->paginate(6);
+        return view('users.indexfon', ['users' => $users,'directions'=>$directions,'services'=>$services]);
+    }
+    public function index2()
+    {
+        $users = User::where('category','=',null)->paginate(6);
+        return view('users.indexall', ['users' => $users]);
     }
 
 
@@ -45,52 +112,58 @@ class UserController extends Controller
         $roles = Role::all();
         $services = Service::all();
         $comissions = Comission::all();
+        $departments = Department::all();
 
       // dd( $roles);
         // $user = User::find(id);
 
-        return view('users.edit', compact('user','roles','services','comissions'));
+        return view('users.edit', compact('user','departments','roles','services','comissions'));
     }
 
 
     public function update(UserRequest $request, User  $user)
     {
-                
-        if ( $request->service == null )
+        $comission= null;
+        $service= null;
+        $president = null;
+        $fonction = null;
+        $department = null;
+
+        if ( $request->categorie == 'Député'  )
         {
           $comission = $request->input('comission');
           $service = null;
-        } 
-        elseif ($request->comission == null){
+          $president = $request->input('president');
+          $fonction = null;
+            $department = null;
+
+        }
+        elseif ( $request->categorie == 'Salarié'){
             $service = $request->input('service');
             $comission = null;
-        } 
-        if($request->input('president') == null){
-            $president = 0;
-            
-         }
-         else{
-            $president = 1;
+            $president = null;
+            $fonction = $request->input('fonction');
+            $department =  $request->input('department');
+        }
 
-         } 
-        
+
         $hasPassword = $request->get('password');
              if ($request->file == null )
              {
-                
+
                  $user->update(
                      $request->merge(['password' => Hash::make($request->get('password'))])
                          ->except([$hasPassword ? '' : 'password'],
                              $user->matricule = $request->input('matricule'),
                              $user->phone = $request->input('phone'),
-                             $user->fonction = $request->input('fonction'),
+                             $user->fonction = $fonction,
                              $user->Wilaya = $request->input('Wilaya'),
                              $user->nom_a = $request->input('nom_a'),
                              $user->category = $request->input('categorie'),
                                $user->comission_id = $comission,
+                             $user->department_id = $department,
                                $user->service_id = $service,
                                $user->president = $president,
-
 
                              $user->syncRoles($request->role)
                          ));
@@ -109,10 +182,11 @@ class UserController extends Controller
                              ->except([$hasPassword ? '' : 'password'],
                                  $user->matricule = $request->input('matricule'),
                                  $user->phone = $request->input('phone'),
-                                 $user->fonction = $request->input('fonction'),
+                                 $user->fonction = $fonction,
                                  $user->Wilaya = $request->input('Wilaya'),
                                  $user->nom_a = $request->input('nom_a'),
                                  $user->category = $request->input('categorie'),
+                                 $user->department_id = $department,
 
                                  $user->comission_id = $comission,
                                  $user->service_id = $service,

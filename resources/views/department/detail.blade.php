@@ -7,7 +7,7 @@
                 <div class="nav-tabs-wrapper">
                     <ul class="nav nav-pills bg-rose">
                         <li class="nav-item "><a class="nav-link  active" href="#pill1" data-toggle="tab">Membres</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#pill2" data-toggle="tab">Services</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#pill2" data-toggle="tab">Sous-Direction</a></li>
                         <li class="nav-item"><a class="nav-link" href="#pill3" data-toggle="tab">Bibliotheques</a></li>
                     </ul>
                 </div>
@@ -46,7 +46,7 @@
                                                             </td>
                                                             <td class="text-nowrap align-middle">{{$membre->name}} {{ $membre->nom_a }}</td>
                                                             <td class="text-nowrap align-middle"><span>{{$membre->email}}</span></td>
-                                                            <td class="text-center align-middle">{{$membre->name}}</td>
+                                                            <td class="text-center align-middle">{{$membre->fonction}}</td>
                                                             <td class="text-center align-middle">
                                                                 <div class="btn-group align-top">
                                                                     <a href="{{ url('user/'.$membre->id) }}" class="btn btn-info btn-sm  btn-round" >

@@ -8,7 +8,7 @@
                     <div class="card-header">
                         <div class="row align-items-center">
                             <div class="col-8">
-                                <h3 class="mb-0">{{ __('Nouveau Département') }}</h3>
+                                <h3 class="mb-0">{{ __('Nouvelle Direction') }}</h3>
                             </div>
                             <div class="col-4 text-right">
                                 <a href="{{ url('department') }}" class="btn btn-sm btn-primary">{{ __('Retour') }}</a>

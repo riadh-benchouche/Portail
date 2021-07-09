@@ -31,6 +31,11 @@ class User extends Authenticatable implements HasMedia
         return $this ->belongsTo('App\Models\Comission', 'comission_id' ,'id');
     }
 
+    public function comment()
+    {
+        return $this ->hasMany('App\Models\Comment');
+    }
+
 
 
 

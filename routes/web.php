@@ -23,8 +23,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('comments','App\Http\Controllers\CommentController@create')->name('comments.create');
-Route::post('comments/{$actualite}','App\Http\Controllers\CommentController@store')->name('comments.store');
+
 
 
 Route::get('rh/create','App\Http\Controllers\Rhcontroller@create')->name('rh/create');
@@ -33,16 +32,23 @@ Route::get('/ile/download/{id}','App\Http\Controllers\Rhcontroller@show')->name(
 Route::delete( 'rh/{id}','App\Http\Controllers\Rhcontroller@destroy');
 Route::get('rh/{id}','App\Http\Controllers\Rhcontroller@showdetail')->name('detailrh');
 
+Route::get('contact','App\Http\Controllers\Contactcontroller@create');
+Route::post('contact','App\Http\Controllers\Contactcontroller@store');
+
 
 
 Route::get('/fullcalender', 'App\Http\Controllers\FullCalenderController@index');
 Route::get('fullcalender/create','App\Http\Controllers\FullCalenderController@create');
 Route::post('fullcalender','App\Http\Controllers\FullCalenderController@store');
+Route::post('loiscalendar','App\Http\Controllers\FullCalenderController@lois');
 Route::delete( 'fullcalender/{id}','App\Http\Controllers\FullCalenderController@destroy');
 Route::get('fullcalender/{id}/edit','App\Http\Controllers\FullCalenderController@edit');
 Route::put( 'fullcalender/{id}','App\Http\Controllers\FullCalenderController@update');
 Route::get('fullcalender/{id}','App\Http\Controllers\FullCalenderController@detail');
 
+
+Route::get('/fonc', 'App\Http\Controllers\UserController@index1');
+Route::get('/alluser', 'App\Http\Controllers\UserController@index2');
 
 
 
@@ -67,6 +73,7 @@ Route::post('actualite','App\Http\Controllers\ActualiteController@store');
 Route::delete( 'actualite/{id}','App\Http\Controllers\ActualiteController@destroy');
 Route::get('actualite/{id}/edit','App\Http\Controllers\ActualiteController@edit');
 Route::put( 'actualite/{id}','App\Http\Controllers\ActualiteController@update');
+Route::post( 'comment/{id}','App\Http\Controllers\ActualiteController@comment');
 Route::get('actualite/{id}','App\Http\Controllers\ActualiteController@show')->name('detailact');
 
 Route::get('travaux/create','App\Http\Controllers\TraveauController@create')->name('travaux/create');
@@ -92,6 +99,13 @@ Route::delete( 'Video/{id}','App\Http\Controllers\VideotequeController@destroy')
 Route::get('Video/{id}/edit','App\Http\Controllers\VideotequeController@edit');
 Route::put( 'Video/{id}','App\Http\Controllers\VideotequeController@update');
 
+Route::get('/InterVideo', 'App\Http\Controllers\InterVideoController@index');
+Route::get('InterVideo/create','App\Http\Controllers\InterVideoController@create')->name('InterVideo/create');
+Route::post('InterVideo','App\Http\Controllers\InterVideoController@store');
+Route::delete( 'InterVideo/{id}','App\Http\Controllers\InterVideoController@destroy');
+Route::get('InterVideo/{id}/edit','App\Http\Controllers\InterVideoController@edit');
+Route::put( 'InterVideo/{id}','App\Http\Controllers\InterVideoController@update');
+
 
 
 Route::resource('commission','App\Http\Controllers\CommissionController');
@@ -113,7 +127,7 @@ Route::get('/fileP/download/{id}','App\Http\Controllers\LoisController@downloadP
 Route::delete('pre/{id}','App\Http\Controllers\LoisController@deleteP')->name('deleteP');
 Route::post('pre','App\Http\Controllers\LoisController@updatePre')->name('pre');
 Route::get('/filePA/download/{id}','App\Http\Controllers\LoisController@downloadP')->name('downloadfilePA');
-Route::delete('prea/{id}','App\Http\Controllers\LoisController@deleteP')->name('deletePA');
+Route::delete('prea/{id}','App\Http\Controllers\LoisController@deletePA')->name('deletePA');
 Route::post('prea','App\Http\Controllers\LoisController@updatePreAR')->name('prea');
 
 Route::get('/fileEA/download/{id}','App\Http\Controllers\LoisController@downloadE')->name('downloadfileEA');
@@ -156,6 +170,9 @@ Route::get('/fileNAR/download/{id}','App\Http\Controllers\LoisController@downloa
 Route::delete('nouvAR/{id}','App\Http\Controllers\LoisController@deleteNA')->name('deleteNA');
 Route::post('nouvAR','App\Http\Controllers\LoisController@updateNAR')->name('nouvAR');
 
+Route::delete('loisdelete/{id}','App\Http\Controllers\LoisController@destroy')->name('loisdelete');
+
+
 Route::post('loisv','App\Http\Controllers\LoisController@updateLois')->name('loisv');
 
 Route::get('echarts', 'App\Http\Controllers\LoisController@echart');
@@ -185,11 +202,14 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('annonce', ['as' => 'annonce.index', 'uses' => 'App\Http\Controllers\AnnonceController@index']);
         Route::get('lois', ['as' => 'lois.index', 'uses' => 'App\Http\Controllers\LoisController@index']);
 		Route::get('actualite', ['as' => 'actualite.index', 'uses' => 'App\Http\Controllers\ActualiteController@index']);
+		Route::get('travaux', ['as' => 'travaux.index', 'uses' => 'App\Http\Controllers\TraveauController@index']);
 });
+Route::get('/searchd','App\Http\Controllers\UserController@search')->name('users.searchd');
+Route::get('/searchf','App\Http\Controllers\UserController@searchf')->name('users.searchf');
 
 Route::group(['middleware' => 'auth'], function () {
 	Route::resource('user', 'App\Http\Controllers\UserController', ['except' => ['show']]);
-	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'App\Http\Controllers\ProfileController@edit']);
+    Route::get('profile', ['as' => 'profile.edit', 'uses' => 'App\Http\Controllers\ProfileController@edit']);
     Route::get('user/{id}','App\Http\Controllers\UserController@show')->name('detailu');
     Route::put('profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);

@@ -84,13 +84,13 @@
                             </a>
                         </li>
                         <li >
-                              <a href="">
+                              <a href="{{ url('fonc') }}">
                                   <i class="tim-icons icon-badge"></i>
                                   <p class="font-weight-bold">{{ __('Annuaire Personnel') }}</p>
                               </a>
                         </li>
                         <li >
-                              <a href="">
+                              <a href="{{url('bibu')}}">
                                   <i class="tim-icons icon-vector"></i>
                                   <p class="font-weight-bold">{{ __('Organigramme') }}</p>
                               </a>
@@ -114,13 +114,13 @@
                     <ul class="nav pl-2">
 
                         <li >
-                            <a href="">
+                            <a href="mms://live.apn.gov.dz:8044">
                                 <i class="tim-icons icon-triangle-right-17"></i>
                                 <p class="font-weight-bold" >{{ __('En direct') }}</p>
                             </a>
                         </li>
                         <li >
-                            <a href="">
+                            <a href="{{ route('travaux.index') }}">
                                 <i class="tim-icons icon-molecule-40"></i>
                                 <p class="font-weight-bold" >{{ __('Actualités législatives') }}</p>
                             </a>
@@ -201,7 +201,7 @@
                 <div class="collapse" id="info">
                     <ul class="nav pl-2">
                         <li>
-                            <a href="">
+                            <a href="{{url('maps')}}">
                                 <i class="tim-icons icon-world"></i>
                                 <p>{{ __('Présentation')}}</p>
                             </a>
@@ -213,13 +213,13 @@
                             </a>
                         </li>
                         <li  >
-                            <a href="">
+                            <a href="{{url('notifications')}}">
                                 <i class="tim-icons icon-tap-02"></i>
-                                <p>{{ __('Les systèmes d’information') }}</p>
+                                <p>{{ __('Application') }}</p>
                             </a>
                         </li>
                         <li  >
-                            <a href="">
+                            <a href="{{url('contact')}}">
                                 <i class="tim-icons icon-settings-gear-63"></i>
                                 <p>{{ __('Aide et assistance ') }}</p>
                             </a>

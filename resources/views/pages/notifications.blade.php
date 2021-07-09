@@ -1,127 +1,70 @@
 @extends('layouts.app', ['page' => __('Notifications'), 'pageSlug' => 'notifications'])
 
 @section('content')
-  <div class="row">
-  <div class="col-md-6">
-    <div class="card">
-      <div class="card-header">
-        <h4 class="card-title">Notifications Style</h4>
-      </div>
-      <div class="card-body">
-        <div class="alert alert-info">
-          <span>This is a plain notification</span>
-        </div>
-        <div class="alert alert-info">
-          <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
-            <i class="tim-icons icon-simple-remove"></i>
-          </button>
-          <span>This is a notification with close button.</span>
-        </div>
-        <div class="alert alert-info alert-with-icon" data-notify="container">
-          <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
-            <i class="tim-icons icon-simple-remove"></i>
-          </button>
-          <span data-notify="icon" class="tim-icons icon-bell-55"></span>
-          <span data-notify="message">This is a notification with close button and icon.</span>
-        </div>
-        <div class="alert alert-info alert-with-icon" data-notify="container">
-          <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
-            <i class="tim-icons icon-simple-remove"></i>
-          </button>
-          <span data-notify="icon" class="tim-icons icon-bell-55"></span>
-          <span data-notify="message">This is a notification with close button and icon and have many lines. You can see that the icon and the close button are always vertically aligned. This is a beautiful notification. So you don't have to worry about the style.</span>
-        </div>
-      </div>
+    <div class="row">
+        <h1 class='text-info font-weight-bold h1 text-center ml-auto mr-auto'>Les Systemes d'information </h1>
     </div>
-  </div>
-  <div class="col-md-6">
-    <div class="card">
-      <div class="card-header">
-        <h4 class="card-title">Notification states</h4>
-      </div>
-      <div class="card-body">
-        <div class="alert alert-primary">
-          <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
-            <i class="tim-icons icon-simple-remove"></i>
-          </button>
-          <span>
-            <b> Primary - </b> This is a regular notification made with ".alert-primary"</span>
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card card-blog pt-2">
+                <div class="card-image">
+                    <a href="javascript:;">
+                        <img class="img ml-auto mr-auto" width="80%" src="{{asset('black/img/work.svg')}}">
+                    </a>
+                </div>
+                <div class="card-body text-center">
+                    <h4 class="card-title font-weight-bold">
+                       Application des ressources Humaines
+                    </h4>
+                    <div class="card-description">
+                        Un outil mis à la disposition des ressources humaines qui a pour objectif simplifier l’ensemble des tâches administratives liées à la gestion du personnel et d’optimiser les processus RH.
+                    </div>
+                    <div class="card-footer">
+                        <a href="javascript:;" class="btn btn-danger btn-round">Accéder a l'application</a>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="alert alert-info">
-          <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
-            <i class="tim-icons icon-simple-remove"></i>
-          </button>
-          <span>
-            <b> Info - </b> This is a regular notification made with ".alert-info"</span>
+        <div class="col-md-4">
+            <div class="card card-blog pt-2">
+                <div class="card-image">
+                    <a href="javascript:;">
+                        <img class="img ml-auto mr-auto" width="70%" src="{{asset('black/img/payment.svg')}}">
+                    </a>
+                </div>
+                <div class="card-body text-center">
+                    <h4 class="card-title font-weight-bold">
+                        Application de gestion de la Paie
+                    </h4>
+                    <div class="card-description">
+                       Un outil informatique permettant de gérer et d’automatiser l’intégralité des processus « Paiement » et permet donc d’établir une fiche de paie complète, ainsi que les déclarations obligatoires.
+                    </div>
+                    <div class="card-footer">
+                        <a href="javascript:;" class="btn btn-danger btn-round">Accéder a l'application</a>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="alert alert-success">
-          <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
-            <i class="tim-icons icon-simple-remove"></i>
-          </button>
-          <span>
-            <b> Success - </b> This is a regular notification made with ".alert-success"</span>
+        <div class="col-md-4">
+            <div class="card card-blog pt-4 pl-3 pr-3">
+                <div class="card-image">
+                    <a href="javascript:;">
+                        <img class="img" src="{{asset('black/img/mail.svg')}}">
+                    </a>
+                </div>
+                <div class="card-body text-center">
+                    <h4 class="card-title font-weight-bold">
+                        Outlook Web Application « OWA »
+                    </h4>
+                    <div class="card-description">
+                        Vous pouvez vous connecter à votre messagerie Exchange 2016 via un navigateur web grâce à Outlook Web App et ce depuis n’importe quel endroit.
+                    </div>
+                    <div class="card-footer">
+                        <a href="{{url('https://mail.apn.gov.dz/owa')}}" class="btn btn-danger btn-round mt-4">Accéder a l'OWA</a>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="alert alert-warning">
-          <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
-            <i class="tim-icons icon-simple-remove"></i>
-          </button>
-          <span>
-            <b> Warning - </b> This is a regular notification made with ".alert-warning"</span>
-        </div>
-        <div class="alert alert-danger">
-          <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
-            <i class="tim-icons icon-simple-remove"></i>
-          </button>
-          <span>
-            <b> Danger - </b> This is a regular notification made with ".alert-danger"</span>
-        </div>
-      </div>
     </div>
-  </div>
-  <div class="col-md-12">
-    <div class="card">
-      <div class="card-body">
-        <div class="places-buttons">
-          <div class="row">
-            <div class="col-md-6 ml-auto mr-auto text-center">
-              <h4 class="card-title">
-                Notifications Places
-                <p class="category">Click to view notifications</p>
-              </h4>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-lg-8 ml-auto mr-auto">
-              <div class="row">
-                <div class="col-md-4">
-                  <button class="btn btn-primary btn-block" onclick="demo.showNotification('top','left')">Top Left</button>
-                </div>
-                <div class="col-md-4">
-                  <button class="btn btn-primary btn-block" onclick="demo.showNotification('top','center')">Top Center</button>
-                </div>
-                <div class="col-md-4">
-                  <button class="btn btn-primary btn-block" onclick="demo.showNotification('top','right')">Top Right</button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-lg-8 ml-auto mr-auto">
-              <div class="row">
-                <div class="col-md-4">
-                  <button class="btn btn-primary btn-block" onclick="demo.showNotification('bottom','left')">Bottom Left</button>
-                </div>
-                <div class="col-md-4">
-                  <button class="btn btn-primary btn-block" onclick="demo.showNotification('bottom','center')">Bottom Center</button>
-                </div>
-                <div class="col-md-4">
-                  <button class="btn btn-primary btn-block" onclick="demo.showNotification('bottom','right')">Bottom Right</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 @endsection

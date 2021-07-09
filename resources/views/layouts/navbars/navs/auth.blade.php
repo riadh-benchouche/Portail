@@ -18,7 +18,8 @@
         <div class="collapse navbar-collapse" id="navigation">
             <ul class="navbar-nav ml-auto">
                 <li class="search-bar input-group">
-                    <button class="btn btn-link" id="search-button" data-toggle="modal" data-target="#searchModal"><i class="tim-icons icon-zoom-split"></i>
+                    <button class="btn btn-link" id="search-button" data-toggle="modal" data-target="#searchModal">
+                        <i class="tim-icons icon-zoom-split"></i>
                         <span class="d-lg-none d-md-block">{{ __('Search') }}</span>
                     </button>
                 </li>
@@ -34,17 +35,17 @@
                         @foreach(auth()->user()->unreadNotifications as $notification)
                            @if($notification->type == "App\Notifications\ajouter")
                         <li class="nav-link">
-                            <a  href="{{url('rh')}}" class="nav-item dropdown-item text-dark">Nouveau document:<u>{{$notification->data['rhName']}}</u>, Ajouter aux Ressource humaines</a>
+                            <a  href="{{url('rh')}}" class="nav-item dropdown-item text-dark">Nouveau document:<u>{{substr($notification->data['rhName'],0,15)}}</u>, Ajouter aux Ressource humaines</a>
                         </li>
                             @endif
                         @if($notification->type == "App\Notifications\AnnonceAjouter")
                             <li class="nav-link">
-                                <button  href="{{route('annonce.index')}}"   class="nav-item dropdown-item text-dark">Nouvelle Annonce: <u> {{$notification->data['AnnonceName']}}</u>, Ajouter aux annonces</button>
+                                <button  href="{{route('annonce.index')}}"   class="nav-item dropdown-item text-dark">Nouvelle Annonce: <u> {{substr($notification->data['AnnonceName'],0,15)}}</u>, Ajouter aux annonces</button>
                             </li>
                         @endif
                         @if($notification->type == "App\Notifications\ActualiteAjouter")
                             <li class="nav-link">
-                                 <a  href="{{route('actualite.index')}}"   class="nav-item dropdown-item text-dark">Nouvelle Actualite:  <u>{{$notification->data['ActualiteName']}}</u>, Ajouter aux Actualites</a>
+                                 <a  href="{{route('actualite.index')}}"   class="nav-item dropdown-item text-dark">Nouvelle Actualite:  <u>{{substr($notification->data['ActualiteName'],0,15)}}</u>, Ajouter aux Actualites</a>
                             </li>
                         @endif
                         @endforeach
