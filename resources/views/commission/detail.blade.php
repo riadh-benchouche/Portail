@@ -152,7 +152,7 @@
                                                     <th>Date</th>
                                                     <th class="text-center">Nombre d'article</th>
                                                     <th class="text-center">etat</th>
-                                                    <th class="text-right">Actions</th>
+                                                    <th class="text-right">Détail</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
@@ -168,12 +168,6 @@
                                                             <a href="{{url('loisdetails/'.$loi->id)}}" type="button" rel="tooltip" class="btn btn-info btn-sm btn-icon">
                                                                 <i class="tim-icons icon-single-02"></i>
                                                             </a>
-                                                            <button type="button" rel="tooltip" class="btn btn-success btn-sm btn-icon">
-                                                                <i class="tim-icons icon-settings"></i>
-                                                            </button>
-                                                            <button type="button" rel="tooltip" class="btn btn-danger btn-sm btn-icon">
-                                                                <i class="tim-icons icon-simple-remove"></i>
-                                                            </button>
                                                         </td>
                                                     </tr>
                                                 @endforeach
@@ -191,11 +185,13 @@
                         </div>
                 </div>
                 <div class="tab-pane" id="pill3">
+                    @can('edit')
                     <div class=" text-sm-right mb-2">
                         <a href="{{ url('travaux/create') }}" class="btn btn-sm btn-primary ">
                             <i class="tim-icons icon-simple-add"></i> Ajouter
                         </a>
                     </div>
+                    @endcan
                     <div class="row mx-3">
                         @foreach( $travaux as $travau )
                             <div class="col-4">

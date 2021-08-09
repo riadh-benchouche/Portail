@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Comission;
 use App\Models\Department;
+use App\Models\G_Parlementaire;
 use App\Models\Service;
 use App\Models\User;
 use App\Http\Requests\UserRequest;
@@ -24,32 +25,47 @@ class UserController extends Controller
     public function index()
     {
         $commission = Comission::all();
+        $groupes = G_Parlementaire::all();
         $users = User::where('category','=','Député')->paginate(6);
-        return view('users.index', ['users' => $users, 'commissions'=>$commission]);
+        return view('users.index', ['users' => $users, 'commissions'=>$commission, 'groupes'=>$groupes]);
     }
     public function search()
     {
         $commission = Comission::all();
+        $groupes = G_Parlementaire::all();
 
         $n = request()->input('n');
+        $g = request()->input('g');
         $m = request()->input('m');
         $comission = request()->input('comission');
         $president = request()->input('president');
         $depute = User::Where('category','=','Député');
 
-        if ($comission && $president) {
+        if ($comission && $president && $g) {
+            $users=$depute->Where('matricule','like',"$m%")->Where('name','like',"%$n%" )->Where('comission_id','=',"$comission" )->Where('president','=',"$president" )->Where('groupe_id','=',"$g" )->get();
+        }
+        elseif ($comission && !$president && $g) {
+            $users=$depute->Where('matricule','like',"$m%")->Where('name','like',"%$n%" )->Where('comission_id','=',"$comission" )->Where('groupe_id','=',"$g" )->get();
+        }
+        elseif (!$comission && $president && $g) {
+            $users=$depute->Where('matricule','like',"$m%")->Where('name','like',"%$n%" )->Where('president','=',"$president" )->Where('groupe_id','=',"$g" )->get();
+        }
+        elseif ($comission && $president && !$g) {
             $users=$depute->Where('matricule','like',"$m%")->Where('name','like',"%$n%" )->Where('comission_id','=',"$comission" )->Where('president','=',"$president" )->get();
         }
-        elseif ($comission && !$president) {
+        if ($comission && !$president && !$g) {
             $users=$depute->Where('matricule','like',"$m%")->Where('name','like',"%$n%" )->Where('comission_id','=',"$comission" )->get();
         }
-        elseif (!$comission && $president) {
+        elseif (!$comission && $president && !$g) {
             $users=$depute->Where('matricule','like',"$m%")->Where('name','like',"%$n%" )->Where('president','=',"$president" )->get();
+        }
+        elseif (!$comission && !$president && $g) {
+            $users=$depute->Where('matricule','like',"$m%")->Where('name','like',"%$n%" )->Where('groupe_id','=',"$g" )->get();
         }
         else {
             $users=$depute->Where('matricule','like',"$m%")->Where('name','like',"%$n%" )->get();
         }
-        return view('users.searchd', ['users' => $users, 'commissions'=>$commission]);
+        return view('users.searchd', ['users' => $users, 'commissions'=>$commission,'groupes'=>$groupes]);
     }
 
     public function searchf()
@@ -113,11 +129,12 @@ class UserController extends Controller
         $services = Service::all();
         $comissions = Comission::all();
         $departments = Department::all();
+        $groupes = G_Parlementaire::all();
 
       // dd( $roles);
         // $user = User::find(id);
 
-        return view('users.edit', compact('user','departments','roles','services','comissions'));
+        return view('users.edit', compact('user','departments','roles','services','comissions','groupes'));
     }
 
 
@@ -128,9 +145,11 @@ class UserController extends Controller
         $president = null;
         $fonction = null;
         $department = null;
+        $groupe = null;
 
         if ( $request->categorie == 'Député'  )
         {
+          $groupe = $request->input('groupe');
           $comission = $request->input('comission');
           $service = null;
           $president = $request->input('president');
@@ -144,6 +163,8 @@ class UserController extends Controller
             $president = null;
             $fonction = $request->input('fonction');
             $department =  $request->input('department');
+            $groupe = null;
+
         }
 
 
@@ -156,11 +177,13 @@ class UserController extends Controller
                          ->except([$hasPassword ? '' : 'password'],
                              $user->matricule = $request->input('matricule'),
                              $user->phone = $request->input('phone'),
+                             $user->email = $request->input('email'),
                              $user->fonction = $fonction,
                              $user->Wilaya = $request->input('Wilaya'),
                              $user->nom_a = $request->input('nom_a'),
                              $user->category = $request->input('categorie'),
                                $user->comission_id = $comission,
+                             $user->groupe_id = $groupe,
                              $user->department_id = $department,
                                $user->service_id = $service,
                                $user->president = $president,
@@ -182,16 +205,16 @@ class UserController extends Controller
                              ->except([$hasPassword ? '' : 'password'],
                                  $user->matricule = $request->input('matricule'),
                                  $user->phone = $request->input('phone'),
+                                 $user->email = $request->input('email'),
                                  $user->fonction = $fonction,
                                  $user->Wilaya = $request->input('Wilaya'),
                                  $user->nom_a = $request->input('nom_a'),
                                  $user->category = $request->input('categorie'),
+                                 $user->groupe_id = $groupe,
                                  $user->department_id = $department,
-
                                  $user->comission_id = $comission,
                                  $user->service_id = $service,
                                  $user->president = $president,
-
                                  $user->syncRoles($request->role),
                                  $user->addMedia($request->file)->toMediaCollection(),
                              // $user->getFirstMedia()->delete(),

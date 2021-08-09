@@ -10,6 +10,7 @@
                 <div class="card-header mt-3 col-md-6 container-fluid">
                     <img src="{{ asset('black') }}/img/logo apn.png" alt="" class="center-block"  >
 
+
                 </div>
                 <div class="card-body mt-2">
                     <div class="input-group{{ $errors->has('email') ? ' has-danger' : '' }}">
@@ -18,8 +19,8 @@
                                 <i class="tim-icons icon-email-85"></i>
                             </div>
                         </div>
-                        <input type="email" name="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="{{ __('Email') }}">
-                        @include('alerts.feedback', ['field' => 'email'])
+                        <input type="text" name="username" class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" placeholder="{{ __('Username') }}">
+                        @include('alerts.feedback', ['field' => 'username'])
                     </div>
                     <div class="input-group{{ $errors->has('password') ? ' has-danger' : '' }}">
                         <div class="input-group-prepend">

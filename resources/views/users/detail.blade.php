@@ -18,9 +18,11 @@
                             @elseif($user->category == 'Salarié')
                             <p class="text-secondary mb-3 " style="font-size: 22px">{{ $user->fonction }}</p>
                             @endif
+                            @can('edit')
                             <form class="text-center" action="{{ url('user/'.$user->id) }}" method="post">
                                 @csrf
                                 @method('delete')
+
                                 <a rel="tooltip" class="btn btn-sm btn-warning  " href="{{ url ('user/'.$user->id.'/edit')}}" data-original-title="" title="">
                                     <i class="tim-icons icon-pencil" title="edit"></i> Editer
                                 </a>
@@ -28,6 +30,7 @@
                                     <i class="tim-icons icon-trash-simple" title="supprimer"></i> Supprimer
                                 </button>
                             </form>
+                            @endcan
                         </div>
                     </div>
                 </div>
@@ -128,5 +131,6 @@
                     <a  href="{{ url('user') }}" class="btn btn-sm btn-primary ">{{ __('Retour') }}</a>
                 </div>
             </div>
+        </div>
         </div>
 @endsection

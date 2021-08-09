@@ -8,9 +8,9 @@
                     <div class="card-header">
                         <div class="row">
                             <div class="col-8">
-                                <h4 class="card-title">Ressources humaines</h4>
+                                <h4 class="card-title h1 text-white font-weight-bold">Formulaires administratifs</h4>
                             </div>
-                            @can('adminp')
+                            @can('edit')
                                 <div class=" col-4 text-right pull-right mb-2">
                                     <a href="{{ url('rh/create') }}" class="btn btn-sm btn-primary ">
                                         <i class="tim-icons icon-simple-add"></i> Ajouter
@@ -19,7 +19,6 @@
                             @endcan
                         </div>
                     </div>
-
                     <div class="row">
             @foreach($rhs as $rh)
                 <div class="col-md-5 ml-auto mr-auto" >
@@ -39,9 +38,11 @@
                                         <button type="button" class="btn btn-info btn-fab btn-icon btn-round" data-toggle="modal" data-target="#exampleModal{{$rh->id}}">
                                             <i class="tim-icons icon-book-bookmark"></i>
                                         </button>
+                                        @can('edit')
                                         <button type="button" class="btn btn-danger btn-fab btn-icon btn-round " onclick="confirm('{{ __("Êtes vous sûr de vouloir supprimer ?") }}') ? this.parentElement.submit() : ''">
                                             <i class="tim-icons icon-trash-simple" title="supprimer"></i>
                                         </button>
+                                        @endcan
                                     </form>
                                 </div>
                             </div>

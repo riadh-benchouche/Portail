@@ -13,6 +13,7 @@ return [
     |
     */
 
+
     'default' => env('LDAP_CONNECTION', 'default'),
 
     /*
@@ -29,9 +30,9 @@ return [
     'connections' => [
 
         'default' => [
-            'hosts' => [env('LDAP_HOST', '52.87.186.93')],
-            'username' => env('LDAP_USERNAME', 'null'),
-            'password' => env('LDAP_PASSWORD', 'null'),
+            'hosts' => [env('LDAP_HOST', 'ldap.forumsys.com')],
+            'username' => env('LDAP_USERNAME', 'cn=read-only-admin,dc=example,dc=com'),
+            'password' => env('LDAP_PASSWORD', 'password'),
             'port' => env('LDAP_PORT', 389),
             'base_dn' => env('LDAP_BASE_DN', 'dc=exemple,dc=com'),
             'timeout' => env('LDAP_TIMEOUT', 5),

@@ -16,6 +16,11 @@ class Partage extends Model implements HasMedia
     {
         return $this ->belongsTo('App\Models\Department', 'department_id' ,'id');
     }
+
+    public function users()
+    {
+        return $this ->belongsTo('App\Models\User', 'user_id' ,'id');
+    }
     use HasFactory;
     use SoftDeletes;
     protected $dates=['deleted_at'];

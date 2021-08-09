@@ -54,9 +54,10 @@ class PartageController extends Controller
      * @param  \App\Models\Partage  $partage
      * @return \Illuminate\Http\Response
      */
-    public function show(Partage $partage)
+    public function show($id)
     {
-        //
+        $partage = Partage::find($id);
+        return $partage->getFirstMedia();
     }
 
     /**

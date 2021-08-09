@@ -83,7 +83,8 @@
                                     </select>
                                     <label for="PartyWalls">Sous-Direction :</label>
                                     <select name="service" class="form-control bg-dark" id="TypeOfConstruction" >
-                                        @foreach($services as $service)
+                                        <option value="" >Aucune sous direction</option>
+                                    @foreach($services as $service)
                                             <option value="{{$service->id}}" @if( $user->service_id == $service->id ) selected @endif>{{ $service ->name }}</option>
                                         @endforeach
                                     </select>
@@ -95,20 +96,36 @@
                                 </fieldset>
 
                                 <fieldset class="form-group" style="display:none;" id="depute">
-                                    <label for="PartyWalls1">Comission :</label>
-                                    <select name="comission" class="form-control bg-dark" id="TypeOfConstruction" >
-                                    @foreach($comissions as $comission)
-                                    <option value="{{$comission->id}}" @if( $user->comission_id == $comission->id ) selected @endif>{{ $comission ->name }}</option>
-                                    @endforeach
-                                    </select>
-                                        <br>
-                                    <label for="PartyWalls1">Role du parlementaire :</label>
-                                    <select name="president" class="form-control bg-dark" id="TypeOfConstruction" >
-                                        <option value="1" @if( $user->president == 1 ) selected @endif>Président</option>
-                                        <option value="2" @if( $user->president == 2 ) selected @endif>Vice-président</option>
-                                        <option value="3" @if( $user->president == 3 ) selected @endif>Référendaire</option>
-                                        <option value="3" @if( $user->president == 4 ) selected @endif>Membre</option>
-                                    </select>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label for="PartyWalls1">Comission :</label>
+                                            <select name="comission" class="form-control bg-dark" id="TypeOfConstruction" >
+                                                @foreach($comissions as $comission)
+                                                    <option value="{{$comission->id}}" @if( $user->comission_id == $comission->id ) selected @endif>{{ $comission ->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="PartyWalls1">Role du parlementaire :</label>
+                                            <select name="president" class="form-control bg-dark" id="TypeOfConstruction" >
+                                                <option value="1" @if( $user->president == 1 ) selected @endif>Président</option>
+                                                <option value="2" @if( $user->president == 2 ) selected @endif>Vice-président</option>
+                                                <option value="3" @if( $user->president == 3 ) selected @endif>Référendaire</option>
+                                                <option value="3" @if( $user->president == 4 ) selected @endif>Membre</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-10 ml-auto mr-auto">
+                                        <label for="PartyWalls1">Groupe parlementaire :</label>
+                                        <select name="groupe" class="form-control bg-dark" id="TypeOfConstruction" >
+                                            @foreach($groupes as $groupe)
+                                                <option value="{{$groupe->id}}" @if( $user->groupe_id == $groupe->id ) selected @endif>{{ $groupe ->name }}</option>
+                                            @endforeach
+                                        </select>
+                                        </div>
+                                    </div>
+
                                 </fieldset>
 
                             <!--    <div class="form-group{{ $errors->has('password') ? ' has-danger' : '' }}">

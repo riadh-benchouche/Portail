@@ -18,13 +18,23 @@
             </div>
         </div>
         <hr>
-        <h5>Commentaires</h5>
+        <h5 class="h4 text-white">Commentaires : </h5>
         @foreach($comments as $comment)
-            <div class="card">
-                <div class="display-comment">
-                    <strong>{{ $comment->users->name}}</strong>
-                    <p>{{ $comment->comment }}</p>
-                    <a href="" id="reply"></a>
+            <div class="card p-1" style="background-color: #36415a">
+                <div class="card-body">
+                    <div class="display-comment">
+                        <p>{{ $comment->comment }}</p>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p class="text-muted pull-left">{{ $comment->users->name}}</p>
+                        </div>
+                        <div class="col-md-6 pull-right">
+                            <p class="text-muted pull-right">{{ $comment->created_at}}</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         @endforeach

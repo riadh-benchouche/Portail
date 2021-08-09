@@ -1,10 +1,12 @@
 @extends('layouts.app', ['page' => __('Manage Users'), 'pageSlug' => 'Users'])
 @section('content')
+    @can('edit')
 <div class=" text-sm-right mb-2">
     <a href="{{ url('Image/create') }}" class="btn btn-sm btn-primary ">
         <i class="tim-icons icon-simple-add"></i> Ajouter Image
     </a>
 </div>
+@endcan
 <style>
     body{
         margin-top:20px;
@@ -93,6 +95,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        @can('edit')
                                         <form class="text-center " action="{{ url('Image/'.$image->id) }}" method="post">
                                             @csrf
                                             @method('delete')
@@ -103,6 +106,7 @@
                                                 <i class="tim-icons icon-trash-simple" title="supprimer"></i>
                                             </button>
                                         </form>
+                                            @endcan
                                     </div>
 
                             </div>

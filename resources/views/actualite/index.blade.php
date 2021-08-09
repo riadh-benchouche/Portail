@@ -1,11 +1,21 @@
 @extends('layouts.app', ['page' => __('Manage Users'), 'pageSlug' => 'Users'])
 
 @section('content')
-    <div class=" text-sm-right mb-2">
-        <a href="{{ url('actualite/create') }}" class="btn btn-sm btn-primary ">
-            <i class="tim-icons icon-simple-add"></i> Ajouter
-        </a>
+    <div class="row">
+        <div class="col-md-10">
+            <h4 class="card-title text-white h1 font-weight-bold">Actalités de l'APN</h4>
+        </div>
+        @can('edit')
+            <div class="col-md-2">
+        <div class=" text-sm-right pull-right mb-2">
+                <a href="{{ url('actualite/create') }}" class="btn btn-sm btn-primary pull-right ">
+                    <i class="tim-icons icon-simple-add"></i> Ajouter
+                </a>
+        </div>
+            </div>
+        @endcan
     </div>
+
     <div class="content">
         <div class="row " >
             @foreach($actualites as $actualite)
@@ -26,12 +36,14 @@
                                     <a href="{{ url('actualite/'.$actualite->id) }}" class="btn btn-info btn-fab btn-icon btn-round" >
                                         <i class="tim-icons icon-book-bookmark"></i>
                                     </a>
+                                    @can('edit')
                                     <a rel="tooltip" class="btn btn-warning btn-fab btn-icon btn-round " href="{{ url ('actualite/'.$actualite->id.'/edit')}}" data-original-title="" title="">
                                         <i class="tim-icons icon-pencil" title="edit"></i>
                                     </a>
                                     <button type="button" class="btn btn-danger btn-fab btn-icon btn-round " onclick="confirm('{{ __("Êtes vous sûr de vouloir supprimer ?") }}') ? this.parentElement.submit() : ''">
                                         <i class="tim-icons icon-trash-simple" title="supprimer"></i>
                                     </button>
+                                        @endcan
                                 </form>
                                 </div>
                             </div>

@@ -25,10 +25,9 @@
                         @endif
                         @if ( $lois->type == 2 )
                             <li class="nav-item "><a class="nav-link active" href="#pill1" data-toggle="tab" aria-selected="true">Énoncé</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#pill5" data-toggle="tab">Phase de Vote</a>
-                            </li>
-                            <li class="nav-item"><a class="nav-link" href="#pill6" data-toggle="tab">Nouvelle loi</a>
-                            </li>
+                            <li class="nav-item"><a class="nav-link" href="#pill8" data-toggle="tab">Interventions</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#pill5" data-toggle="tab">Phase de Vote</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#pill6" data-toggle="tab">Nouvelle loi</a></li>
                         @endif
                     </ul>
                 </div>
@@ -67,6 +66,7 @@
                     @if($lois->enonce != null )
                         <div class="row">
                             <div class="col-sm-6">
+                                @can('edit')
                                 <form class="text-center" action="{{ route('deleteE',$lois->enonce->id) }}"
                                       method="post">
                                     @csrf
@@ -75,6 +75,7 @@
                                         <button class="file-close"><i class="fa fa-times-circle"></i></button>
                                     </div>
                                 </form>
+                                @endcan
                                 <div class="file-img-box"><img class="mr-auto ml-auto" width="150px"
                                                                @if($lois->enonce->getFirstMedia()['mime_type'] == 'application/pdf')src="https://coderthemes.com/highdmin/layouts/assets/images/file_icons/pdf.svg"
                                                                alt="icon">
@@ -95,10 +96,12 @@
                             </div>
                         </div>
                     @elseif($lois->enonce == null)
+                        @can('edit')
                         <button type="button" class="btn btn-sm btn-primary" data-toggle="modal"
                                 data-target="#exampleModalCenterEF">
                             Ajouter l'énoncé version français
                         </button>
+                        @endcan
                         <div class="modal fade " id="exampleModalCenterEF" tabindex="-1" role="dialog"
                              aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -147,6 +150,7 @@
                     @if($lois->enoncear != null )
                         <div class="row">
                             <div class="col-sm-6">
+                                @can('edit')
                                 <form class="text-center" action="{{ route('deleteEA',$lois->enoncear->id) }}"
                                       method="post">
                                     @csrf
@@ -155,6 +159,7 @@
                                         <button class="file-close"><i class="fa fa-times-circle"></i></button>
                                     </div>
                                 </form>
+                                @endcan
                                 <div class="file-img-box"><img class="mr-auto ml-auto" width="150px"
                                                                @if($lois->enoncear->getFirstMedia()['mime_type'] == 'application/pdf')src="https://coderthemes.com/highdmin/layouts/assets/images/file_icons/pdf.svg"
                                                                alt="icon">
@@ -175,10 +180,12 @@
                             </div>
                         </div>
                     @elseif($lois->enoncear == null)
+                        @can('edit')
                         <button type="button" class="btn btn-sm btn-primary" data-toggle="modal"
                                 data-target="#exampleModalCenterEA">
                             Ajouter l'énoncé version arabe
                         </button>
+                        @endcan
                         <div class="modal fade " id="exampleModalCenterEA" tabindex="-1" role="dialog"
                              aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -256,10 +263,15 @@
                         </div>
                         <hr class="my-2">
                         @if($lois->preliminaire == null)
+                            @can('edit')
                             <button type="button" class="btn btn-sm btn-primary" data-toggle="modal"
                                     data-target="#exampleModalCenterPRF">
                                 Ajouter Rapport de l'étude préliminaire version français
                             </button>
+                            @endcan
+
+
+
                             <!-- Modal -->
                             <div class="modal fade" id="exampleModalCenterPRF" tabindex="-1" role="dialog"
                                  aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -320,6 +332,7 @@
                         @else
                             <div class="row">
                                 <div class="col-sm-4">
+                                    @can('edit')
                                     <form class="text-center" action="{{ route('deleteP',$lois->preliminaire->id) }}"
                                           method="post">
                                         @csrf
@@ -328,6 +341,7 @@
                                             <button class="file-close"><i class="fa fa-times-circle"></i></button>
                                         </div>
                                     </form>
+                                    @endcan
                                     <div class="file-img-box">
                                         <img class="mr-auto ml-auto" width="150px"
                                              @if($lois->preliminaire->getFirstMedia()['mime_type'] == 'application/pdf')src="https://coderthemes.com/highdmin/layouts/assets/images/file_icons/pdf.svg"
@@ -352,10 +366,12 @@
                             </div>
                         @endif
                         @if($lois->preliminairear == null)
+                            @can('edit')
                             <button type="button" class="btn btn-sm btn-primary" data-toggle="modal"
                                     data-target="#exampleModalCenterPRA">
                                 Ajouter Rapport de l'étude préliminaire version arabe
                             </button>
+                            @endcan
                             <!-- Modal -->
                             <div class="modal fade" id="exampleModalCenterPRA" tabindex="-1" role="dialog"
                                  aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -406,6 +422,7 @@
                         @else
                             <div class="row">
                                 <div class="col-sm-4">
+                                    @can('edit')
                                     <form class="text-center" action="{{ route('deletePA',$lois->preliminairear->id) }}"
                                           method="post">
                                         @csrf
@@ -414,6 +431,7 @@
                                             <button class="file-close"><i class="fa fa-times-circle"></i></button>
                                         </div>
                                     </form>
+                                    @endcan
                                     <div class="file-img-box">
                                         <img class="mr-auto ml-auto" width="150px"
                                              @if($lois->preliminairear->getFirstMedia()['mime_type'] == 'application/pdf')src="https://coderthemes.com/highdmin/layouts/assets/images/file_icons/pdf.svg"
@@ -444,10 +462,12 @@
                         <div class="card" style="background-color: #4f5167;">
                             <div class="card-header">
                                 <div class="  text-right pull-right mb-2">
+                                    @can('edit')
                                     <button type="button" class="btn btn-sm btn-primary" data-toggle="modal"
                                             data-target="#exampleModalplanning">
                                         Ajouter un évènement
                                     </button>
+                                    @endcan
 
                                     <div class="modal fade" id="exampleModalplanning" tabindex="-1" role="dialog"
                                          aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -574,10 +594,12 @@
                         </div>
                         <hr class="my-2">
                         @if($lois->seance == null)
+                            @can('edit')
                             <button type="button" class="btn btn-sm btn-primary" data-toggle="modal"
                                     data-target="#exampleModalCenterSF">
                                 Ajouter Rapport de la séance pléniere
                             </button>
+                            @endcan
                             <!-- Modal -->
                             <div class="modal fade" id="exampleModalCenterSF" tabindex="-1" role="dialog"
                                  aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -640,6 +662,7 @@
                         @else
                             <div class="row">
                                 <div class="col-sm-4">
+                                    @can('edit')
                                     <form class="text-center" action="{{ route('deleteS',$lois->seance->id) }}"
                                           method="post">
                                         @csrf
@@ -648,6 +671,7 @@
                                             <button class="file-close"><i class="fa fa-times-circle"></i></button>
                                         </div>
                                     </form>
+                                    @endcan
                                     <div class="file-img-box">
                                         <img class="mr-auto ml-auto" width="150px"
                                              @if($lois->seance->getFirstMedia()['mime_type'] == 'application/pdf')src="https://coderthemes.com/highdmin/layouts/assets/images/file_icons/pdf.svg"
@@ -673,10 +697,12 @@
                             </div>
                         @endif
                         @if($lois->seancear == null)
+                            @can('edit')
                             <button type="button" class="btn btn-sm btn-primary" data-toggle="modal"
                                     data-target="#exampleModalCenterSA">
                                 Ajouter Rapport de la séance pléniere version arabe
                             </button>
+                            @endcan
                             <!-- Modal -->
                             <div class="modal fade" id="exampleModalCenterSA" tabindex="-1" role="dialog"
                                  aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -728,6 +754,7 @@
                         @else
                             <div class="row">
                                 <div class="col-sm-4">
+                                    @can('edit')
                                     <form class="text-center" action="{{ route('deleteSA',$lois->seance->id) }}"
                                           method="post">
                                         @csrf
@@ -736,6 +763,7 @@
                                             <button class="file-close"><i class="fa fa-times-circle"></i></button>
                                         </div>
                                     </form>
+                                    @endcan
                                     <div class="file-img-box">
                                         <img class="mr-auto ml-auto" width="150px"
                                              @if($lois->seancear->getFirstMedia()['mime_type'] == 'application/pdf')src="https://coderthemes.com/highdmin/layouts/assets/images/file_icons/pdf.svg"
@@ -766,10 +794,12 @@
                         <h1>Seance plénière non terminer</h1>
                     @elseif($lois->etat >= 2)
                     @if ( $lois->intervention == null )
+                            @can('edit')
                         <button type="button" class="btn btn-sm btn-primary" data-toggle="modal"
                                 data-target="#exampleModalCenterI">
                             Ajouter Rapport des interventions
                         </button>
+                            @endcan
                         <!-- Modal -->
                         <div class="modal fade" id="exampleModalCenterI" tabindex="-1" role="dialog"
                              aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -818,6 +848,7 @@
                     @elseif($lois->intervention != null)
                         <div class="row">
                             <div class="col-sm-4">
+                                @can('edit')
                                 <form class="text-center" action="{{ route('deleteI',$lois->intervention->id) }}"
                                       method="post">
                                     @csrf
@@ -826,6 +857,7 @@
                                         <button class="file-close"><i class="fa fa-times-circle"></i></button>
                                     </div>
                                 </form>
+                                @endcan
                                 <div class="file-img-box">
                                     <img class="mr-auto ml-auto" width="150px"
                                          @if($lois->intervention->getFirstMedia()['mime_type'] == 'application/pdf')src="https://coderthemes.com/highdmin/layouts/assets/images/file_icons/pdf.svg"
@@ -848,10 +880,12 @@
                         </div>
                     @endif
                     @if ( $lois->interventionar == null )
+                            @can('edit')
                         <button type="button" class="btn btn-sm btn-primary" data-toggle="modal"
                                 data-target="#exampleModalCenterIA">
                             Ajouter Rapport des interventions
                         </button>
+                            @endcan
                         <!-- Modal -->
                         <div class="modal fade" id="exampleModalCenterIA" tabindex="-1" role="dialog"
                              aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -900,6 +934,7 @@
                     @elseif($lois->interventionar != null)
                         <div class="row">
                             <div class="col-sm-4">
+                                @can('edit')
                                 <form class="text-center" action="{{ route('deleteIA',$lois->interventionar->id) }}"
                                       method="post">
                                     @csrf
@@ -908,6 +943,7 @@
                                         <button class="file-close"><i class="fa fa-times-circle"></i></button>
                                     </div>
                                 </form>
+                                @endcan
                                 <div class="file-img-box">
                                     <img class="mr-auto ml-auto" width="150px"
                                          @if($lois->interventionar->getFirstMedia()['mime_type'] == 'application/pdf')src="https://coderthemes.com/highdmin/layouts/assets/images/file_icons/pdf.svg"
@@ -963,10 +999,12 @@
                         </div>
                         <hr class="my-2">
                         @if($lois->complementaire == null)
+                            @can('edit')
                             <button type="button" class="btn btn-sm btn-primary" data-toggle="modal"
                                     data-target="#exampleModalCenterC">
                                 Ajouter Rapport complementaire
                             </button>
+                            @endcan
                             <!-- Modal -->
                             <div class="modal fade" id="exampleModalCenterC" tabindex="-1" role="dialog"
                                  aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -1018,6 +1056,7 @@
                         @else
                             <div class="row">
                                 <div class="col-sm-4">
+                                    @can('edit')
                                     <form class="text-center" action="{{ route('deleteC',$lois->complementaire->id) }}"
                                           method="post">
                                         @csrf
@@ -1026,6 +1065,7 @@
                                             <button class="file-close"><i class="fa fa-times-circle"></i></button>
                                         </div>
                                     </form>
+                                    @endcan
                                     <div class="file-img-box">
                                         <img class="mr-auto ml-auto" width="150px"
                                              @if($lois->complementaire->getFirstMedia()['mime_type'] == 'application/pdf')src="https://coderthemes.com/highdmin/layouts/assets/images/file_icons/pdf.svg"
@@ -1050,10 +1090,12 @@
                             </div>
                         @endif
                         @if($lois->complementairear == null)
+                            @can('edit')
                             <button type="button" class="btn btn-sm btn-primary" data-toggle="modal"
                                     data-target="#exampleModalCenterCA">
                                 Ajouter Rapport complementaire En Arabe
                             </button>
+                            @endcan
                             <!-- Modal -->
                             <div class="modal fade" id="exampleModalCenterCA" tabindex="-1" role="dialog"
                                  aria-labelledby="exampleModalCenterTitleA" aria-hidden="true">
@@ -1117,6 +1159,7 @@
                         @else
                             <div class="row">
                                 <div class="col-sm-4">
+                                    @can('edit')
                                     <form class="text-center"
                                           action="{{ route('deleteCA',$lois->complementairear->id) }}" method="post">
                                         @csrf
@@ -1125,6 +1168,7 @@
                                             <button class="file-close"><i class="fa fa-times-circle"></i></button>
                                         </div>
                                     </form>
+                                    @endcan
                                     <div class="file-img-box">
                                         <img class="mr-auto ml-auto" width="150px"
                                              @if($lois->complementairear->getFirstMedia()['mime_type'] == 'application/pdf')src="https://coderthemes.com/highdmin/layouts/assets/images/file_icons/pdf.svg"
@@ -1175,10 +1219,12 @@
                                 </div>
                                 <hr class=" col-sm-12 my-2">
                                 @if($lois->oui == null )
+                                    @can('edit')
                                     <button type="button" class="btn btn-sm btn-primary ml-auto mr-auto " data-toggle="modal"
                                             data-target="#exampleModalCenterV">
                                         Ajouter Résultat du vote
                                     </button>
+                                    @endcan
                                     <!-- Modal -->
                                     <div class="modal fade" id="exampleModalCenterV" tabindex="-1" role="dialog"
                                          aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -1344,10 +1390,12 @@
                         </div>
                         <hr class="my-2">
                         @if($lois->getFirstMedia() == null)
+                            @can('edit')
                             <button type="button" class="btn btn-sm btn-primary" data-toggle="modal"
                                     data-target="#exampleModalCenterL">
                                 Ajouter Nouvelle lois En Français
                             </button>
+                            @endcan
                             <!-- Modal -->
                             <div class="modal fade" id="exampleModalCenterL" tabindex="-1" role="dialog"
                                  aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -1419,6 +1467,7 @@
                         @else
                             <div class="row">
                                 <div class="col-sm-4">
+                                    @can('edit')
                                     <form class="text-center" action="{{ route('deleteN',$lois->id) }}" method="post">
                                         @csrf
                                         @method('delete')
@@ -1426,6 +1475,7 @@
                                             <button class="file-close"><i class="fa fa-times-circle"></i></button>
                                         </div>
                                     </form>
+                                    @endcan
                                     <div class="file-img-box">
                                         <img class="mr-auto ml-auto" width="150px"
                                              @if($lois->getFirstMedia()['mime_type'] == 'application/pdf')src="https://coderthemes.com/highdmin/layouts/assets/images/file_icons/pdf.svg"
@@ -1448,10 +1498,12 @@
                             </div>
                         @endif
                         @if($lois->loisar == null)
+                            @can('edit')
                             <button type="button" class="btn btn-sm btn-primary" data-toggle="modal"
                                     data-target="#exampleModalCenterLA">
                                 Ajouter Rapport complementaire En Arabe
                             </button>
+                            @endcan
                             <!-- Modal -->
                             <div class="modal fade" id="exampleModalCenterLA" tabindex="-1" role="dialog"
                                  aria-labelledby="exampleModalCenterTitleA" aria-hidden="true">
@@ -1503,6 +1555,7 @@
                         @else
                             <div class="row">
                                 <div class="col-sm-4">
+                                    @can('edit')
                                     <form class="text-center" action="{{ route('deleteNA',$lois->loisar->id) }}"
                                           method="post">
                                         @csrf
@@ -1511,6 +1564,7 @@
                                             <button class="file-close"><i class="fa fa-times-circle"></i></button>
                                         </div>
                                     </form>
+                                    @endcan
                                     <div class="file-img-box">
                                         <img class="mr-auto ml-auto" width="150px"
                                              @if($lois->loisar->getFirstMedia()['mime_type'] == 'application/pdf')src="https://coderthemes.com/highdmin/layouts/assets/images/file_icons/pdf.svg"
@@ -1535,6 +1589,8 @@
                         @endif
                     @endif
                 </div>
+            </div>
+            </div>
             </div>
             </div>
     </div>

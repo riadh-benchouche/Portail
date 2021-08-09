@@ -59,8 +59,10 @@ class BibliothequeuController extends Controller
      */
     public function show($id)
     {
+
         $bibls = BibliothequeU::find($id);
         return $bibls->getFirstMedia();
+
     }
 
     /**
@@ -96,8 +98,8 @@ class BibliothequeuController extends Controller
     {
         $bibls = BibliothequeU::find($id);
 
-        $bibls-> delete();
         $bibls->getFirstMedia()->delete();
+        $bibls-> delete();
         return redirect('bibu');
     }
 }

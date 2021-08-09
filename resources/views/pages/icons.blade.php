@@ -14,19 +14,16 @@
         <div class="col-md-12 ml-auto mr-auto">
             <div class="card" style="background-image:url('{{asset('black/img/cal1.jpg')}}'); background-size: cover">
                 <div class="card-header">
+                    @can('edit')
                 <div class="row pull-right mr-3">
                     <div class="  text-right pull-right mb-2">
                         <a href="{{ url('fullcalender/create') }}" class="btn btn-sm " style="background: #538037">
                             <i class="tim-icons icon-simple-add"></i> Evenement
                         </a>
                     </div>
-                    <div class="  text-right pull-right mb-2 mr-2">
-                        <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#exampleModalCenterEA">
-                            <i class="tim-icons icon-simple-add"></i> Categorie
-                        </button>
-                    </div>
                 </div>
                 </div>
+                @endcan
                 <div class="card-body" >
                     {!! $calendar->calendar() !!}
                 </div>

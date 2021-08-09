@@ -16,7 +16,7 @@
                             <p class="text-secondary text-left  mb-2" style="font-size: 15px">Fin de l'évènement : </p>
                             <li class="text-secondary text-left font-weight-bold mb-2 ml-4" style="font-size: 15px">{{$event->end_date}}</li>
 
-
+                                @can('edit')
                             <form class="text-center card-footer mt-3 " action="{{ url('fullcalender/'.$event->id) }}" method="post">
                                 @csrf
                                 @method('delete')
@@ -27,13 +27,14 @@
                                     <i class="tim-icons icon-trash-simple" title="supprimer"></i> Supprimer
                                 </button>
                             </form>
+                                    @endcan
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     <div class="col-md-8" >
-        <div class="card  p-sm" style="height: 420px">
+        <div class="card  p-sm" >
             <div class="card-body  ">
                 <div class="row">
                     <div class="col-sm-12 text-secondary display-4">
@@ -48,7 +49,7 @@
                 </div>
             </div>
             <div class="card-footer text-center ">
-                <a  href="{{ url('fullcalender') }}" class="btn btn-sm btn-primary ">{{ __('Retour') }}</a>
+                <a  href="{{ url('icons') }}" class="btn btn-sm btn-primary ">{{ __('Retour') }}</a>
             </div>
         </div>
     </div>

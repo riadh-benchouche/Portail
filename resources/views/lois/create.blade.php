@@ -1,6 +1,10 @@
 @extends('layouts.app', ['page' => __('User Management'), 'pageSlug' => 'users'])
 
 @section('content')
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js" integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7" crossorigin="anonymous"></script>
+
     <div class="container-fluid mt--7">
         <div class="row">
             <div class="col-xl-12 order-xl-1">
@@ -42,31 +46,52 @@
                                     @include('alerts.feedback', ['field' => 'DtDepot'])
                                 </div>
 
-                                <div class="form-group">
-                                    <label for="exampleSelect1">Type de lois</label>
-                                    <select name="type" class="form-control" id="typelois" >
-                                            <option value="1" >Projet de lois</option>
-                                            <option value="2" >Ordonnance</option>
-                                            <option value="3" >Règlement du budget</option>
-                                    </select>
-                                </div>
+
 
                                 <fieldset class="form-group">
-                                    <label for="exampleSelect1">Comission</label>
-                                    <select name="comission" class="form-control" id="TypeOfConstruction" >
-                                        @foreach($comissions as $comission)
-                                            <option value="{{$comission->id}}" >{{$comission->name}}</option>
-                                        @endforeach
+                                    <label for="exampleSelect1">Type de loi</label>
+                                    <select name="type" class="form-control bg-dark " id="TypeOfConstruction" >
+                                        <option value="1" >Proposition de loi</option>
+                                        <option value="2" >Ordonnance</option>
+                                        <option value="3" >Projet de loi</option>
                                     </select>
                                 </fieldset>
-                                <fieldset class="form-group">
-                                    <label for="exampleSelect2">Ministere</label>
-                                    <select name="ministere" class="form-control" id="TypeOfConstruction" >
-                                        @foreach($ministeres as $ministere)
-                                            <option value="{{$ministere->id}}" >{{$ministere->name}}</option>
-                                        @endforeach
-                                    </select>
+
+                                <fieldset class="form-group" style="display:none;" id="1">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label for="exampleSelect1">Comission</label>
+                                            <select name="comission" class="form-control" id="TypeOfConstruction" >
+                                                @foreach($comissions as $comission)
+                                                    <option value="{{$comission->id}}" >{{$comission->name}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
                                 </fieldset>
+
+                                <fieldset class="form-group" style="display:none;" id="3">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label for="exampleSelect1">Comission</label>
+                                            <select name="comission" class="form-control" id="TypeOfConstruction" >
+                                                @foreach($comissions as $comission)
+                                                    <option value="{{$comission->id}}" >{{$comission->name}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="exampleSelect1">Ministere</label>
+                                            <select name="ministere" class="form-control" id="TypeOfConstruction" >
+                                                @foreach($ministeres as $ministere)
+                                                    <option value="{{$ministere->id}}" >{{$ministere->name}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                </fieldset>
+
+
                                 <fieldset class="form-group">
                                     <label for="exampleSelect3">Session</label>
                                     <select name="session" class="form-control" id="TypeOfConstruction" >
@@ -86,4 +111,41 @@
             </div>
         </div>
     </div>
+
+    <script>
+        $(document).ready(function(){
+            $("#TypeOfConstruction").on("change", function(e){
+                var v = $(this).val();
+                if(v == '2') {
+                    $("#2").slideDown();
+                } else {
+                    $("#2").slideUp();
+                }
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function(){
+            $("#TypeOfConstruction").on("change", function(e){
+                var v = $(this).val();
+                if(v == '1' ) {
+                    $("#1").slideDown();
+                } else {
+                    $("#1").slideUp();
+                }
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function(){
+            $("#TypeOfConstruction").on("change", function(e){
+                var v = $(this).val();
+                if(v == '3' ) {
+                    $("#3").slideDown();
+                } else {
+                    $("#3").slideUp();
+                }
+            });
+        });
+    </script>
 @endsection

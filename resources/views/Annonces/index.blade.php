@@ -4,13 +4,13 @@
     <div class="content">
         <div class="row">
             <div class="col-md-12">
-                <div class="card bg-gray-800">
+                <div class="card bg-gray-800 pl-3 pr-3">
                     <div class="card-header">
                         <div class="row">
                             <div class="col-8">
-                                <h4 class="card-title">Annonces</h4>
+                                <h4 class="card-title h1 text-white font-weight-bold">Annonces et circulaires dynamiques</h4>
                             </div>
-                            @can('adminp')
+                            @can('edit')
                                 <div class=" col-4 text-right pull-right mb-2">
                                     <a href="{{ url('annonce/create') }}" class="btn btn-sm btn-primary ">
                                         <i class="tim-icons icon-simple-add"></i> Ajouter
@@ -23,7 +23,7 @@
                     <div class="row">
                         @foreach($annonces as $annonce)
                             @if($annonce->type == 'option1')
-                                <div class="col-md-5 ml-auto mr-auto">
+                                <div class="col-md-6 ">
                                     <div class="card">
                                         <div class="card-header card-header-icon bg-info">
                                             <div class="card-icon">
@@ -41,19 +41,21 @@
                                                 <a href="{{ url('annonce/'.$annonce->id) }}" class="btn btn-info btn-fab btn-icon btn-round" >
                                                     <i class="tim-icons icon-book-bookmark"></i>
                                                 </a>
+                                                @can('edit')
                                                 <a rel="tooltip" class="btn btn-warning btn-fab btn-icon btn-round " href="{{ url ('annonce/'.$annonce->id.'/edit')}}" data-original-title="" title="">
                                                     <i class="tim-icons icon-pencil" title="edit"></i>
                                                 </a>
                                                 <button type="button" class="btn btn-danger btn-fab btn-icon btn-round " onclick="confirm('{{ __("Êtes vous sûr de vouloir supprimer ?") }}') ? this.parentElement.submit() : ''">
                                                     <i class="tim-icons icon-trash-simple" title="supprimer"></i>
                                                 </button>
+                                                @endcan
                                             </form>
                                         </div>
                                     </div>
                                 </div>
                             @endif
                                 @if($annonce->type == 'option2')
-                                    <div class="col-md-5 ml-auto mr-auto">
+                                    <div class="col-md-6">
                                         <div class="card">
                                             <div class="card-header card-header-icon bg-success">
                                                 <div class="card-icon">

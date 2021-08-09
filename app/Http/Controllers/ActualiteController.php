@@ -75,7 +75,7 @@ class ActualiteController extends Controller
 
         $comment->save();
 
-        return redirect('actualite');
+        return redirect('actualite/'.$actualite->id);
     }
 
     /**

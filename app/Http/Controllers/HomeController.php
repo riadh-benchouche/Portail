@@ -38,6 +38,10 @@ class HomeController extends Controller
      */
     public function index()
     {
+
+
+
+
         //$janvier = Lois::where()
         $calendar = Calendar::setOptions([
             //'locale' => 'fr',

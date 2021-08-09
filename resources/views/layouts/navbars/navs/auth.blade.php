@@ -33,6 +33,11 @@
                     @unless(auth()->user()->unreadNotifications->isEmpty())
                     <ul class="dropdown-menu dropdown-menu-right dropdown-navbar">
                         @foreach(auth()->user()->unreadNotifications as $notification)
+                            @if($notification->type == "App\Notifications\TeAAjouter")
+                                <li class="nav-link">
+                                    <a  href="{{url('TestEtAstuce/'.$notification->data['TeAId'])}}" class="nav-item dropdown-item text-dark">Nouvelle astuces:<u>{{substr($notification->data['TeAName'],0,15)}}</u>, Ajouter aux trucs et astuces</a>
+                                </li>
+                            @endif
                            @if($notification->type == "App\Notifications\ajouter")
                         <li class="nav-link">
                             <a  href="{{url('rh')}}" class="nav-item dropdown-item text-dark">Nouveau document:<u>{{substr($notification->data['rhName'],0,15)}}</u>, Ajouter aux Ressource humaines</a>
@@ -40,12 +45,12 @@
                             @endif
                         @if($notification->type == "App\Notifications\AnnonceAjouter")
                             <li class="nav-link">
-                                <button  href="{{route('annonce.index')}}"   class="nav-item dropdown-item text-dark">Nouvelle Annonce: <u> {{substr($notification->data['AnnonceName'],0,15)}}</u>, Ajouter aux annonces</button>
+                                <a  href="{{url('annonce/'.$notification->data['AnnonceId'])}}"   class="nav-item dropdown-item text-dark">Nouvelle Annonce: <u> {{substr($notification->data['AnnonceName'],0,15)}}</u>, Ajouter aux annonces</a>
                             </li>
                         @endif
                         @if($notification->type == "App\Notifications\ActualiteAjouter")
                             <li class="nav-link">
-                                 <a  href="{{route('actualite.index')}}"   class="nav-item dropdown-item text-dark">Nouvelle Actualite:  <u>{{substr($notification->data['ActualiteName'],0,15)}}</u>, Ajouter aux Actualites</a>
+                                 <a  href="{{url('actualite/'.$notification->data['ActualiteId'])}}"   class="nav-item dropdown-item text-dark">Nouvelle Actualite:  <u>{{substr($notification->data['ActualiteName'],0,15)}}</u>, Ajouter aux Actualites</a>
                             </li>
                         @endif
                         @endforeach

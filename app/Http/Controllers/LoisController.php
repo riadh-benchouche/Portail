@@ -274,7 +274,7 @@ class LoisController extends Controller
         if($lois->etat < 3 ) {
         $lois->etat = "3"; }
 
-        $lois->DtPresCom = $request->input('date');
+        $lois->DtDiscusGen = $request->input('date');
 
 
         $sean->save();
@@ -290,10 +290,7 @@ class LoisController extends Controller
         $sean
             ->addMedia($request->file)
             ->toMediaCollection();
-        $lois = Lois::find($request->input('id'));
-        if($lois->etat < 4 ) {
-            $lois->etat = "4";
-        }
+
 
         $sean->save();
 
@@ -309,7 +306,9 @@ class LoisController extends Controller
             ->toMediaCollection();
 
         $lois = Lois::find($request->input('id'));
-
+        if($lois->etat < 4 ) {
+            $lois->etat = "4";
+        }
         $comp->save();
         $lois->save();
 
@@ -340,7 +339,9 @@ class LoisController extends Controller
         $lois
             ->addMedia($request->file)
             ->toMediaCollection();
-
+        if($lois->etat < 5 ) {
+            $lois->etat = "5";
+        }
 
         $lois->save();
 

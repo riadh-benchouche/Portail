@@ -55,6 +55,19 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="form-group{{ $errors->has('password') ? ' has-danger' : '' }}">
+                                    <div class="row">
+                                        <div class="col-md-10 ml-auto mr-auto">
+                                            <label class="form-control-label" for="input-groupe">{{ __('Recherche par groupe parlementaire') }}</label>
+                                            <select name="g" class="form-control bg-dark" id="input-groupe" >
+                                                <option value="" selected ></option>
+                                                @foreach($groupes as $groupe)
+                                                    <option value="{{$groupe->id}}" >{{ $groupe ->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="text-center">
                                     <button type="submit" class="btn  w-100 btn-success mt-4">
                                         <i class="tim-icons icon-zoom-split display-4"></i> Rechercher

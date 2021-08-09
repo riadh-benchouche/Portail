@@ -21,7 +21,7 @@
                                 <th>Date</th>
                                 <th class="text-center">Nombre d'article</th>
                                 <th class="text-center">etat</th>
-                                <th class="text-right">Actions</th>
+                                <th class="text-right text-center">Actions</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -32,7 +32,7 @@
                                     <td>{{$loi->comissions->name}}</td>
                                     <td>{{$loi->DtDepot}}</td>
                                     <td class="text-center">{{$loi->NbAraticle}}</td>
-                                    <td class="text-center">@if($loi->etat == 4 ) Terminer @endif</td>
+                                    <td class="text-center">@if($loi->etat == 5 ) Terminer @endif</td>
                                     <td class="td-actions text-right">
                                         <form class="text-center " action="{{ url('loisdelete/'.$loi->id) }}" method="post">
                                             @csrf
@@ -40,9 +40,11 @@
                                             <a href="{{url('loisdetails/'.$loi->id)}}" type="button" rel="tooltip" class="btn btn-info btn-sm btn-icon">
                                                 <i class="tim-icons icon-book-bookmark"></i>
                                             </a>
+                                            @can('edit')
                                             <button type="button" class="btn btn-danger btn-fab btn-icon btn-round " onclick="confirm('{{ __("Êtes vous sûr de vouloir supprimer ?") }}') ? this.parentElement.submit() : ''">
                                                 <i class="tim-icons icon-trash-simple" title="supprimer"></i>
                                             </button>
+                                            @endcan
                                         </form>
                                     </td>
                                 </tr>

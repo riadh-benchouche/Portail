@@ -95,15 +95,18 @@
                                   <p class="font-weight-bold">{{ __('Organigramme') }}</p>
                               </a>
                         </li>
+                          @can('fonctionnaire')
                           <li >
                               <a href="{{ url('department') }}">
                                   <i class="tim-icons icon-pin"></i>
                                   <p class="font-weight-bold">{{ __('Direction') }}</p>
                               </a>
                           </li>
+                          @endcan
                     </ul>
                 </div>
             </li>
+
             <li @if ($pageSlug ?? '' == 'icons') class="active " @endif>
                 <a data-toggle="collapse" href="#Législation" aria-expanded="true">
                     <i class="tim-icons icon-bank" ></i>
@@ -112,17 +115,22 @@
                 </a>
                 <div class="collapse" id="Législation">
                     <ul class="nav pl-2">
-
                         <li >
                             <a href="mms://live.apn.gov.dz:8044">
                                 <i class="tim-icons icon-triangle-right-17"></i>
                                 <p class="font-weight-bold" >{{ __('En direct') }}</p>
                             </a>
                         </li>
-                        <li >
+                        <li>
                             <a href="{{ route('travaux.index') }}">
                                 <i class="tim-icons icon-molecule-40"></i>
                                 <p class="font-weight-bold" >{{ __('Actualités législatives') }}</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ url('documents') }}">
+                                <i class="tim-icons icon-molecule-40"></i>
+                                <p class="font-weight-bold" >{{ __('Documents législatifs') }}</p>
                             </a>
                         </li>
                         <li >
@@ -137,12 +145,15 @@
                                 <p class="font-weight-bold">{{ __('Planning') }}</p>
                             </a>
                         </li>
+                        @can('depute')
                         <li >
                             <a href="{{url('commission')}}">
                                 <i class="tim-icons icon-bullet-list-67"></i>
                                 <p class="font-weight-bold">{{ __('Commission') }}</p>
                             </a>
                         </li>
+                        @endcan
+                        @can('depute')
                         <li >
                             <a data-toggle="collapse" href="#laravel-examples" aria-expanded="true">
                                 <i class="tim-icons icon-map-big" ></i>
@@ -166,6 +177,7 @@
                                 </ul>
                             </div>
                         </li>
+                            @endcan
                     </ul>
                 </div>
             </li>
@@ -189,6 +201,12 @@
                                 <p>{{ __('Galerie de Videos') }}</p>
                             </a>
                         </li>
+                        <li  >
+                            <a href="{{ url('InterVideo') }}">
+                                <i class="tim-icons icon-video-66"></i>
+                                <p>{{ __('Intervention Video') }}</p>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </li>
@@ -207,7 +225,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="">
+                            <a href="{{url('TestEtAstuce')}}">
                                 <i class="tim-icons icon-settings"></i>
                                 <p>{{ __('Trucs & astuces')}}</p>
                             </a>

@@ -16,7 +16,9 @@ class InterVideoController extends Controller
     public function index()
     {
         $User=auth()->user()->id;
-        $InterVideos =InterVideo::where('user_id','=',$User);
+        $InterVideos =InterVideo::where('user_id','=',$User)->get();
+
+
         return view('Intervention.index', ['InterVideos'=>$InterVideos]);
     }
 

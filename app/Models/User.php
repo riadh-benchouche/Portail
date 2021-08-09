@@ -5,22 +5,31 @@ namespace App\Models;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use LdapRecord\Laravel\Auth\AuthenticatesWithLdap;
+use LdapRecord\Laravel\Auth\LdapAuthenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\Permission\Traits\HasRoles;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 
 
-class User extends Authenticatable implements HasMedia
+class User extends Authenticatable implements HasMedia,LdapAuthenticatable
 {
 
     use HasFactory, Notifiable;
+
     use HasRoles;
     use HasMediaTrait;
+    use AuthenticatesWithLdap;
 
     public function services()
     {
         return $this ->belongsTo('App\Models\Service', 'service_id' ,'id');
+    }
+    public function G_Parlementaire()
+    {
+        return $this ->belongsTo('App\Models\G_Parlementaire', 'groupe_id' ,'id');
+
     }
     public function departments()
     {
@@ -35,8 +44,13 @@ class User extends Authenticatable implements HasMedia
     {
         return $this ->hasMany('App\Models\Comment');
     }
+    public function partage()
+    {
+        return $this ->hasMany('App\Models\Partage');
+    }
 
 
+    protected $guard_name = 'web';
 
 
     public function isAdmin() {
@@ -49,7 +63,7 @@ class User extends Authenticatable implements HasMedia
      */
     protected $fillable = [
         'name',
-        'email',
+        'username',
         'password',
     ];
 

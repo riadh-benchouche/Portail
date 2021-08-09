@@ -58,7 +58,7 @@
                         Outlook Web Application « OWA »
                     </h4>
                     <div class="card-description">
-                        Vous pouvez vous connecter à votre messagerie Exchange 2016 via un navigateur web grâce à Outlook Web App et ce depuis n’importe quel endroit.
+                        Vous pouvez vous connecter à votre messagerie Exchange 2010 via un navigateur web grâce à Outlook Web App et ce depuis n’importe quel endroit.
                     </div>
                     <div class="card-footer">
                         <a href="{{url('https://mail.apn.gov.dz/owa')}}" class="btn btn-danger btn-round mt-4">Accéder a l'OWA</a>
